@@ -8,16 +8,16 @@ create table EMPLEADOS
   EDAD INTEGER not null,
   CORREO VARCHAR(50) not null,
   DIRECCION VARCHAR(50) not null,
-  CONTRASEÑA VARBINARY(128) not null
+  CONTRASEÃ‘A VARBINARY(128) not null
 );
-
+go
 -- Tabla Cargo
 create table CARGO
 (
   ID_CARGO  VARCHAR(10) primary key,
   NOMBRE VARCHAR(10)
 );
-
+go
 -- Tabla Empleados_Cargos
 create table EMPLEADOS_CARGOS
 (
@@ -26,11 +26,11 @@ create table EMPLEADOS_CARGOS
   CONSTRAINT fk_CI FOREIGN KEY (CI) REFERENCES EMPLEADOS (CI),
   CONSTRAINT fk_CARGO FOREIGN KEY (ID_CARGO) REFERENCES CARGO (ID_CARGO)
 );
-
+go
 --Procedimiento Login Empleado
 CREATE PROC LoginEmpleado
 @CI VARCHAR(10),
-@CONTRASEÑA VARCHAR(128)
+@CONTRASEÃ‘A VARCHAR(128)
 as
 SELECT
   E.NOMBRE as 'Nombre',
@@ -40,5 +40,5 @@ SELECT
 FROM Empleados E
 JOIN EMPLEADOS_CARGOS E_C ON E.CI = E_C.CI
 JOIN CARGO C ON E_C.ID_CARGO = C.ID_CARGO
-where E.CI= @CI and E.CONTRASEÑA = HASHBYTES('SHA2_512',@CONTRASEÑA)
+where E.CI= @CI and E.CONTRASEÃ‘A = HASHBYTES('SHA2_512',@CONTRASEÃ‘A)
 go
