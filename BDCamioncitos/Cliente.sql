@@ -7,7 +7,7 @@ create table CLIENTE
   CORREO VARCHAR(50) not null,
   DIRECCION VARCHAR(50) not null
 );
-
+go
 -- Procedimiento para Obtener Cliente
 CREATE PROC ObtenerCliente
 @Condicion nvarchar(30)
