@@ -25,9 +25,19 @@ create table FACTURA
 -- Tabla Disponibilidad_Chofer
 create table DISPONIBILIDAD_CHOFER
 (
-  CI  VARCHAR(10),
+  CI  VARCHAR(10) primary key,
   DISPONIBILIDAD BIT not null,
   CONSTRAINT fk_CI FOREIGN KEY (CI) REFERENCES EMPLEADOS_CARGOS (CI)
 );
 
+-- Tabla Informe
+create table Informe
+(
+  MATRICULA  VARCHAR(10) primary key,
+  --CI CHOFER
+  COMBUSTIBLE FLOAT not null, --Son dolares
+  KILOMETRAJE FLOAT not null
+  --ID Envios realizados
+  --FECHA
+);
 
