@@ -47,44 +47,68 @@ namespace ProyectoCamioncitos.Modelo.DAO
         }
 
         //Metodo Crear Cliente
-        public void Create(string RUC, string Nombre, string Telefono, string Correo, string Direccion) 
+        public bool Create(string RUC, string Nombre, string Telefono, string Correo, string Direccion) 
         {
-            Comando.Connection = Conexion;
-            Comando.CommandText = "CrearCliente";
-            Comando.CommandType = CommandType.StoredProcedure;
-            Comando.Parameters.AddWithValue("@RUC", RUC);
-            Comando.Parameters.AddWithValue("@NOMBRE", Nombre);
-            Comando.Parameters.AddWithValue("@TELEFONO", Telefono);
-            Comando.Parameters.AddWithValue("@CORREO", Correo);
-            Comando.Parameters.AddWithValue("@DIRECCION", Direccion);
-            Conexion.Open();
-            Comando.ExecuteNonQuery();
+            try
+            {
+                Comando.Connection = Conexion;
+                Comando.CommandText = "CrearCliente";
+                Comando.CommandType = CommandType.StoredProcedure;
+                Comando.Parameters.AddWithValue("@RUC", RUC);
+                Comando.Parameters.AddWithValue("@NOMBRE", Nombre);
+                Comando.Parameters.AddWithValue("@TELEFONO", Telefono);
+                Comando.Parameters.AddWithValue("@CORREO", Correo);
+                Comando.Parameters.AddWithValue("@DIRECCION", Direccion);
+                Conexion.Open();
+                Comando.ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         //Método Eliminar Cliente
-        public void Delete(string RUC) 
+        public bool Delete(string RUC) 
         {
-            Comando.Connection = Conexion;
-            Comando.CommandText = "EliminarCliente";
-            Comando.CommandType = CommandType.StoredProcedure;
-            Comando.Parameters.AddWithValue("@RUC", RUC);
-            Conexion.Open();
-            Comando.ExecuteNonQuery();
+            try
+            {
+                Comando.Connection = Conexion;
+                Comando.CommandText = "EliminarCliente";
+                Comando.CommandType = CommandType.StoredProcedure;
+                Comando.Parameters.AddWithValue("@RUC", RUC);
+                Conexion.Open();
+                Comando.ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         //Método Modificar Cliente
-        public void Update(string RUC, string Nombre, string Telefono, string Correo, string Direccion) 
+        public bool Update(string RUC, string Nombre, string Telefono, string Correo, string Direccion) 
         {
-            Comando.Connection = Conexion;
-            Comando.CommandText = "ModificarCliente";
-            Comando.Parameters.AddWithValue("@RUC", RUC);
-            Comando.CommandType = CommandType.StoredProcedure;
-            Comando.Parameters.AddWithValue("@NOMBRE", Nombre);
-            Comando.Parameters.AddWithValue("@TELEFONO", Telefono);
-            Comando.Parameters.AddWithValue("@CORREO", Correo);
-            Comando.Parameters.AddWithValue("@DIRECCION", Direccion);
-            Conexion.Open();
-            Comando.ExecuteNonQuery();
+            try
+            {
+                Comando.Connection = Conexion;
+                Comando.CommandText = "ModificarCliente";
+                Comando.CommandType = CommandType.StoredProcedure;
+                Comando.Parameters.AddWithValue("@RUC", RUC);
+                Comando.Parameters.AddWithValue("@NOMBRE", Nombre);
+                Comando.Parameters.AddWithValue("@TELEFONO", Telefono);
+                Comando.Parameters.AddWithValue("@CORREO", Correo);
+                Comando.Parameters.AddWithValue("@DIRECCION", Direccion);
+                Conexion.Open();
+                Comando.ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

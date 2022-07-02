@@ -35,8 +35,15 @@ namespace ProyectoCamioncitos.Controlador
         public void LoginBtn(object sender, EventArgs e)
         {
             LoginDAO Login = new LoginDAO();
-            Login.LoginEmpleado(Vista.txtUser.Text, Vista.txtPassword.Text);
-            Vista.Close();
+
+            if (Login.LoginEmpleado(Vista.txtUser.Text, Vista.txtPassword.Text))
+            {
+                Vista.Close();
+            }
+            else
+            {
+                MessageBox.Show("CI o Contraseña Incorrecto", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

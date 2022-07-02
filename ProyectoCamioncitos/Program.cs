@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace ProyectoCamioncitos
 {
-    internal static class Program
+    class Program
     {
         /// <summary>
         /// Punto de entrada principal para la aplicación.

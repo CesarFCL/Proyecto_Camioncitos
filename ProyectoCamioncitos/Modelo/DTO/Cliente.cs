@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoCamioncitos.Modelo.DTO
 {
-    class Cliente
+    public class Cliente
     {
         //ATRIBUTOS
         string _RUC;

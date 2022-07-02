@@ -46,11 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controlador\ChoferCrudController.cs" />
     <Compile Include="Controlador\ClienteCrudController.cs" />
     <Compile Include="Controlador\LoginController.cs" />
     <Compile Include="Controlador\SecretariaMenuController.cs" />
+    <Compile Include="Controlador\VehiculoCrudController.cs" />
+    <Compile Include="Modelo\DAO\ChoferDAO.cs" />
     <Compile Include="Modelo\DAO\LoginDAO.cs" />
+    <Compile Include="Modelo\DAO\VehiculoDAO.cs" />
+    <Compile Include="Modelo\DTO\Chofer.cs" />
     <Compile Include="Modelo\DTO\Empleado.cs" />
+    <Compile Include="Modelo\DTO\Vehiculo.cs" />
     <Compile Include="Vista\ClienteCrudView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,6 +68,18 @@
     <Compile Include="Modelo\DTO\Cliente.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vista\Chofer\ChoferCrudView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\Chofer\ChoferCrudView.Designer.cs">
+      <DependentUpon>ChoferCrudView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\VehiculoCrudView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\VehiculoCrudView.Designer.cs">
+      <DependentUpon>VehiculoCrudView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Secretaria\SecretariaMenuView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,11 +105,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Vista\Chofer\ChoferCrudView.resx">
+      <DependentUpon>ChoferCrudView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vista\LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vista\Secretaria\SecretariaMenuView.resx">
       <DependentUpon>SecretariaMenuView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\VehiculoCrudView.resx">
+      <DependentUpon>VehiculoCrudView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

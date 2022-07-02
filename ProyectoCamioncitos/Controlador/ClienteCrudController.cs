@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Forms;
 
 namespace ProyectoCamioncitos.Controlador
 {
     //Controlador de la Vista CRUD Cliente
-    internal class ClienteCrudController
+    class ClienteCrudController
     {
         ClienteCrudView Vista;
 
@@ -31,8 +31,6 @@ namespace ProyectoCamioncitos.Controlador
         public void Load(object sender, EventArgs e)
         {
             CargarClientes();
-            Vista.btnEditar.Enabled = false;
-            Vista.btnEliminar.Enabled = false;
             Limpiar();
         }
         //Evento Buscar Clientes
@@ -76,25 +74,46 @@ namespace ProyectoCamioncitos.Controlador
         public void CreateUser(object sender, EventArgs e)
         {
             ClienteDAO db = new ClienteDAO();
-            db.Create(Vista.txtRUC.Text, Vista.txtNombre.Text, Vista.txtTelefono.Text, Vista.txtCorreo.Text, Vista.txtDireccion.Text);
-            CargarClientes();
-            Limpiar();
+
+            if (db.Create(Vista.txtRUC.Text, Vista.txtNombre.Text, Vista.txtTelefono.Text, Vista.txtCorreo.Text, Vista.txtDireccion.Text))
+            {
+                CargarClientes();
+                Limpiar();
+            }
+            else
+            {
+                MessageBox.Show("Error al Crear Usuario", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         //Evento Eliminar Cliente
         public void DeleteUser(object sender, EventArgs e)
         {
             ClienteDAO db = new ClienteDAO();
-            db.Delete(Vista.txtRUC.Text);
-            CargarClientes();
-            Limpiar();
+
+            if (db.Delete(Vista.txtRUC.Text))
+            {
+                CargarClientes();
+                Limpiar();
+            }
+            else
+            {
+                MessageBox.Show("Error al Eliminar Usuario", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         //Evento Modificar Cliente
         public void UpdateUser(object sender, EventArgs e)
         {
             ClienteDAO db = new ClienteDAO();
-            db.Update(Vista.txtRUC.Text, Vista.txtNombre.Text, Vista.txtTelefono.Text, Vista.txtCorreo.Text, Vista.txtDireccion.Text);
-            CargarClientes();
-            Limpiar();
+
+            if (db.Update(Vista.txtRUC.Text, Vista.txtNombre.Text, Vista.txtTelefono.Text, Vista.txtCorreo.Text, Vista.txtDireccion.Text))
+            {
+                CargarClientes();
+                Limpiar();
+            }
+            else
+            {
+                MessageBox.Show("Error al Actualizar Usuario", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         //Método limpiar txts
         public void Limpiar()

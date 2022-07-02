@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ProyectoCamioncitos.Modelo.DAO
 {
     //Coneccion a la BD
-    class DBContext
+    public class DBContext
     {
         //IMPORTANTE CAMBIAR RUTA A LA RUTA DE "TU" BASE DE DATOS
         protected SqlConnection Conexion = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=Proyecto_Camioncitos;Trusted_Connection=True;");

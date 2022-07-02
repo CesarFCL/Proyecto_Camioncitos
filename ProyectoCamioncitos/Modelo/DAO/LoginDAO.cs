@@ -8,18 +8,19 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ProyectoCamioncitos.Modelo.DAO
 {
     //Clase Login Data Access Object
     //Aqui se ejecutan todos los procesos que involucren a la BD para el Controlador del Login
-    class LoginDAO : DBContext
+    public class LoginDAO : DBContext
     {
-        SqlDataReader LoginResult;
+        public SqlDataReader LoginResult;
         SqlCommand Comando = new SqlCommand();
 
         //Metodo para Logear al Empleado al Sistema
-        public List<String> LoginEmpleado(string CI, string Password)
+        public bool LoginEmpleado(string CI, string Password)
         {
             Comando.Connection = Conexion;
             Comando.CommandText = "LoginEmpleado";
@@ -30,25 +31,31 @@ namespace ProyectoCamioncitos.Modelo.DAO
             LoginResult = Comando.ExecuteReader();
             List<string> EmpleadoR = new List<string>();
 
-            // REVISAR ESTO !! ESTO NSE SI ESTE BIEN IMPLEMENTADO
-            // PERO FUNCIONA ASI QUE POR AHORA NO TOCAR :3
+            // REVISAR ESTO - DE AQUI PARA ABAJO !! NSE SI ESTE BIEN IMPLEMENTADO
+            // PERO FUNCIONA ASI QUE POR AHORA NO TOCAR :3 !!
 
             if (LoginResult.Read())
             {
-                EmpleadoR.Add(LoginResult.GetString(0));
-                EmpleadoR.Add(LoginResult.GetString(1));
-                EmpleadoR.Add(LoginResult.GetString(2));
-                EmpleadoR.Add(LoginResult.GetString(3));
+                EmpleadoR.Add(LoginResult["Nombre"].ToString());
+                EmpleadoR.Add(LoginResult["Apellido"].ToString());
+                EmpleadoR.Add(LoginResult["CI"].ToString());
+                EmpleadoR.Add(LoginResult["CARGO"].ToString());
                 LogOpen vista0 = new LogPropietario();
                 vista0.OpenView(EmpleadoR);
                 LogOpen vista = new LogSecretaria();
                 vista.OpenView(EmpleadoR);
                 LogOpen vista2 = new LogChofer();
                 vista2.OpenView(EmpleadoR);
+                LoginResult.Close();
+                Conexion.Close();
+                return true;
             }
-            LoginResult.Close();
-            Conexion.Close();
-            return EmpleadoR;
+            else
+            {
+                LoginResult.Close();
+                Conexion.Close();
+                return false;
+            }
         }
     }
     //Clase Abtsracta Para los Tipos de Login

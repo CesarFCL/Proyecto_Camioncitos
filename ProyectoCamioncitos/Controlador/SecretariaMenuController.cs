@@ -1,4 +1,5 @@
 ﻿using ProyectoCamioncitos.Vista;
+using ProyectoCamioncitos.Vista.Conductor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Windows.Forms;
 namespace ProyectoCamioncitos.Controlador
 {
     //Controlador de la Vista Menu Secretaria
-    class SecretariaMenuController
+    public class SecretariaMenuController
     {
         SecretariaMenuView Vista;
         //Constructor
@@ -20,6 +21,8 @@ namespace ProyectoCamioncitos.Controlador
             Vista.pCerrar.Click += new EventHandler(Cerrar);
             Vista.pMinimizar.Click += new EventHandler(Minimizar);
             Vista.btnCliente.Click += new EventHandler(AbrirFormClientes);
+            Vista.btnVehiculo.Click += new EventHandler(AbrirFormVehiculo);
+            Vista.btnChofer.Click += new EventHandler(AbrirFormChofer);
             Vista.FormClosed += new System.Windows.Forms.FormClosedEventHandler(CerrarFormInterno);
         }
 
@@ -39,6 +42,16 @@ namespace ProyectoCamioncitos.Controlador
         public void AbrirFormClientes(object sender, EventArgs e)
         {
             AbrirForm(new ClienteCrudView());
+        }
+        //Evento Abrir Vista CRUD Vehiculo
+        public void AbrirFormVehiculo(object sender, EventArgs e)
+        {
+            AbrirForm(new VehiculoCrudView());
+        }
+        //Evento Abrir Vista CRUD Chofer
+        public void AbrirFormChofer(object sender, EventArgs e)
+        {
+            AbrirForm(new ChoferCrudView());
         }
         //Cerrar Vista Abierta dentro del panel Menu Secretaria
         public void CerrarFormInterno(object sender, EventArgs e)

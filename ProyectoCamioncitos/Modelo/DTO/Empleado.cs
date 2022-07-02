@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace ProyectoCamioncitos.Modelo.DTO
 {
-    internal class Empleado
+    public class Empleado
     {
         //ATRIBUTOS
-        string _CI;
-        string _Nombre;
-        string _Apellido;
-        string _Celular;
-        int _Edad;
-        string _Correo;
-        string _Direccion;
-        string _Contraseña;
+        protected string _CI;
+        protected string _Nombre;
+        protected string _Apellido;
+        protected string _Celular;
+        protected int _Edad;
+        protected string _Correo;
+        protected string _Direccion;
+        protected string _Contraseña;
 
         //Getters y Setters
         public string CI { get => _CI; set => _CI = value; }
