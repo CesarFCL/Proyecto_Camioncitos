@@ -48,14 +48,20 @@
   <ItemGroup>
     <Compile Include="Controlador\ChoferCrudController.cs" />
     <Compile Include="Controlador\ClienteCrudController.cs" />
+    <Compile Include="Controlador\ControllersExceptions\DatosIncompletosException.cs" />
+    <Compile Include="Controlador\ControllersExceptions\LimitLoginException.cs" />
+    <Compile Include="Controlador\DragForm.cs" />
     <Compile Include="Controlador\LoginController.cs" />
     <Compile Include="Controlador\SecretariaMenuController.cs" />
     <Compile Include="Controlador\VehiculoCrudController.cs" />
     <Compile Include="Modelo\DAO\ChoferDAO.cs" />
+    <Compile Include="Modelo\DAO\DaoExceptions\DBErrorException.cs" />
+    <Compile Include="Modelo\DAO\DaoExceptions\DenyLoginException.cs" />
     <Compile Include="Modelo\DAO\LoginDAO.cs" />
     <Compile Include="Modelo\DAO\VehiculoDAO.cs" />
     <Compile Include="Modelo\DTO\Chofer.cs" />
     <Compile Include="Modelo\DTO\Empleado.cs" />
+    <Compile Include="Modelo\DTO\Secretaria.cs" />
     <Compile Include="Modelo\DTO\Vehiculo.cs" />
     <Compile Include="Vista\ClienteCrudView.cs">
       <SubType>Form</SubType>
@@ -166,5 +172,6 @@
   <ItemGroup>
     <None Include="Resources\UsersConfig.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

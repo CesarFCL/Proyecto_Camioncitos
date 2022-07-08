@@ -1,4 +1,6 @@
-﻿using ProyectoCamioncitos.Modelo.DTO;
+﻿using ProyectoCamioncitos.Controlador.ControllersExceptions;
+using ProyectoCamioncitos.Modelo.DAO.DaoExceptions;
+using ProyectoCamioncitos.Modelo.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -27,7 +29,6 @@ namespace ProyectoCamioncitos.Modelo.DAO
             Comando.Parameters.AddWithValue("@Condicion", Condicion);
             Conexion.Open();
             LeerFilas = Comando.ExecuteReader();
-            //DTO
 
             List<Vehiculo> ListaVehiculo = new List<Vehiculo>();
             while (LeerFilas.Read())
@@ -64,7 +65,7 @@ namespace ProyectoCamioncitos.Modelo.DAO
             }
             catch
             {
-                return false;
+                throw new DBErrorException();
             }
         }
 
@@ -83,7 +84,7 @@ namespace ProyectoCamioncitos.Modelo.DAO
             }
             catch
             {
-                return false;
+                throw new DBErrorException();
             }
         }
 
@@ -106,7 +107,7 @@ namespace ProyectoCamioncitos.Modelo.DAO
             }
             catch
             {
-                return false;
+                throw new DBErrorException();
             }
         }
 
@@ -123,6 +124,10 @@ namespace ProyectoCamioncitos.Modelo.DAO
             while (LeerFilas.Read())
             {
                 ListaVehiculo.Add(LeerFilas["NOMBRE"].ToString());
+            }
+            if (ListaVehiculo.Count == 0)
+            {
+                throw new DBErrorException();
             }
             return ListaVehiculo;
         }

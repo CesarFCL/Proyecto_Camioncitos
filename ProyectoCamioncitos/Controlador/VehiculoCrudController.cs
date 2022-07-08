@@ -1,4 +1,5 @@
-﻿using ProyectoCamioncitos.Modelo.DAO;
+﻿using ProyectoCamioncitos.Controlador.ControllersExceptions;
+using ProyectoCamioncitos.Modelo.DAO;
 using ProyectoCamioncitos.Modelo.DTO;
 using ProyectoCamioncitos.Vista;
 using System;
@@ -22,12 +23,19 @@ namespace ProyectoCamioncitos.Controlador
             //inicializar eventos
             Vista.Load += new EventHandler(Load);
             Vista.txtBuscarVehiculo.TextChanged += new EventHandler(Busqueda);
-            Vista.tblVehiculos.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(dgvVehiculos_SelectedRows);
+            Vista.tblVehiculos.CellMouseClick += new DataGridViewCellMouseEventHandler(dgvVehiculos_SelectedRows);
             Vista.btnLimpiar.Click += new EventHandler(btnLimpiar);
-            Vista.btnGuardar.Click += new EventHandler(CreateVehicle);
-            Vista.btnEliminar.Click += new EventHandler(DeleteVehicle);
-            Vista.btnEditar.Click += new EventHandler(UpdateVehicle);
+            Vista.btnGuardar.Click += new EventHandler(CreateVehicleEvent);
+            Vista.btnEliminar.Click += new EventHandler(DeleteVehicleEvent);
+            Vista.btnEditar.Click += new EventHandler(UpdateVehicleEvent);
+
+            Vista.txtMatricula.TextChanged += new EventHandler(txtMatricula_TextChanged);
+            Vista.txtMarca.TextChanged += new EventHandler(txtMarca_TextChanged);
+            Vista.txtYear.TextChanged += new EventHandler(txtYear_TextChanged);
+
+            Vista.txtYear.KeyPress += new KeyPressEventHandler(OnlyNumbers_KeyPress);
         }
+
         //Evento Cargar Vista para cuanto es abierta la Vista
         public void Load(object sender, EventArgs e)
         {
@@ -35,20 +43,13 @@ namespace ProyectoCamioncitos.Controlador
             CargarCboxTipo();
             Limpiar();
         }
+
         //Evento Buscar Vehiculos
         public void Busqueda(object sender, EventArgs e)
         {
             CargarVehiculos();
         }
-        //Método Cargar Vehiculos
-        public void CargarVehiculos()
-        {
-            VehiculoDAO db = new VehiculoDAO();
-            Vista.tblVehiculos.DataSource =
-                db.VerRegistros(Vista.txtBuscarVehiculo.Text);
 
-            Vista.tblVehiculos.Columns["Year"].Visible = false;
-        }
         //Evento Seleccion Fila Vehiculo
         public void dgvVehiculos_SelectedRows(object sender, EventArgs e)
         {
@@ -72,55 +73,128 @@ namespace ProyectoCamioncitos.Controlador
                 Vista.lblDisponibilidad.Visible = true;
             }
         }
+
         //Evento Limpiar Datos
         public void btnLimpiar(object sender, EventArgs e)
         {
             Limpiar();
         }
+
         //Evento Crear Vehiculo
-        public void CreateVehicle (object sender, EventArgs e)
+        public void CreateVehicleEvent (object sender, EventArgs e)
         {
-            VehiculoDAO db = new VehiculoDAO();
-
-            if (db.Create(Vista.txtMatricula.Text, Vista.txtMarca.Text, Vista.txtYear.Text, Vista.cboxTipo.SelectedItem.ToString()))
+            try
             {
-                CargarVehiculos();
-                Limpiar();
+                ValCreateVehicle();
+                DialogResult dialogResult = MessageBox.Show("Crear Nuevo Vehiculo?", "Crear Vehiculo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    CreateVehicle();
+                    CargarVehiculos();
+                    Limpiar();
+                }
             }
-            else
+            catch { }
+        }
+
+        //Método Validar que los Datos esten completos al Crear un vehiculo
+        public void ValCreateVehicle()
+        {
+            TextBox[] textboxs = new TextBox[] { Vista.txtMatricula, Vista.txtMarca, Vista.txtYear };
+            ComboBox[] combobox = new ComboBox[] { Vista.cboxTipo };
+            bool datosCompletos = !textboxs.Any(X => String.IsNullOrEmpty(X.Text))
+                && !combobox.Any(X => String.IsNullOrEmpty(X.Text));
+            if (!datosCompletos)
             {
-                MessageBox.Show("Error al Crear Vehiculo", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new DatosIncompletosException();
             }
         }
+
+        //Método Crear Vehiculo
+        public void CreateVehicle()
+        {
+            try
+            {
+                VehiculoDAO db = new VehiculoDAO();
+                db.Create(Vista.txtMatricula.Text, Vista.txtMarca.Text, Vista.txtYear.Text, Vista.cboxTipo.SelectedItem.ToString());
+            }
+            catch { }
+        }
+
         //Evento Eliminar Vehiculo
-        public void DeleteVehicle(object sender, EventArgs e)
+        public void DeleteVehicleEvent(object sender, EventArgs e)
         {
-            VehiculoDAO db = new VehiculoDAO();
-
-            if (db.Delete(Vista.txtMatricula.Text))
+            DialogResult dialogResult = MessageBox.Show("Esta seguro de querer eliminar al vehiculo con matricula: " + Vista.txtMatricula.Text, "Eliminar Chofer", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
             {
+                DeleteVehicle();
                 CargarVehiculos();
                 Limpiar();
-            }
-            else
-            {
-                MessageBox.Show("Error al Eliminar Vehiculo", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        //Método Eliminar Vehiculo
+        public void DeleteVehicle()
+        {
+            try
+            {
+                VehiculoDAO db = new VehiculoDAO();
+                db.Delete(Vista.txtMatricula.Text);
+            }
+            catch { }
+        }
+
         //Evento Modificar Vehiculo
-        public void UpdateVehicle(object sender, EventArgs e)
+        //ESTO MUY PROBABLEMENTE SE TENGA QUE REFACTORIZAR !!!!!!!
+        public void UpdateVehicleEvent(object sender, EventArgs e)
+        {
+            try
+            {
+                ValUpdateVehicle();
+                DialogResult dialogResult = MessageBox.Show("Esta seguro de querer editar la infomacion del vehiculo con matricula: " + Vista.txtMatricula.Text, "Editar Chofer", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    UpdateVehicle();
+                    CargarVehiculos();
+                    Limpiar();
+                }
+            }
+            catch { }
+        }
+
+        //Método Update Vehiculo
+        public void UpdateVehicle()
+        {
+            try
+            {
+                VehiculoDAO db = new VehiculoDAO(); ;
+                db.Update(Vista.txtMatricula.Text, Vista.txtMarca.Text, Vista.txtYear.Text,
+                    Vista.cboxTipo.SelectedItem.ToString(), Vista.cboxDisponibilidad.SelectedItem.ToString());
+            }
+            catch { }
+        }
+
+        //Método Validar que los Datos esten completos al Actualizar un vehiculo
+        public void ValUpdateVehicle()
+        {
+            TextBox[] textboxs = new TextBox[] { Vista.txtMatricula, Vista.txtMarca, Vista.txtYear };
+            ComboBox[] combobox = new ComboBox[] { Vista.cboxDisponibilidad, Vista.cboxTipo };
+            bool datosCompletos = !textboxs.Any(X => String.IsNullOrEmpty(X.Text))
+                && !combobox.Any(X => String.IsNullOrEmpty(X.Text));
+            if (!datosCompletos)
+            {
+                throw new DatosIncompletosException();
+            }
+        }
+
+        //Método Cargar Vehiculos
+        public void CargarVehiculos()
         {
             VehiculoDAO db = new VehiculoDAO();
+            Vista.tblVehiculos.DataSource =
+                db.VerRegistros(Vista.txtBuscarVehiculo.Text);
 
-            if (db.Update(Vista.txtMatricula.Text, Vista.txtMarca.Text, Vista.txtYear.Text, Vista.cboxTipo.SelectedItem.ToString(), Vista.cboxDisponibilidad.SelectedItem.ToString()))
-            {
-                CargarVehiculos();
-                Limpiar();
-            }
-            else
-            {
-                MessageBox.Show("Error al Actualizar Vehiculo", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            Vista.tblVehiculos.Columns["Year"].Visible = false;
         }
         //Método limpiar txts
         public void Limpiar()
@@ -140,12 +214,44 @@ namespace ProyectoCamioncitos.Controlador
             Vista.cboxDisponibilidad.Visible = false;
             Vista.lblDisponibilidad.Visible = false;
         }
-        //Carga el combobox de tipos de vehiculos
+
+        //Metodo Cargar el combobox de tipos de vehiculos
         public void CargarCboxTipo()
         {
-            VehiculoDAO db = new VehiculoDAO();
-            Vista.cboxTipo.DataSource = db.CargarListaTipos();
+            try
+            {
+                VehiculoDAO db = new VehiculoDAO();
+                Vista.cboxTipo.DataSource = db.CargarListaTipos();
+            }
+            catch
+            {
+                Vista.Close();
+            }
         }
 
+        //Restricciones
+        private void txtMatricula_TextChanged(object sender, EventArgs e)
+        {
+            Vista.txtMatricula.MaxLength = 10;
+        }
+        private void txtMarca_TextChanged(object sender, EventArgs e)
+        {
+            Vista.txtMarca.MaxLength = 20;
+        }
+        private void txtYear_TextChanged(object sender, EventArgs e)
+        {
+            Vista.txtYear.MaxLength = 5;
+        }
+
+        //Validaciones
+        private void OnlyNumbers_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Ingrese solo números", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
     }
 }

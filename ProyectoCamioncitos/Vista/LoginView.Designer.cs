@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginView));
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pBlue = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnIniciarSesion = new System.Windows.Forms.Button();
@@ -42,7 +42,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pMinimizar = new System.Windows.Forms.PictureBox();
             this.pSalir = new System.Windows.Forms.PictureBox();
-            this.panel1.SuspendLayout();
+            this.pBlue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -50,16 +50,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.pSalir)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // pBlue
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(234)))));
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(250, 330);
-            this.panel1.TabIndex = 0;
+            this.pBlue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(234)))));
+            this.pBlue.Controls.Add(this.label4);
+            this.pBlue.Controls.Add(this.pictureBox1);
+            this.pBlue.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pBlue.Location = new System.Drawing.Point(0, 0);
+            this.pBlue.Name = "pBlue";
+            this.pBlue.Size = new System.Drawing.Size(250, 330);
+            this.pBlue.TabIndex = 0;
             // 
             // label4
             // 
@@ -207,7 +207,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnIniciarSesion);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pBlue);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -215,8 +215,8 @@
             this.Opacity = 0.95D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Loggin";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pBlue.ResumeLayout(false);
+            this.pBlue.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -230,7 +230,7 @@
         #endregion
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label4;
-        public System.Windows.Forms.Panel panel1;
+        public System.Windows.Forms.Panel pBlue;
         public System.Windows.Forms.Button btnIniciarSesion;
         public System.Windows.Forms.Label label3;
         public System.Windows.Forms.Panel panel2;

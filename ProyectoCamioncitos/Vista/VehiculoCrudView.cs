@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace ProyectoCamioncitos.Vista
 {
-    //Vista CRUD Cliente
+    //Vista CRUD Vehiculo
     public partial class VehiculoCrudView : Form
     {
         public VehiculoCrudView()

@@ -17,6 +17,7 @@ namespace ProyectoCamioncitos.Modelo.DTO
         protected string _Correo;
         protected string _Direccion;
         protected string _Contraseña;
+        protected string _Cargo;
 
         //Getters y Setters
         public string CI { get => _CI; set => _CI = value; }
@@ -27,5 +28,6 @@ namespace ProyectoCamioncitos.Modelo.DTO
         public string Correo { get => _Correo; set => _Correo = value; }
         public string Direccion { get => _Direccion; set => _Direccion = value; }
         public string Contraseña { get => _Contraseña; set => _Contraseña = value; }
+        public string Cargo { get => _Cargo; set => _Cargo = value; }
     }
 }

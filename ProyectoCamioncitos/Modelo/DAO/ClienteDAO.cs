@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using ProyectoCamioncitos.Modelo.DTO;
 using System.Data;
+using ProyectoCamioncitos.Modelo.DAO.DaoExceptions;
 
 namespace ProyectoCamioncitos.Modelo.DAO
 {
     //Clase Cliente Data Acces Object
     //Aqui se ejecutan todos los procesos que involucren a la BD para el Controlador del CRUD Cliente
-    class ClienteDAO :DBContext
+    public class ClienteDAO :DBContext
     {
         SqlDataReader LeerFilas;
         SqlCommand Comando = new SqlCommand();
@@ -27,7 +28,6 @@ namespace ProyectoCamioncitos.Modelo.DAO
             Comando.Parameters.AddWithValue("@Condicion", Condicion);
             Conexion.Open();
             LeerFilas = Comando.ExecuteReader();
-            //DTO
 
             List<Cliente> ListaCliente = new List<Cliente>();//Lista generica
             while (LeerFilas.Read())
@@ -65,7 +65,7 @@ namespace ProyectoCamioncitos.Modelo.DAO
             }
             catch
             {
-                return false;
+                throw new DBErrorException();
             }
         }
 
@@ -84,7 +84,7 @@ namespace ProyectoCamioncitos.Modelo.DAO
             }
             catch
             {
-                return false;
+                throw new DBErrorException();
             }
         }
 
@@ -107,7 +107,7 @@ namespace ProyectoCamioncitos.Modelo.DAO
             }
             catch
             {
-                return false;
+                throw new DBErrorException();
             }
         }
     }

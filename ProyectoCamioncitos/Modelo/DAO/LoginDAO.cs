@@ -1,4 +1,5 @@
 ﻿using ProyectoCamioncitos.Controlador;
+using ProyectoCamioncitos.Modelo.DAO.DaoExceptions;
 using ProyectoCamioncitos.Modelo.DTO;
 using ProyectoCamioncitos.Vista;
 using System;
@@ -19,8 +20,8 @@ namespace ProyectoCamioncitos.Modelo.DAO
         public SqlDataReader LoginResult;
         SqlCommand Comando = new SqlCommand();
 
-        //Metodo para Logear al Empleado al Sistema
-        public bool LoginEmpleado(string CI, string Password)
+        //Metodo para Loguear al Empleado al Sistema
+        public Empleado LoginEmpleado(string CI, string Password, int Intentos)
         {
             Comando.Connection = Conexion;
             Comando.CommandText = "LoginEmpleado";
@@ -29,75 +30,38 @@ namespace ProyectoCamioncitos.Modelo.DAO
             Comando.Parameters.AddWithValue("@CONTRASEÑA", Password);
             Conexion.Open();
             LoginResult = Comando.ExecuteReader();
-            List<string> EmpleadoR = new List<string>();
 
-            // REVISAR ESTO - DE AQUI PARA ABAJO !! NSE SI ESTE BIEN IMPLEMENTADO
-            // PERO FUNCIONA ASI QUE POR AHORA NO TOCAR :3 !!
+            if (!LoginResult.Read())
+            {
+                throw new DenyLoginException(Intentos.ToString());
+            }
 
-            if (LoginResult.Read())
-            {
-                EmpleadoR.Add(LoginResult["Nombre"].ToString());
-                EmpleadoR.Add(LoginResult["Apellido"].ToString());
-                EmpleadoR.Add(LoginResult["CI"].ToString());
-                EmpleadoR.Add(LoginResult["CARGO"].ToString());
-                LogOpen vista0 = new LogPropietario();
-                vista0.OpenView(EmpleadoR);
-                LogOpen vista = new LogSecretaria();
-                vista.OpenView(EmpleadoR);
-                LogOpen vista2 = new LogChofer();
-                vista2.OpenView(EmpleadoR);
-                LoginResult.Close();
-                Conexion.Close();
-                return true;
-            }
-            else
-            {
-                LoginResult.Close();
-                Conexion.Close();
-                return false;
-            }
+            Empleado DatosEmpleadoLogueado = ObtenerDatosEmpleado(LoginResult);
+
+            LoginResult.Close();
+            Conexion.Close();
+            return DatosEmpleadoLogueado;
         }
-    }
-    //Clase Abtsracta Para los Tipos de Login
-    abstract class LogOpen
-    {
-        public abstract void OpenView(List<string> t_empleado);
-    }
-    //Clase Tipo Login Secretaria
-    class LogSecretaria: LogOpen
-    {
-        public override void OpenView(List<string> t_empleado)
+        /*
+         public List<string> ObtenerDatosEmpleado(SqlDataReader LoginResult)
         {
-            if (t_empleado[3] == "Secretaria")
-            {
-                SecretariaMenuView VistaSecretaria = new SecretariaMenuView();
-                VistaSecretaria.Show();
-                VistaSecretaria.txtNombre.Text = t_empleado[0];
-                VistaSecretaria.txtApellido.Text = t_empleado[1];
-                VistaSecretaria.txtCI.Text = t_empleado[2];
-            }
+            List<string> DatosEmpleadoLogueado = new List<string>();
+            DatosEmpleadoLogueado.Add(LoginResult["Nombre"].ToString());
+            DatosEmpleadoLogueado.Add(LoginResult["Apellido"].ToString());
+            DatosEmpleadoLogueado.Add(LoginResult["CI"].ToString());
+            DatosEmpleadoLogueado.Add(LoginResult["CARGO"].ToString());
+            return DatosEmpleadoLogueado;
         }
-    }
-    //Clase Tipo Login Chofer
-    class LogChofer : LogOpen
-    {
-        public override void OpenView(List<string> t_empleado)
+         
+         */
+        public Empleado ObtenerDatosEmpleado(SqlDataReader LoginResult)
         {
-            if (t_empleado[3] == "Chofer")
-            {
-                //Proceso
-            }
-        }
-    }
-    //Clase Tipo Login Propietario
-    class LogPropietario : LogOpen
-    {
-        public override void OpenView(List<string> t_empleado)
-        {
-            if (t_empleado[3] == "Propietario")
-            {
-                //Proceso
-            }
+            Empleado EmpleadoLogueado = new Empleado();
+            EmpleadoLogueado.Nombre = LoginResult["Nombre"].ToString();
+            EmpleadoLogueado.Apellido = LoginResult["Apellido"].ToString();
+            EmpleadoLogueado.CI = LoginResult["CI"].ToString();
+            EmpleadoLogueado.Cargo = LoginResult["CARGO"].ToString();
+            return EmpleadoLogueado;
         }
     }
 }

@@ -15,5 +15,6 @@ namespace ProyectoCamioncitos.Modelo.DTO
         //Getters y Setters
 
         public string Disponibilidad { get => _Disponibilidad; set => _Disponibilidad = value; }
+        public new string Cargo { set => _Cargo = "Chofer"; }
     }
 }

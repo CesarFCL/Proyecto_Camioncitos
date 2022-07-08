@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SecretariaMenuView));
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pTop = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -46,16 +46,16 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.txtCI = new System.Windows.Forms.TextBox();
-            this.txtApellido = new System.Windows.Forms.TextBox();
-            this.txtNombre = new System.Windows.Forms.TextBox();
-            this.panelForms = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
+            this.txtCI = new System.Windows.Forms.TextBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.txtApellido = new System.Windows.Forms.TextBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panelForms = new System.Windows.Forms.Panel();
+            this.pTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pMinimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pCerrar)).BeginInit();
@@ -70,19 +70,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // pTop
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(93)))), ((int)(((byte)(142)))));
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Controls.Add(this.pMinimizar);
-            this.panel1.Controls.Add(this.pCerrar);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(958, 29);
-            this.panel1.TabIndex = 0;
+            this.pTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(93)))), ((int)(((byte)(142)))));
+            this.pTop.Controls.Add(this.label2);
+            this.pTop.Controls.Add(this.label1);
+            this.pTop.Controls.Add(this.pictureBox2);
+            this.pTop.Controls.Add(this.pMinimizar);
+            this.pTop.Controls.Add(this.pCerrar);
+            this.pTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pTop.Location = new System.Drawing.Point(0, 0);
+            this.pTop.Name = "pTop";
+            this.pTop.Size = new System.Drawing.Size(958, 29);
+            this.pTop.TabIndex = 0;
             // 
             // label2
             // 
@@ -286,15 +286,13 @@
             this.pictureBox3.TabIndex = 2;
             this.pictureBox3.TabStop = false;
             // 
-            // panel5
+            // panel7
             // 
-            this.panel5.Controls.Add(this.txtNombre);
-            this.panel5.Controls.Add(this.txtApellido);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 185);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(186, 40);
-            this.panel5.TabIndex = 3;
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(0, 245);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(186, 17);
+            this.panel7.TabIndex = 3;
             // 
             // txtCI
             // 
@@ -310,19 +308,15 @@
             this.txtCI.TabIndex = 2;
             this.txtCI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // txtApellido
+            // panel5
             // 
-            this.txtApellido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(41)))), ((int)(((byte)(68)))));
-            this.txtApellido.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtApellido.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txtApellido.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApellido.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.txtApellido.Location = new System.Drawing.Point(0, 20);
-            this.txtApellido.Name = "txtApellido";
-            this.txtApellido.ReadOnly = true;
-            this.txtApellido.Size = new System.Drawing.Size(186, 20);
-            this.txtApellido.TabIndex = 2;
-            this.txtApellido.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.panel5.Controls.Add(this.txtNombre);
+            this.panel5.Controls.Add(this.txtApellido);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 185);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(186, 40);
+            this.panel5.TabIndex = 3;
             // 
             // txtNombre
             // 
@@ -338,21 +332,27 @@
             this.txtNombre.TabIndex = 2;
             this.txtNombre.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // panelForms
+            // txtApellido
             // 
-            this.panelForms.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelForms.Location = new System.Drawing.Point(186, 29);
-            this.panelForms.Name = "panelForms";
-            this.panelForms.Size = new System.Drawing.Size(772, 473);
-            this.panelForms.TabIndex = 2;
+            this.txtApellido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(41)))), ((int)(((byte)(68)))));
+            this.txtApellido.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtApellido.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txtApellido.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtApellido.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.txtApellido.Location = new System.Drawing.Point(0, 20);
+            this.txtApellido.Name = "txtApellido";
+            this.txtApellido.ReadOnly = true;
+            this.txtApellido.Size = new System.Drawing.Size(186, 20);
+            this.txtApellido.TabIndex = 2;
+            this.txtApellido.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // panel4
+            // panel3
             // 
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(186, 17);
-            this.panel4.TabIndex = 3;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 172);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(186, 13);
+            this.panel3.TabIndex = 4;
             // 
             // pictureBox1
             // 
@@ -365,23 +365,23 @@
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
-            // panel3
+            // panel4
             // 
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 172);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(186, 13);
-            this.panel3.TabIndex = 4;
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(186, 17);
+            this.panel4.TabIndex = 3;
             // 
-            // panel7
+            // panelForms
             // 
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(0, 245);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(186, 17);
-            this.panel7.TabIndex = 3;
+            this.panelForms.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelForms.Location = new System.Drawing.Point(186, 29);
+            this.panelForms.Name = "panelForms";
+            this.panelForms.Size = new System.Drawing.Size(772, 473);
+            this.panelForms.TabIndex = 2;
             // 
-            // SecretariaView
+            // SecretariaMenuView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -389,15 +389,15 @@
             this.ControlBox = false;
             this.Controls.Add(this.panelForms);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "SecretariaView";
+            this.Name = "SecretariaMenuView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pTop.ResumeLayout(false);
+            this.pTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pMinimizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pCerrar)).EndInit();
@@ -417,8 +417,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.PictureBox pictureBox2;
         public System.Windows.Forms.PictureBox pMinimizar;
         public System.Windows.Forms.Label label1;
@@ -444,5 +442,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel4;
+        public System.Windows.Forms.Panel pTop;
     }
 }

@@ -316,7 +316,7 @@
             this.btnNuevoChofer.Name = "btnNuevoChofer";
             this.btnNuevoChofer.Size = new System.Drawing.Size(137, 38);
             this.btnNuevoChofer.TabIndex = 22;
-            this.btnNuevoChofer.Text = "NUEVO CHOFER";
+            this.btnNuevoChofer.Text = "GUARDAR";
             this.btnNuevoChofer.UseVisualStyleBackColor = false;
             // 
             // pictureBox1

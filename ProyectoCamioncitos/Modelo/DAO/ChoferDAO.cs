@@ -1,4 +1,5 @@
-﻿using ProyectoCamioncitos.Modelo.DTO;
+﻿using ProyectoCamioncitos.Modelo.DAO.DaoExceptions;
+using ProyectoCamioncitos.Modelo.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoCamioncitos.Modelo.DAO
 {
-    //Clase Conductor Data Acces Object
+    //Clase Chofer Data Acces Object
     //Aqui se ejecutan todos los procesos que involucren a la BD para el Controlador del CRUD Chofer
     public class ChoferDAO : DBContext
     {
@@ -27,8 +28,6 @@ namespace ProyectoCamioncitos.Modelo.DAO
             Comando.Parameters.AddWithValue("@Condicion", Condicion);
             Conexion.Open();
             LeerFilas = Comando.ExecuteReader();
-
-            //DTO
 
             List<Chofer> ListaChofer = new List<Chofer>();
             while (LeerFilas.Read())
@@ -73,9 +72,10 @@ namespace ProyectoCamioncitos.Modelo.DAO
                 Conexion.Close();
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
-                return false;
+                Console.WriteLine("ERROR ------------- ::::::: " + ex.Message);
+                throw new DBErrorException(); ;
             }
         }
 
@@ -94,7 +94,7 @@ namespace ProyectoCamioncitos.Modelo.DAO
             }
             catch
             {
-                return false;
+                throw new DBErrorException();
             }
         }
 
@@ -120,7 +120,7 @@ namespace ProyectoCamioncitos.Modelo.DAO
             }
             catch
             {
-                return false;
+                throw new DBErrorException();
             }
         }
     }
