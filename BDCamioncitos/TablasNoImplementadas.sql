@@ -22,14 +22,6 @@ create table FACTURA
   CONSTRAINT fk_ID_ENVIO FOREIGN KEY (ID_ENVIO) REFERENCES ENVIO (ID_ENVIO)
 );
 
--- Tabla Disponibilidad_Chofer
-create table DISPONIBILIDAD_CHOFER
-(
-  CI  VARCHAR(10) primary key,
-  DISPONIBILIDAD BIT not null,
-  CONSTRAINT fk_CI FOREIGN KEY (CI) REFERENCES EMPLEADOS_CARGOS (CI)
-);
-
 -- Tabla Informe
 create table Informe
 (

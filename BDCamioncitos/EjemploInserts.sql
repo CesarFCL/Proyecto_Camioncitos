@@ -4,13 +4,19 @@ insert into CARGO values('00S','Secretaria');
 go
 insert into CARGO values('00C','Chofer');
 go
+insert into CARGO values('00A','Admin');
+go
 insert into EMPLEADOS values('1719963470','Luis','Vera','9090909090',22,'luis@gmail.com','Muy muy lejos',HASHBYTES('SHA2_512','123'));
 go
 insert into EMPLEADOS values('1111111111','Jesus','Monserrate','1231231231',22,'jesus@gmail.com','En su casa',HASHBYTES('SHA2_512','321'));
 go
+insert into EMPLEADOS values('2222222222','Cesar','Carrion','3213213213',21,'cesar@gmail.com','Marte',HASHBYTES('SHA2_512','1234'));
+go
 insert into EMPLEADOS_CARGOS values('1719963470','00S');
 go
 insert into EMPLEADOS_CARGOS values('1111111111','00C');
+go
+insert into EMPLEADOS_CARGOS values('2222222222','00A');
 go
 insert into DISPONIBILIDAD_CHOFER values('1111111111','1');
 go
