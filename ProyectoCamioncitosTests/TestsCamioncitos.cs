@@ -361,7 +361,7 @@ namespace ProyectoCamioncitos.Modelo.DAO.Tests
              * caso contrario se lanza una excepcion
              */
             ChoferDAO chofer = new ChoferDAO();
-            Assert.IsTrue(chofer.Update("Test", "Test", "Test", "Test", "1", "Test", "Test", "Test"));
+            chofer.Update("Test", "Test", "Test", "Test", "1", "Test", "Test", "Test");
         }
 
         [TestMethod]
@@ -388,6 +388,10 @@ namespace ProyectoCamioncitos.Modelo.DAO.Tests
             ChoferDAO chofer = new ChoferDAO();
             Assert.IsTrue(chofer.Delete("Test"));
         }
+
+        //--------------------------------------------------------TESTS SECRETARIA---------------------------------------------------
+
+        
 
     }
 }
