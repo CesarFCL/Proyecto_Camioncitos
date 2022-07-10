@@ -41,7 +41,7 @@ namespace ProyectoCamioncitos.Controlador
         //Evento Minimizar Vista
         public void Minimizar(object sender, EventArgs e)
         {
-            Vista.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            Vista.WindowState = FormWindowState.Minimized;
         }
 
         //Evento Login
@@ -53,8 +53,8 @@ namespace ProyectoCamioncitos.Controlador
         //Evento Mover Ventana
         private void DragPanel(object sender, MouseEventArgs e)
         {
-            DragForm drag = new DragForm();
-            drag.DragPanel(Vista);
+            GlobalMenu gb = new GlobalMenu();
+            gb.DragPanel(Vista);
         }
 
         //Metodo Login
@@ -162,9 +162,13 @@ namespace ProyectoCamioncitos.Controlador
     {
         public override void OpenView(Empleado t_empleado)
         {
-            if (t_empleado.Cargo == "Propietario")
+            if (t_empleado.Cargo == "Admin")
             {
-                //Proceso
+                AdminMenuView VistaSecretaria = new AdminMenuView();
+                VistaSecretaria.Show();
+                VistaSecretaria.txtNombre.Text = t_empleado.Nombre;
+                VistaSecretaria.txtApellido.Text = t_empleado.Apellido;
+                VistaSecretaria.txtCI.Text = t_empleado.CI;
             }
         }
     }

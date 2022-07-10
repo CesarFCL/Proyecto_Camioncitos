@@ -1,10 +1,10 @@
 ﻿using ProyectoCamioncitos.Vista;
 using ProyectoCamioncitos.Vista.Conductor;
+using ProyectoCamioncitos.Vista.Secretaria;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,11 +12,11 @@ using System.Windows.Forms;
 namespace ProyectoCamioncitos.Controlador
 {
     //Controlador de la Vista Menu Secretaria
-    public class SecretariaMenuController : GlobalMenu
+    public class AdminMenuController: GlobalMenu
     {
-        SecretariaMenuView Vista;
+        AdminMenuView Vista;
         //Constructor
-        public SecretariaMenuController(SecretariaMenuView view)
+        public AdminMenuController(AdminMenuView view)
         {
             Vista = view;
             //inicializar eventos
@@ -26,6 +26,7 @@ namespace ProyectoCamioncitos.Controlador
             Vista.btnCliente.Click += new EventHandler(AbrirFormClientesE);
             Vista.btnVehiculo.Click += new EventHandler(AbrirFormVehiculoE);
             Vista.btnChofer.Click += new EventHandler(AbrirFormChoferE);
+            Vista.btnSecretaria.Click += new EventHandler(AbrirFormSecretariaE);
             Vista.FormClosed += new FormClosedEventHandler(CerrarFormInternoE);
             Vista.pTop.MouseDown += new MouseEventHandler(DragPanelE);
         }
@@ -47,6 +48,7 @@ namespace ProyectoCamioncitos.Controlador
             Vista.btnCliente.BackColor = Color.FromArgb(13, 93, 142);
             Vista.btnVehiculo.BackColor = Color.FromArgb(4, 41, 68);
             Vista.btnChofer.BackColor = Color.FromArgb(4, 41, 68);
+            Vista.btnSecretaria.BackColor = Color.FromArgb(4, 41, 68);
         }
         //Evento Abrir Vista CRUD Vehiculo
         public void AbrirFormVehiculoE(object sender, EventArgs e)
@@ -55,7 +57,19 @@ namespace ProyectoCamioncitos.Controlador
             Vista.btnVehiculo.BackColor = Color.FromArgb(13, 93, 142);
             Vista.btnCliente.BackColor = Color.FromArgb(4, 41, 68);
             Vista.btnChofer.BackColor = Color.FromArgb(4, 41, 68);
+            Vista.btnSecretaria.BackColor = Color.FromArgb(4, 41, 68);
         }
+
+        //Evento Abrir Vista CRUD Secretaria
+        public void AbrirFormSecretariaE(object sender, EventArgs e)
+        {
+            AbrirForm(new SecretariaCrudView(), Vista.panelForms);
+            Vista.btnSecretaria.BackColor = Color.FromArgb(13, 93, 142);
+            Vista.btnVehiculo.BackColor = Color.FromArgb(4, 41, 68);
+            Vista.btnCliente.BackColor = Color.FromArgb(4, 41, 68);
+            Vista.btnChofer.BackColor = Color.FromArgb(4, 41, 68);
+        }
+
         //Evento Abrir Vista CRUD Chofer
         public void AbrirFormChoferE(object sender, EventArgs e)
         {
@@ -63,6 +77,7 @@ namespace ProyectoCamioncitos.Controlador
             Vista.btnChofer.BackColor = Color.FromArgb(13, 93, 142);
             Vista.btnCliente.BackColor = Color.FromArgb(4, 41, 68);
             Vista.btnVehiculo.BackColor = Color.FromArgb(4, 41, 68);
+            Vista.btnSecretaria.BackColor = Color.FromArgb(4, 41, 68);
         }
         //Evento Cerrar Vista Abierta dentro del panel Menu Secretaria
         public void CerrarFormInternoE(object sender, EventArgs e)

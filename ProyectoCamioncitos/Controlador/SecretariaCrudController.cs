@@ -1,7 +1,7 @@
 ﻿using ProyectoCamioncitos.Controlador.ControllersExceptions;
 using ProyectoCamioncitos.Modelo.DAO;
 using ProyectoCamioncitos.Modelo.DTO;
-using ProyectoCamioncitos.Vista.Conductor;
+using ProyectoCamioncitos.Vista.Secretaria;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,23 +12,23 @@ using System.Windows.Forms;
 
 namespace ProyectoCamioncitos.Controlador
 {
-    //Controlador de la Vista CRUD Chofer
-    class ChoferCrudController
+    //Controlador de la Vista CRUD Secretaria
+    class SecretariaCrudController
     {
-        ChoferCrudView Vista;
+        SecretariaCrudView Vista;
 
         //Constructor
-        public ChoferCrudController(ChoferCrudView view)
+        public SecretariaCrudController(SecretariaCrudView view)
         {
             Vista = view;
             //inicializar eventos
             Vista.Load += new EventHandler(Load);
-            Vista.txtBuscarChofer.TextChanged += new EventHandler(Busqueda);
-            Vista.tblChofer.CellMouseClick += new DataGridViewCellMouseEventHandler(dgvChofer_SelectedRows);
+            Vista.txtBuscarSecretaria.TextChanged += new EventHandler(Busqueda);
+            Vista.tblSecretaria.CellMouseClick += new DataGridViewCellMouseEventHandler(dgvSecretaria_SelectedRows);
             Vista.btnLimpiar.Click += new EventHandler(btnLimpiar);
-            Vista.btnNuevoChofer.Click += new EventHandler(CreateChoferEvent);
-            Vista.btnEliminar.Click += new EventHandler(DeleteChoferEvent);
-            Vista.btnEditar.Click += new EventHandler(UpdateChoferEvent);
+            Vista.btnGuardar.Click += new EventHandler(CreateSecretariaEvent);
+            Vista.btnEliminar.Click += new EventHandler(DeleteSecretariaEvent);
+            Vista.btnEditar.Click += new EventHandler(UpdateSecretariaEvent);
 
             Vista.txtCI.TextChanged += new EventHandler(txtCI_TextChanged);
             Vista.txtNombre.TextChanged += new EventHandler(txtNombre_TextChanged);
@@ -47,44 +47,40 @@ namespace ProyectoCamioncitos.Controlador
         //Evento Cargar Vista para cuanto es abierta la Vista
         public void Load(object sender, EventArgs e)
         {
-            CargarChofer();
+            CargarSecretaria();
             Limpiar();
         }
 
-        //Evento Buscar Chofer
+        //Evento Buscar Secretaria
         public void Busqueda(object sender, EventArgs e)
         {
-            CargarChofer();
+            CargarSecretaria();
         }
 
-        //Evento Seleccion Fila Chofer
-        public void dgvChofer_SelectedRows(object sender, EventArgs e)
+        //Evento Seleccion Fila Secretaria
+        public void dgvSecretaria_SelectedRows(object sender, EventArgs e)
         {
-            //Pasa los datos de la fila seleccionada de la tabla Chofer a los textboxs
-            if (Vista.tblChofer.SelectedRows.Count > 0)
+            //Pasa los datos de la fila seleccionada de la tabla Secretaria a los textboxs
+            if (Vista.tblSecretaria.SelectedRows.Count > 0)
             {
-                ChoferDAO db = new ChoferDAO();
-                List<Chofer> ChoferR = db.VerRegistros(Vista.tblChofer.CurrentRow.Cells[1].Value.ToString());
-                Vista.txtCI.Text = ChoferR[0].CI;
-                Vista.txtNombre.Text = ChoferR[0].Nombre;
-                Vista.txtApellido.Text = ChoferR[0].Apellido;
-                Vista.txtCelular.Text = ChoferR[0].Celular;
-                Vista.txtEdad.Text = ChoferR[0].Edad.ToString();
-                Vista.txtCorreo.Text = ChoferR[0].Correo;
-                Vista.txtDireccion.Text = ChoferR[0].Direccion;
-                Vista.cboxDisponibilidad.SelectedItem = ChoferR[0].Disponibilidad;
+                SecretariaDAO db = new SecretariaDAO();
+                List<Secretaria> SecretariaR = db.VerRegistros(Vista.tblSecretaria.CurrentRow.Cells[1].Value.ToString());
+                Vista.txtCI.Text = SecretariaR[0].CI;
+                Vista.txtNombre.Text = SecretariaR[0].Nombre;
+                Vista.txtApellido.Text = SecretariaR[0].Apellido;
+                Vista.txtCelular.Text = SecretariaR[0].Celular;
+                Vista.txtEdad.Text = SecretariaR[0].Edad.ToString();
+                Vista.txtCorreo.Text = SecretariaR[0].Correo;
+                Vista.txtDireccion.Text = SecretariaR[0].Direccion;
 
                 Vista.btnEditar.Enabled = true;
-                Vista.btnNuevoChofer.Enabled = false;
+                Vista.btnGuardar.Enabled = false;
                 Vista.btnEliminar.Enabled = true;
 
                 Vista.txtPassword.Visible = false;
                 Vista.txtPassword.Enabled = false;
                 Vista.lblPassword.Visible = false;
                 Vista.txtCI.Enabled = false;
-                Vista.cboxDisponibilidad.Visible = true;
-                Vista.cboxDisponibilidad.Enabled = true;
-                Vista.lblDisponibilidad.Visible = true;
             }
         }
 
@@ -94,25 +90,25 @@ namespace ProyectoCamioncitos.Controlador
             Limpiar();
         }
 
-        //Evento Crear Chofer
-        public void CreateChoferEvent(object sender, EventArgs e)
+        //Evento Crear Secretaria
+        public void CreateSecretariaEvent(object sender, EventArgs e)
         {
             try
             {
-                ValCreateChofer();
-                DialogResult dialogResult = MessageBox.Show("Crear Nuevo Chofer?", "Crear Chofer", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                ValCreateSecretaria();
+                DialogResult dialogResult = MessageBox.Show("Crear Nueva Secretaria?", "Crear Secretaria", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    CreateChofer();
-                    CargarChofer();
+                    CreateSecretaria();
+                    CargarSecretaria();
                     Limpiar();
                 }
             }
             catch { }
         }
 
-        //Metodo Validacion Datos Completos Create Chofer
-        public void ValCreateChofer()
+        //Metodo Validacion Datos Completos Create Secretaria
+        public void ValCreateSecretaria()
         {
             //Se asegura que todos los datos de los textbox esten completos
             TextBox[] textboxs = new TextBox[] { Vista.txtCI, Vista.txtNombre, Vista.txtApellido, Vista.txtCelular,
@@ -124,52 +120,52 @@ namespace ProyectoCamioncitos.Controlador
             }
         }
 
-        //Método Crear Chofer
-        public void CreateChofer()
+        //Método Crear Secretaria
+        public void CreateSecretaria()
         {
             try
             {
-                ChoferDAO db = new ChoferDAO();
+                SecretariaDAO db = new SecretariaDAO();
                 db.Create(Vista.txtCI.Text, Vista.txtNombre.Text, Vista.txtApellido.Text, Vista.txtCelular.Text,
                 Vista.txtEdad.Text, Vista.txtCorreo.Text, Vista.txtDireccion.Text, Vista.txtPassword.Text);
             }
             catch { }
         }
 
-        //Evento Eliminar Chofer
-        public void DeleteChoferEvent(object sender, EventArgs e)
+        //Evento Eliminar Secretaria
+        public void DeleteSecretariaEvent(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Esta seguro de querer eliminar al chofer con cedula: " + Vista.txtCI.Text, "Eliminar Chofer", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MessageBox.Show("Esta seguro de querer eliminar la secretaria con cedula: " + Vista.txtCI.Text, "Eliminar Secretaria", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
-                DeleteChofer();
-                CargarChofer();
+                DeleteSecretaria();
+                CargarSecretaria();
                 Limpiar();
             }
         }
 
-        //Método Eliminar Chofer
-        public void DeleteChofer()
+        //Método Eliminar Secretaria
+        public void DeleteSecretaria()
         {
             try
             {
-                ChoferDAO db = new ChoferDAO();
+                SecretariaDAO db = new SecretariaDAO();
                 db.Delete(Vista.txtCI.Text);
             }
             catch { }
         }
 
-        //Evento Modificar Chofer
-        public void UpdateChoferEvent(object sender, EventArgs e)
+        //Evento Modificar Secretaria
+        public void UpdateSecretariaEvent(object sender, EventArgs e)
         {
             try
             {
-                ValUpdateChofer();
-                DialogResult dialogResult = MessageBox.Show("Esta seguro de querer editar la informacion del chofer con cedula: " + Vista.txtCI.Text, "Editar Chofer", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                ValUpdateSecretaria();
+                DialogResult dialogResult = MessageBox.Show("Esta seguro de querer editar la informacion de la secretaria con cedula: " + Vista.txtCI.Text, "Editar Secretaria", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    UpdateChofer();
-                    CargarChofer();
+                    UpdateSecretaria();
+                    CargarSecretaria();
                     Limpiar();
                 }
             }
@@ -177,14 +173,12 @@ namespace ProyectoCamioncitos.Controlador
         }
 
         //Metodo Validacion Datos Completos Update Chofer
-        public void ValUpdateChofer()
+        public void ValUpdateSecretaria()
         {
             //Se asegura que todos los datos de los textbox esten completos
             TextBox[] textboxs = new TextBox[] { Vista.txtCI, Vista.txtNombre, Vista.txtApellido, Vista.txtCelular,
                 Vista.txtEdad, Vista.txtCorreo, Vista.txtDireccion};
-            ComboBox[] combobox = new ComboBox[] { Vista.cboxDisponibilidad };
-            bool datosCompletos = !textboxs.Any(X => String.IsNullOrEmpty(X.Text))
-                && !combobox.Any(X => String.IsNullOrEmpty(X.Text));
+            bool datosCompletos = !textboxs.Any(X => String.IsNullOrEmpty(X.Text));
 
             if (!datosCompletos)
             {
@@ -193,14 +187,13 @@ namespace ProyectoCamioncitos.Controlador
         }
 
         //Método Update Chofer
-        public void UpdateChofer()
+        public void UpdateSecretaria()
         {
             try
             {
-                ChoferDAO db = new ChoferDAO();
+                SecretariaDAO db = new SecretariaDAO();
                 db.Update(Vista.txtCI.Text, Vista.txtNombre.Text, Vista.txtApellido.Text,
-                    Vista.txtCelular.Text, Vista.txtEdad.Text, Vista.txtCorreo.Text, Vista.txtDireccion.Text,
-                    Vista.cboxDisponibilidad.SelectedItem.ToString());
+                    Vista.txtCelular.Text, Vista.txtEdad.Text, Vista.txtCorreo.Text, Vista.txtDireccion.Text);
 
             }
             catch { }
@@ -217,39 +210,32 @@ namespace ProyectoCamioncitos.Controlador
             Vista.txtCorreo.Text = "";
             Vista.txtDireccion.Text = "";
             Vista.txtPassword.Text = "";
-            Vista.cboxDisponibilidad.SelectedItem = null;
 
-            Vista.tblChofer.ClearSelection();
+            Vista.tblSecretaria.ClearSelection();
 
             Vista.btnEditar.Enabled = false;
             Vista.btnEliminar.Enabled = false;
-            Vista.btnNuevoChofer.Enabled = true;
+            Vista.btnGuardar.Enabled = true;
 
             Vista.txtPassword.Visible = true;
             Vista.txtPassword.Enabled = true;
             Vista.lblPassword.Visible = true;
             Vista.txtCI.Enabled = true;
-            Vista.cboxDisponibilidad.Enabled = false;
-            Vista.cboxDisponibilidad.Visible = false;
-            Vista.lblDisponibilidad.Visible = false;
         }
 
-        //Método Cargar Chofer
-        public void CargarChofer()
+        //Método Cargar Secretaria
+        public void CargarSecretaria()
         {
-            ChoferDAO db = new ChoferDAO();
-            Vista.tblChofer.DataSource =
-                db.VerRegistros(Vista.txtBuscarChofer.Text);
+            SecretariaDAO db = new SecretariaDAO();
+            Vista.tblSecretaria.DataSource =
+                db.VerRegistros(Vista.txtBuscarSecretaria.Text);
 
-            Vista.tblChofer.Columns["Contraseña"].Visible = false;
-            Vista.tblChofer.Columns["Celular"].Visible = false;
-            Vista.tblChofer.Columns["Edad"].Visible = false;
-            Vista.tblChofer.Columns["Correo"].Visible = false;
-            Vista.tblChofer.Columns["Direccion"].Visible = false;
-            Vista.tblChofer.Columns["Cargo"].Visible = false;
-
-            Vista.tblChofer.Columns["CI"].DisplayIndex = 0;
-            Vista.tblChofer.Columns["Disponibilidad"].DisplayIndex = 3;
+            Vista.tblSecretaria.Columns["Contraseña"].Visible = false;
+            Vista.tblSecretaria.Columns["Celular"].Visible = false;
+            Vista.tblSecretaria.Columns["Edad"].Visible = false;
+            Vista.tblSecretaria.Columns["Correo"].Visible = false;
+            Vista.tblSecretaria.Columns["Direccion"].Visible = false;
+            Vista.tblSecretaria.Columns["Cargo"].Visible = false;
         }
 
         //Restricciones

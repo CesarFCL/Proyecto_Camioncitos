@@ -152,7 +152,7 @@ namespace ProyectoCamioncitos.Controlador
             try
             {
                 ValDatosCompletos();
-                DialogResult dialogResult = MessageBox.Show("Esta seguro de querer editar la infomacion del Cliente con cedula: " + Vista.txtRUC.Text, "Editar Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dialogResult = MessageBox.Show("Esta seguro de querer editar la informacion del Cliente con cedula: " + Vista.txtRUC.Text, "Editar Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
                     UpdateCliente();

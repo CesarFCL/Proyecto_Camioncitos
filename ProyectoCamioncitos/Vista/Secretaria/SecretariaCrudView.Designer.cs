@@ -1,6 +1,6 @@
-﻿namespace ProyectoCamioncitos.Vista.Conductor
+﻿namespace ProyectoCamioncitos.Vista.Secretaria
 {
-    partial class ChoferCrudView
+    partial class SecretariaCrudView
     {
         /// <summary>
         /// Required designer variable.
@@ -31,10 +31,8 @@
             this.gbClienteDatos = new System.Windows.Forms.GroupBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.lblPassword = new System.Windows.Forms.Label();
-            this.cboxDisponibilidad = new System.Windows.Forms.ComboBox();
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.txtCorreo = new System.Windows.Forms.TextBox();
-            this.lblDisponibilidad = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -50,24 +48,22 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnNuevoChofer = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtBuscarChofer = new System.Windows.Forms.TextBox();
-            this.tblChofer = new System.Windows.Forms.DataGridView();
+            this.txtBuscarSecretaria = new System.Windows.Forms.TextBox();
+            this.tblSecretaria = new System.Windows.Forms.DataGridView();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.gbClienteDatos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tblSecretaria)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tblChofer)).BeginInit();
             this.SuspendLayout();
             // 
             // gbClienteDatos
             // 
             this.gbClienteDatos.Controls.Add(this.txtPassword);
             this.gbClienteDatos.Controls.Add(this.lblPassword);
-            this.gbClienteDatos.Controls.Add(this.cboxDisponibilidad);
             this.gbClienteDatos.Controls.Add(this.txtDireccion);
             this.gbClienteDatos.Controls.Add(this.txtCorreo);
-            this.gbClienteDatos.Controls.Add(this.lblDisponibilidad);
             this.gbClienteDatos.Controls.Add(this.label8);
             this.gbClienteDatos.Controls.Add(this.label7);
             this.gbClienteDatos.Controls.Add(this.label6);
@@ -81,17 +77,17 @@
             this.gbClienteDatos.Controls.Add(this.txtCelular);
             this.gbClienteDatos.Controls.Add(this.txtEdad);
             this.gbClienteDatos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbClienteDatos.Location = new System.Drawing.Point(478, 39);
+            this.gbClienteDatos.Location = new System.Drawing.Point(478, 62);
             this.gbClienteDatos.Name = "gbClienteDatos";
-            this.gbClienteDatos.Size = new System.Drawing.Size(283, 322);
-            this.gbClienteDatos.TabIndex = 26;
+            this.gbClienteDatos.Size = new System.Drawing.Size(283, 282);
+            this.gbClienteDatos.TabIndex = 35;
             this.gbClienteDatos.TabStop = false;
             this.gbClienteDatos.Text = "Datos";
             // 
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(109, 284);
+            this.txtPassword.Location = new System.Drawing.Point(109, 247);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(168, 23);
             this.txtPassword.TabIndex = 31;
@@ -100,24 +96,11 @@
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword.Location = new System.Drawing.Point(7, 287);
+            this.lblPassword.Location = new System.Drawing.Point(6, 251);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(96, 16);
             this.lblPassword.TabIndex = 30;
             this.lblPassword.Text = "CONTRASEÑA";
-            // 
-            // cboxDisponibilidad
-            // 
-            this.cboxDisponibilidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboxDisponibilidad.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxDisponibilidad.FormattingEnabled = true;
-            this.cboxDisponibilidad.Items.AddRange(new object[] {
-            "Disponible",
-            "No disponible"});
-            this.cboxDisponibilidad.Location = new System.Drawing.Point(121, 247);
-            this.cboxDisponibilidad.Name = "cboxDisponibilidad";
-            this.cboxDisponibilidad.Size = new System.Drawing.Size(156, 24);
-            this.cboxDisponibilidad.TabIndex = 29;
             // 
             // txtDireccion
             // 
@@ -134,16 +117,6 @@
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(182, 23);
             this.txtCorreo.TabIndex = 21;
-            // 
-            // lblDisponibilidad
-            // 
-            this.lblDisponibilidad.AutoSize = true;
-            this.lblDisponibilidad.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDisponibilidad.Location = new System.Drawing.Point(7, 253);
-            this.lblDisponibilidad.Name = "lblDisponibilidad";
-            this.lblDisponibilidad.Size = new System.Drawing.Size(109, 16);
-            this.lblDisponibilidad.TabIndex = 20;
-            this.lblDisponibilidad.Text = "DISPONIBILIDAD";
             // 
             // label8
             // 
@@ -264,10 +237,10 @@
             this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpiar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiar.ForeColor = System.Drawing.Color.White;
-            this.btnLimpiar.Location = new System.Drawing.Point(624, 423);
+            this.btnLimpiar.Location = new System.Drawing.Point(624, 414);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(137, 36);
-            this.btnLimpiar.TabIndex = 25;
+            this.btnLimpiar.TabIndex = 34;
             this.btnLimpiar.Text = "LIMPIAR";
             this.btnLimpiar.UseVisualStyleBackColor = false;
             // 
@@ -280,10 +253,10 @@
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditar.ForeColor = System.Drawing.Color.White;
-            this.btnEditar.Location = new System.Drawing.Point(624, 367);
+            this.btnEditar.Location = new System.Drawing.Point(624, 358);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(137, 38);
-            this.btnEditar.TabIndex = 24;
+            this.btnEditar.TabIndex = 33;
             this.btnEditar.Text = "EDITAR";
             this.btnEditar.UseVisualStyleBackColor = false;
             // 
@@ -296,74 +269,74 @@
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
-            this.btnEliminar.Location = new System.Drawing.Point(478, 423);
+            this.btnEliminar.Location = new System.Drawing.Point(478, 414);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(137, 36);
-            this.btnEliminar.TabIndex = 23;
+            this.btnEliminar.TabIndex = 32;
             this.btnEliminar.Text = "ELIMINAR";
             this.btnEliminar.UseVisualStyleBackColor = false;
             // 
-            // btnNuevoChofer
+            // btnGuardar
             // 
-            this.btnNuevoChofer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(41)))), ((int)(((byte)(68)))));
-            this.btnNuevoChofer.FlatAppearance.BorderSize = 0;
-            this.btnNuevoChofer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(20)))), ((int)(((byte)(30)))));
-            this.btnNuevoChofer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(93)))), ((int)(((byte)(142)))));
-            this.btnNuevoChofer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNuevoChofer.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevoChofer.ForeColor = System.Drawing.Color.White;
-            this.btnNuevoChofer.Location = new System.Drawing.Point(478, 367);
-            this.btnNuevoChofer.Name = "btnNuevoChofer";
-            this.btnNuevoChofer.Size = new System.Drawing.Size(137, 38);
-            this.btnNuevoChofer.TabIndex = 22;
-            this.btnNuevoChofer.Text = "GUARDAR";
-            this.btnNuevoChofer.UseVisualStyleBackColor = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::ProyectoCamioncitos.Properties.Resources.search2;
-            this.pictureBox1.Location = new System.Drawing.Point(451, 38);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(21, 24);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 21;
-            this.pictureBox1.TabStop = false;
+            this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(41)))), ((int)(((byte)(68)))));
+            this.btnGuardar.FlatAppearance.BorderSize = 0;
+            this.btnGuardar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(20)))), ((int)(((byte)(30)))));
+            this.btnGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(93)))), ((int)(((byte)(142)))));
+            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardar.ForeColor = System.Drawing.Color.White;
+            this.btnGuardar.Location = new System.Drawing.Point(478, 358);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(137, 38);
+            this.btnGuardar.TabIndex = 31;
+            this.btnGuardar.Text = "GUARDAR";
+            this.btnGuardar.UseVisualStyleBackColor = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(89, 30);
+            this.label1.Location = new System.Drawing.Point(89, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(147, 32);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "CHOFERES";
+            this.label1.Size = new System.Drawing.Size(168, 32);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "SECRETARIA";
             // 
-            // txtBuscarChofer
+            // txtBuscarSecretaria
             // 
-            this.txtBuscarChofer.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscarChofer.Location = new System.Drawing.Point(305, 39);
-            this.txtBuscarChofer.Name = "txtBuscarChofer";
-            this.txtBuscarChofer.Size = new System.Drawing.Size(140, 23);
-            this.txtBuscarChofer.TabIndex = 19;
+            this.txtBuscarSecretaria.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscarSecretaria.Location = new System.Drawing.Point(305, 30);
+            this.txtBuscarSecretaria.Name = "txtBuscarSecretaria";
+            this.txtBuscarSecretaria.Size = new System.Drawing.Size(140, 23);
+            this.txtBuscarSecretaria.TabIndex = 28;
             // 
-            // tblChofer
+            // tblSecretaria
             // 
-            this.tblChofer.AllowUserToAddRows = false;
-            this.tblChofer.AllowUserToDeleteRows = false;
-            this.tblChofer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tblSecretaria.AllowUserToAddRows = false;
+            this.tblSecretaria.AllowUserToDeleteRows = false;
+            this.tblSecretaria.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tblChofer.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(41)))), ((int)(((byte)(68)))));
-            this.tblChofer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tblChofer.Location = new System.Drawing.Point(10, 65);
-            this.tblChofer.MultiSelect = false;
-            this.tblChofer.Name = "tblChofer";
-            this.tblChofer.ReadOnly = true;
-            this.tblChofer.Size = new System.Drawing.Size(462, 394);
-            this.tblChofer.TabIndex = 18;
+            this.tblSecretaria.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(41)))), ((int)(((byte)(68)))));
+            this.tblSecretaria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tblSecretaria.Location = new System.Drawing.Point(10, 56);
+            this.tblSecretaria.MultiSelect = false;
+            this.tblSecretaria.Name = "tblSecretaria";
+            this.tblSecretaria.ReadOnly = true;
+            this.tblSecretaria.Size = new System.Drawing.Size(462, 394);
+            this.tblSecretaria.TabIndex = 27;
             // 
-            // ChoferCrudView
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::ProyectoCamioncitos.Properties.Resources.search2;
+            this.pictureBox1.Location = new System.Drawing.Point(451, 29);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(21, 24);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 30;
+            this.pictureBox1.TabStop = false;
+            // 
+            // SecretariaCrudView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -372,18 +345,18 @@
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.btnNuevoChofer);
+            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtBuscarChofer);
-            this.Controls.Add(this.tblChofer);
+            this.Controls.Add(this.txtBuscarSecretaria);
+            this.Controls.Add(this.tblSecretaria);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "ChoferCrudView";
-            this.Text = "ConductorCrudView";
+            this.Name = "SecretariaCrudView";
+            this.Text = "SecretariaCrudView";
             this.gbClienteDatos.ResumeLayout(false);
             this.gbClienteDatos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tblSecretaria)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tblChofer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -392,6 +365,8 @@
         #endregion
 
         private System.Windows.Forms.GroupBox gbClienteDatos;
+        public System.Windows.Forms.TextBox txtPassword;
+        public System.Windows.Forms.Label lblPassword;
         public System.Windows.Forms.TextBox txtDireccion;
         public System.Windows.Forms.TextBox txtCorreo;
         private System.Windows.Forms.Label label8;
@@ -409,14 +384,10 @@
         public System.Windows.Forms.Button btnLimpiar;
         public System.Windows.Forms.Button btnEditar;
         public System.Windows.Forms.Button btnEliminar;
-        public System.Windows.Forms.Button btnNuevoChofer;
+        public System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        public System.Windows.Forms.TextBox txtBuscarChofer;
-        public System.Windows.Forms.DataGridView tblChofer;
-        public System.Windows.Forms.ComboBox cboxDisponibilidad;
-        public System.Windows.Forms.TextBox txtPassword;
-        public System.Windows.Forms.Label lblPassword;
-        public System.Windows.Forms.Label lblDisponibilidad;
+        public System.Windows.Forms.TextBox txtBuscarSecretaria;
+        public System.Windows.Forms.DataGridView tblSecretaria;
     }
 }

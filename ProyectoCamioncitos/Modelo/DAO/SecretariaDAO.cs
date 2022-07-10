@@ -9,26 +9,26 @@ using System.Threading.Tasks;
 
 namespace ProyectoCamioncitos.Modelo.DAO
 {
-    //Clase Chofer Data Acces Object
-    //Aqui se ejecutan todos los procesos que involucren a la BD para el Controlador del CRUD Chofer
-    public class ChoferDAO : DBContext
+    //Clase Secretaria Data Acces Object
+    //Aqui se ejecutan todos los procesos que involucren a la BD para el Controlador del CRUD Secretaria
+    public class SecretariaDAO : DBContext
     {
         //METODOS CRUD
 
-        //Metodo Leer Chofer
-        public List<Chofer> VerRegistros(string Condicion)
+        //Metodo Leer Secretaria
+        public List<Secretaria> VerRegistros(string Condicion)
         {
             Comando.Connection = Conexion;
-            Comando.CommandText = "ObtenerChofer";
+            Comando.CommandText = "ObtenerSecretaria";
             Comando.CommandType = CommandType.StoredProcedure;
             Comando.Parameters.AddWithValue("@Condicion", Condicion);
             Conexion.Open();
             Reader = Comando.ExecuteReader();
 
-            List<Chofer> ListaChofer = new List<Chofer>();
+            List<Secretaria> ListaSecretaria = new List<Secretaria>();
             while (Reader.Read())
             {
-                ListaChofer.Add(new Chofer
+                ListaSecretaria.Add(new Secretaria
                 {
                     CI = Reader["Cedula"].ToString(),
                     Nombre = Reader["Nombre"].ToString(),
@@ -36,16 +36,15 @@ namespace ProyectoCamioncitos.Modelo.DAO
                     Celular = Reader["Celular"].ToString(),
                     Edad = Int32.Parse(Reader["Edad"].ToString()),
                     Correo = Reader["Correo"].ToString(),
-                    Direccion = Reader["Direccion"].ToString(),
-                    Disponibilidad = Reader["Disponibilidad"].ToString()
+                    Direccion = Reader["Direccion"].ToString()
                 });
             }
             Reader.Close();
             Conexion.Close();
-            return ListaChofer;
+            return ListaSecretaria;
         }
 
-        //Metodo Crear Chofer
+        //Metodo Crear Secretaria
         public bool Create(string CI, string Nombre, string Apellido, string Celular,
             string Edad, string Correo, string Direccion, string Contraseña)
         {
@@ -62,7 +61,7 @@ namespace ProyectoCamioncitos.Modelo.DAO
                 Comando.Parameters.AddWithValue("@CORREO", Correo);
                 Comando.Parameters.AddWithValue("@DIRECCION", Direccion);
                 Comando.Parameters.AddWithValue("@CONTRASEÑA", Contraseña);
-                Comando.Parameters.AddWithValue("@TIPO", "Chofer");
+                Comando.Parameters.AddWithValue("@TIPO", "Secretaria");
                 Conexion.Open();
                 Comando.ExecuteNonQuery();
                 Conexion.Close();
@@ -95,12 +94,12 @@ namespace ProyectoCamioncitos.Modelo.DAO
         }
 
         //Método Modificar Chofer
-        public bool Update(string CI, string Nombre, string Apellido, string Celular, string Edad, string Correo, string Direccion , string Disponibilidad)
+        public bool Update(string CI, string Nombre, string Apellido, string Celular, string Edad, string Correo, string Direccion)
         {
             try
             {
                 Comando.Connection = Conexion;
-                Comando.CommandText = "ModificarChofer";
+                Comando.CommandText = "ModificarEmpleado";
                 Comando.CommandType = CommandType.StoredProcedure;
                 Comando.Parameters.AddWithValue("@CI", CI);
                 Comando.Parameters.AddWithValue("@NOMBRE", Nombre);
@@ -109,7 +108,6 @@ namespace ProyectoCamioncitos.Modelo.DAO
                 Comando.Parameters.AddWithValue("@EDAD", Edad);
                 Comando.Parameters.AddWithValue("@CORREO", Correo);
                 Comando.Parameters.AddWithValue("@DIRECCION", Direccion);
-                Comando.Parameters.AddWithValue("@DISPONIBILIDAD", Disponibilidad);
                 Conexion.Open();
                 Comando.ExecuteNonQuery();
                 return true;

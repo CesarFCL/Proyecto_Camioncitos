@@ -63,6 +63,26 @@ namespace ProyectoCamioncitos.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Admin_ {
+            get {
+                object obj = ResourceManager.GetObject("Admin_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Admin2_ {
+            get {
+                object obj = ResourceManager.GetObject("Admin2_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap camion {
             get {
                 object obj = ResourceManager.GetObject("camion", resourceCulture);
@@ -146,6 +166,16 @@ namespace ProyectoCamioncitos.Properties {
         internal static System.Drawing.Bitmap Secretaria2 {
             get {
                 object obj = ResourceManager.GetObject("Secretaria2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Secretary {
+            get {
+                object obj = ResourceManager.GetObject("Secretary", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

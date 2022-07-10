@@ -46,27 +46,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controlador\AdminMenuController.cs" />
     <Compile Include="Controlador\ChoferCrudController.cs" />
     <Compile Include="Controlador\ClienteCrudController.cs" />
     <Compile Include="Controlador\ControllersExceptions\DatosIncompletosException.cs" />
     <Compile Include="Controlador\ControllersExceptions\LimitLoginException.cs" />
-    <Compile Include="Controlador\DragForm.cs" />
+    <Compile Include="Controlador\GlobalMenu.cs" />
     <Compile Include="Controlador\LoginController.cs" />
+    <Compile Include="Controlador\SecretariaCrudController.cs" />
     <Compile Include="Controlador\SecretariaMenuController.cs" />
     <Compile Include="Controlador\VehiculoCrudController.cs" />
     <Compile Include="Modelo\DAO\ChoferDAO.cs" />
     <Compile Include="Modelo\DAO\DaoExceptions\DBErrorException.cs" />
     <Compile Include="Modelo\DAO\DaoExceptions\DenyLoginException.cs" />
     <Compile Include="Modelo\DAO\LoginDAO.cs" />
+    <Compile Include="Modelo\DAO\SecretariaDAO.cs" />
     <Compile Include="Modelo\DAO\VehiculoDAO.cs" />
+    <Compile Include="Modelo\DTO\Admin.cs" />
     <Compile Include="Modelo\DTO\Chofer.cs" />
     <Compile Include="Modelo\DTO\Empleado.cs" />
     <Compile Include="Modelo\DTO\Secretaria.cs" />
     <Compile Include="Modelo\DTO\Vehiculo.cs" />
-    <Compile Include="Vista\ClienteCrudView.cs">
+    <Compile Include="Vista\Admin\AdminMenuView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vista\ClienteCrudView.Designer.cs">
+    <Compile Include="Vista\Admin\AdminMenuView.Designer.cs">
+      <DependentUpon>AdminMenuView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Cliente\ClienteCrudView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\Cliente\ClienteCrudView.Designer.cs">
       <DependentUpon>ClienteCrudView.cs</DependentUpon>
     </Compile>
     <Compile Include="Modelo\DAO\ClienteDAO.cs" />
@@ -80,10 +90,16 @@
     <Compile Include="Vista\Chofer\ChoferCrudView.Designer.cs">
       <DependentUpon>ChoferCrudView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vista\VehiculoCrudView.cs">
+    <Compile Include="Vista\Secretaria\SecretariaCrudView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vista\VehiculoCrudView.Designer.cs">
+    <Compile Include="Vista\Secretaria\SecretariaCrudView.Designer.cs">
+      <DependentUpon>SecretariaCrudView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Vehiculo\VehiculoCrudView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\Vehiculo\VehiculoCrudView.Designer.cs">
       <DependentUpon>VehiculoCrudView.cs</DependentUpon>
     </Compile>
     <Compile Include="Vista\Secretaria\SecretariaMenuView.cs">
@@ -92,13 +108,16 @@
     <Compile Include="Vista\Secretaria\SecretariaMenuView.Designer.cs">
       <DependentUpon>SecretariaMenuView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vista\LoginView.cs">
+    <Compile Include="Vista\Login\LoginView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vista\LoginView.Designer.cs">
+    <Compile Include="Vista\Login\LoginView.Designer.cs">
       <DependentUpon>LoginView.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Vista\ClienteCrudView.resx">
+    <EmbeddedResource Include="Vista\Admin\AdminMenuView.resx">
+      <DependentUpon>AdminMenuView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\Cliente\ClienteCrudView.resx">
       <DependentUpon>ClienteCrudView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -114,13 +133,16 @@
     <EmbeddedResource Include="Vista\Chofer\ChoferCrudView.resx">
       <DependentUpon>ChoferCrudView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vista\LoginView.resx">
+    <EmbeddedResource Include="Vista\Login\LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\Secretaria\SecretariaCrudView.resx">
+      <DependentUpon>SecretariaCrudView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vista\Secretaria\SecretariaMenuView.resx">
       <DependentUpon>SecretariaMenuView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vista\VehiculoCrudView.resx">
+    <EmbeddedResource Include="Vista\Vehiculo\VehiculoCrudView.resx">
       <DependentUpon>VehiculoCrudView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -172,6 +194,14 @@
   <ItemGroup>
     <None Include="Resources\UsersConfig.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Secretary.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Admin_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Admin2_.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

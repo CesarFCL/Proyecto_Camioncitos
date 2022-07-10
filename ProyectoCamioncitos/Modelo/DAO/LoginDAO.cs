@@ -1,15 +1,10 @@
-﻿using ProyectoCamioncitos.Controlador;
-using ProyectoCamioncitos.Modelo.DAO.DaoExceptions;
+﻿using ProyectoCamioncitos.Modelo.DAO.DaoExceptions;
 using ProyectoCamioncitos.Modelo.DTO;
-using ProyectoCamioncitos.Vista;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ProyectoCamioncitos.Modelo.DAO
 {
@@ -17,8 +12,6 @@ namespace ProyectoCamioncitos.Modelo.DAO
     //Aqui se ejecutan todos los procesos que involucren a la BD para el Controlador del Login
     public class LoginDAO : DBContext
     {
-        public SqlDataReader LoginResult;
-        SqlCommand Comando = new SqlCommand();
 
         //Metodo para Loguear al Empleado al Sistema
         public Empleado LoginEmpleado(string CI, string Password, int Intentos)
@@ -29,32 +22,28 @@ namespace ProyectoCamioncitos.Modelo.DAO
             Comando.Parameters.AddWithValue("@CI", CI);
             Comando.Parameters.AddWithValue("@CONTRASEÑA", Password);
             Conexion.Open();
-            LoginResult = Comando.ExecuteReader();
+            Reader = Comando.ExecuteReader();
 
-            if (!LoginResult.Read())
+            if (!Reader.Read())
             {
                 throw new DenyLoginException(Intentos.ToString());
             }
 
-            Empleado DatosEmpleadoLogueado = ObtenerDatosEmpleado(LoginResult);
+            Empleado DatosEmpleadoLogueado = new Empleado()
+            {
+                Nombre = Reader["Nombre"].ToString(),
+                Apellido = Reader["Apellido"].ToString(),
+                CI = Reader["CI"].ToString(),
+                Cargo = Reader["CARGO"].ToString()
+            };
 
-            LoginResult.Close();
+            Reader.Close();
             Conexion.Close();
             return DatosEmpleadoLogueado;
         }
+
         /*
-         public List<string> ObtenerDatosEmpleado(SqlDataReader LoginResult)
-        {
-            List<string> DatosEmpleadoLogueado = new List<string>();
-            DatosEmpleadoLogueado.Add(LoginResult["Nombre"].ToString());
-            DatosEmpleadoLogueado.Add(LoginResult["Apellido"].ToString());
-            DatosEmpleadoLogueado.Add(LoginResult["CI"].ToString());
-            DatosEmpleadoLogueado.Add(LoginResult["CARGO"].ToString());
-            return DatosEmpleadoLogueado;
-        }
-         
-         */
-        public Empleado ObtenerDatosEmpleado(SqlDataReader LoginResult)
+         public Empleado ObtenerDatosEmpleado(SqlDataReader LoginResult)
         {
             Empleado EmpleadoLogueado = new Empleado();
             EmpleadoLogueado.Nombre = LoginResult["Nombre"].ToString();
@@ -63,5 +52,6 @@ namespace ProyectoCamioncitos.Modelo.DAO
             EmpleadoLogueado.Cargo = LoginResult["CARGO"].ToString();
             return EmpleadoLogueado;
         }
+         */
     }
 }

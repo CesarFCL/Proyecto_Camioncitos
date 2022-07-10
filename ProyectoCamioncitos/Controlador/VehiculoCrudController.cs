@@ -151,7 +151,7 @@ namespace ProyectoCamioncitos.Controlador
             try
             {
                 ValUpdateVehicle();
-                DialogResult dialogResult = MessageBox.Show("Esta seguro de querer editar la infomacion del vehiculo con matricula: " + Vista.txtMatricula.Text, "Editar Chofer", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dialogResult = MessageBox.Show("Esta seguro de querer editar la informacion del vehiculo con matricula: " + Vista.txtMatricula.Text, "Editar Chofer", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
                     UpdateVehicle();
@@ -224,9 +224,7 @@ namespace ProyectoCamioncitos.Controlador
                 Vista.cboxTipo.DataSource = db.CargarListaTipos();
             }
             catch
-            {
-                Vista.Close();
-            }
+            { }
         }
 
         //Restricciones

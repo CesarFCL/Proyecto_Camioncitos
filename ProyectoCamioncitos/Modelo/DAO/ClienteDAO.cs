@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
 using ProyectoCamioncitos.Modelo.DTO;
 using System.Data;
 using ProyectoCamioncitos.Modelo.DAO.DaoExceptions;
@@ -14,9 +13,6 @@ namespace ProyectoCamioncitos.Modelo.DAO
     //Aqui se ejecutan todos los procesos que involucren a la BD para el Controlador del CRUD Cliente
     public class ClienteDAO :DBContext
     {
-        SqlDataReader LeerFilas;
-        SqlCommand Comando = new SqlCommand();
-
         //METODOS CRUD
 
         //Metodo Leer Csuario
@@ -27,21 +23,21 @@ namespace ProyectoCamioncitos.Modelo.DAO
             Comando.CommandType = CommandType.StoredProcedure;
             Comando.Parameters.AddWithValue("@Condicion", Condicion);
             Conexion.Open();
-            LeerFilas = Comando.ExecuteReader();
+            Reader = Comando.ExecuteReader();
 
             List<Cliente> ListaCliente = new List<Cliente>();//Lista generica
-            while (LeerFilas.Read())
+            while (Reader.Read())
             {
                 ListaCliente.Add(new Cliente
                 {
-                    RUC = LeerFilas.GetString(0),
-                    Nombre = LeerFilas.GetString(1),
-                    Telefono = LeerFilas.GetString(2),
-                    Correo = LeerFilas.GetString(3),
-                    Direccion = LeerFilas.GetString(4),
+                    RUC = Reader.GetString(0),
+                    Nombre = Reader.GetString(1),
+                    Telefono = Reader.GetString(2),
+                    Correo = Reader.GetString(3),
+                    Direccion = Reader.GetString(4),
                 });
             }
-            LeerFilas.Close();
+            Reader.Close();
             Conexion.Close();
             return ListaCliente;
         }

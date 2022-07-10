@@ -1,10 +1,8 @@
-﻿using ProyectoCamioncitos.Controlador.ControllersExceptions;
-using ProyectoCamioncitos.Modelo.DAO.DaoExceptions;
+﻿using ProyectoCamioncitos.Modelo.DAO.DaoExceptions;
 using ProyectoCamioncitos.Modelo.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,8 +13,6 @@ namespace ProyectoCamioncitos.Modelo.DAO
     //Aqui se ejecutan todos los procesos que involucren a la BD para el Controlador del CRUD Vehiculo
     public class VehiculoDAO : DBContext
     {
-        SqlDataReader LeerFilas;
-        SqlCommand Comando = new SqlCommand();
 
         //METODOS CRUD
 
@@ -28,21 +24,21 @@ namespace ProyectoCamioncitos.Modelo.DAO
             Comando.CommandType = CommandType.StoredProcedure;
             Comando.Parameters.AddWithValue("@Condicion", Condicion);
             Conexion.Open();
-            LeerFilas = Comando.ExecuteReader();
+            Reader = Comando.ExecuteReader();
 
             List<Vehiculo> ListaVehiculo = new List<Vehiculo>();
-            while (LeerFilas.Read())
+            while (Reader.Read())
             {
                 ListaVehiculo.Add(new Vehiculo
                 {
-                    Matricula = LeerFilas["MATRICULA"].ToString(),
-                    Marca = LeerFilas["MARCA"].ToString(),
-                    Year = LeerFilas["AÑO"].ToString(),
-                    Tipo = LeerFilas["TIPO"].ToString(),
-                    Disponibilidad = LeerFilas["DISPONIBILIDAD"].ToString(),
+                    Matricula = Reader["MATRICULA"].ToString(),
+                    Marca = Reader["MARCA"].ToString(),
+                    Year = Reader["AÑO"].ToString(),
+                    Tipo = Reader["TIPO"].ToString(),
+                    Disponibilidad = Reader["DISPONIBILIDAD"].ToString(),
                 });
             }
-            LeerFilas.Close();
+            Reader.Close();
             Conexion.Close();
             return ListaVehiculo;
         }
@@ -118,12 +114,12 @@ namespace ProyectoCamioncitos.Modelo.DAO
             Comando.CommandText = "Lista_Tipos_Vehiculos";
             Comando.CommandType = CommandType.StoredProcedure;
             Conexion.Open();
-            LeerFilas = Comando.ExecuteReader();
+            Reader = Comando.ExecuteReader();
 
             List<string> ListaVehiculo = new List<string>();
-            while (LeerFilas.Read())
+            while (Reader.Read())
             {
-                ListaVehiculo.Add(LeerFilas["NOMBRE"].ToString());
+                ListaVehiculo.Add(Reader["NOMBRE"].ToString());
             }
             if (ListaVehiculo.Count == 0)
             {
