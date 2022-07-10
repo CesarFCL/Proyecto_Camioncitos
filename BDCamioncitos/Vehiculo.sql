@@ -40,18 +40,6 @@ create table TIPOS_VEHICULOS
 );
 go
 
--- Tabla Gestion_Vehiculo -- TABLA TEMPORAL X EL MOMENTO SEGURAMENTE SE CAMBIE MAS ADELANTE
-create table  GESTION_VEHICULO
-(
-  MATRICULA  VARCHAR(10) primary key,
-  COMBUSTIBLE FLOAT not null, --Son dolares
-  KILOMETRAJE FLOAT not null,
-  CONSTRAINT fk_MATRICULA_GV FOREIGN KEY (MATRICULA) REFERENCES VEHICULO (MATRICULA)
-  ON UPDATE cascade
-  ON DELETE cascade
-);
-go
-
 -- Procedimiento para Obtener Vehiculo
 CREATE PROC ObtenerVehiculo
 @Condicion nvarchar(30)

@@ -33,3 +33,15 @@ create table Informe
   --FECHA
 );
 
+-- Tabla Gestion_Vehiculo
+create table  GESTION_VEHICULO
+(
+  MATRICULA  VARCHAR(10) primary key,
+  COMBUSTIBLE FLOAT not null, --Son dolares
+  KILOMETRAJE FLOAT not null,
+  CONSTRAINT fk_MATRICULA_GV FOREIGN KEY (MATRICULA) REFERENCES VEHICULO (MATRICULA)
+  ON UPDATE cascade
+  ON DELETE cascade
+);
+go
+

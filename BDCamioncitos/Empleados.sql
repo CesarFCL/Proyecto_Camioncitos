@@ -80,3 +80,28 @@ begin
 	delete from EMPLEADOS where CI = @CI
 end
 go
+
+--Procedimiento para Modificar Empleado
+CREATE PROC ModificarEmpleado
+@CI  VARCHAR(10),
+@NOMBRE VARCHAR(50),
+@APELLIDO VARCHAR(50),
+@CELULAR VARCHAR(10),
+@EDAD INTEGER,
+@CORREO VARCHAR(50),
+@DIRECCION VARCHAR(50)
+as
+BEGIN 
+     SET NOCOUNT ON 
+
+     UPDATE EMPLEADOS
+     SET    NOMBRE = @NOMBRE,
+			APELLIDO = @APELLIDO,
+			CELULAR = @CELULAR,
+			EDAD = @EDAD,
+			CORREO = @CORREO,
+			DIRECCION = @DIRECCION
+     WHERE  CI = @CI
+END 
+go
+	
