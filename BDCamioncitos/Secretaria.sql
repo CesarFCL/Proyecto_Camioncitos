@@ -9,7 +9,7 @@ begin
 		E.NOMBRE as 'Nombre',
 		E.APELLIDO as 'Apellido',
 		E.CELULAR as 'Celular',
-		E.EDAD as 'Edad',
+		E.FECHA_NACIMIENTO as 'Fecha de Nacimiento',
 		E.CORREO as 'Correo',
 		E.DIRECCION as 'Direccion'
 

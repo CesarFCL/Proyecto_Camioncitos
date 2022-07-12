@@ -18,6 +18,7 @@ begin
 	select *from CLIENTE where RUC like @Condicion+'%' or NOMBRE like @Condicion+'%'
 end
 go
+
 --Procedimiento para Crear Cliente
 CREATE PROC CrearCliente
 @RUC  VARCHAR(13),

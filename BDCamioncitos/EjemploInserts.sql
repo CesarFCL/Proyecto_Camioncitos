@@ -6,13 +6,13 @@ insert into CARGO values('00C','Chofer');
 go
 insert into CARGO values('00A','Admin');
 go
-insert into EMPLEADOS values('1719963470','Luis','Vera','9090909090',22,'luis@gmail.com','Muy muy lejos',HASHBYTES('SHA2_512','123'));
+insert into EMPLEADOS values('1719963470','Luis','Vera','9090909090','2001-03-15','luis@gmail.com','Muy muy lejos',HASHBYTES('SHA2_512','123'));
 go
-insert into EMPLEADOS values('1719963471','Braulio','Marcapulpo','9090909091',22,'braulio@gmail.com','En un agujero',HASHBYTES('SHA2_512','12345'));
+insert into EMPLEADOS values('1719963471','Braulio','Marcapulpo','9090909091','2001-01-22','braulio@gmail.com','En un agujero',HASHBYTES('SHA2_512','12345'));
 go
-insert into EMPLEADOS values('1111111111','Jesus','Monserrate','1231231231',22,'jesus@gmail.com','En su casa',HASHBYTES('SHA2_512','321'));
+insert into EMPLEADOS values('1111111111','Jesus','Monserrate','1231231231','2001-06-19','jesus@gmail.com','En su casa',HASHBYTES('SHA2_512','321'));
 go
-insert into EMPLEADOS values('2222222222','Cesar','Carrion','3213213213',21,'cesar@gmail.com','Marte',HASHBYTES('SHA2_512','1234'));
+insert into EMPLEADOS values('2222222222','Cesar','Carrion','3213213213','2002-05-17','cesar@gmail.com','Marte',HASHBYTES('SHA2_512','1234'));
 go
 insert into EMPLEADOS_CARGOS values('1719963470','00S');
 go

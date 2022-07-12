@@ -20,7 +20,7 @@ begin
 		E.NOMBRE as 'Nombre',
 		E.APELLIDO as 'Apellido',
 		E.CELULAR as 'Celular',
-		E.EDAD as 'Edad',
+		E.FECHA_NACIMIENTO as 'Fecha de Nacimiento',
 		E.CORREO as 'Correo',
 		E.DIRECCION as 'Direccion',
 		CASE WHEN D_C.DISPONIBILIDAD = 1 then 'Disponible' else 'No disponible' end as 'Disponibilidad'
@@ -37,7 +37,7 @@ CREATE PROC ModificarChofer
 @NOMBRE VARCHAR(50),
 @APELLIDO VARCHAR(50),
 @CELULAR VARCHAR(10),
-@EDAD INTEGER,
+@FECHA_N VARCHAR(10),
 @CORREO VARCHAR(50),
 @DIRECCION VARCHAR(50),
 @DISPONIBILIDAD VARCHAR(15)
@@ -49,7 +49,7 @@ BEGIN
      SET    NOMBRE = @NOMBRE,
 			APELLIDO = @APELLIDO,
 			CELULAR = @CELULAR,
-			EDAD = @EDAD,
+			FECHA_NACIMIENTO = @FECHA_N,
 			CORREO = @CORREO,
 			DIRECCION = @DIRECCION
      WHERE  CI = @CI
@@ -58,4 +58,3 @@ BEGIN
 	 WHERE	CI = @CI
 END 
 go
-
