@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ProyectoCamioncitos.Controlador.ControllersExceptions;
 using ProyectoCamioncitos.Modelo.DAO.DaoExceptions;
 using ProyectoCamioncitos.Modelo.DTO;
 using System;
@@ -21,11 +22,27 @@ namespace ProyectoCamioncitos.Modelo.DAO.Tests
             /*
              * loginDAO ejecuta el método LoginEmpleado con 3 parametros (Cedula, Contraseña, Numero de Intento de Login)
              * Si el login se ejecuta correctamente el metodo LoginEmpleado devuelve una lista con los datos del
-             * Empleado logueado, en caso contrario se lanza una excepcion del tipo DenyLoginException
+             * Empleado logueado, en caso contrario se lanza una excepcion del tipo DenyLoginException y en caso de que
+             * el número de intentos de login sea -1 se lanza una excepcion del tipo LimitLoginException
              */
 
             LoginDAO loginDAO = new LoginDAO();
             Empleado vehiculoTest = loginDAO.LoginEmpleado("1719963470", "12" , 3);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(LimitLoginException))]
+        public void LimitLoginEmpleadoTest()
+        {
+            /*
+             * loginDAO ejecuta el método LoginEmpleado con 3 parametros (Cedula, Contraseña, Numero de Intento de Login)
+             * Si el login se ejecuta correctamente el metodo LoginEmpleado devuelve una lista con los datos del
+             * Empleado logueado, en caso contrario se lanza una excepcion del tipo DenyLoginException y en caso de que
+             * el número de intentos de login sea -1 se lanza una excepcion del tipo LimitLoginException
+             */
+
+            LoginDAO loginDAO = new LoginDAO();
+            Empleado vehiculoTest = loginDAO.LoginEmpleado("1719963470", "12", -1);
         }
 
         [TestMethod()]
@@ -33,12 +50,12 @@ namespace ProyectoCamioncitos.Modelo.DAO.Tests
         {
             //Preparacion
 
-            Empleado vehiculoExpected = new Empleado(){Nombre = "Luis", Apellido = "Vera", CI = "1719963470", Cargo ="Secretaria"};
+            Empleado vehiculoExpected = new Empleado(){Nombre = "Cesar", Apellido = "Carrion", CI = "2222222222", Cargo ="Admin"};
 
             //Ejecución
 
             LoginDAO loginDAO = new LoginDAO();
-            Empleado vehiculoTest = loginDAO.LoginEmpleado("1719963470", "123", 3);
+            Empleado vehiculoTest = loginDAO.LoginEmpleado("2222222222", "1234", 3);
 
             //Evaluación
 
@@ -110,7 +127,7 @@ namespace ProyectoCamioncitos.Modelo.DAO.Tests
 
             //Ejecución
             VehiculoDAO vehiculoDAO = new VehiculoDAO();
-            List<string> ListTest = vehiculoDAO.CargarListaTipos();
+            List<string> ListTest = vehiculoDAO.CargarListaTiposVehiculos();
 
             //Evaluación
             Assert.IsTrue(ListTest.Contains(ListExpected[0]));
@@ -180,7 +197,7 @@ namespace ProyectoCamioncitos.Modelo.DAO.Tests
             {
                 RUC = "123123123",
                 Nombre = "Coca-Cola-Company",
-                Telefono = "1231231231",
+                Telefono = "1231231232",
                 Correo = "coca_cola@cocacola.com",
                 Direccion = "La Luna",
             });
@@ -283,8 +300,8 @@ namespace ProyectoCamioncitos.Modelo.DAO.Tests
                 CI = "1111111111",
                 Nombre = "Jesus",
                 Apellido = "Monserrate",
-                Celular = "2222222222",
-                Edad = 23,
+                Celular = "1231231231",
+                FechaNacimiento = DateTime.Parse("2001-06-21"),
                 Correo = "jesus@gmail.com",
                 Direccion = "En su casa",
                 Disponibilidad = "Disponible"
@@ -301,7 +318,7 @@ namespace ProyectoCamioncitos.Modelo.DAO.Tests
             Assert.AreEqual(choferExpected[0].Nombre, choferTest[0].Nombre);
             Assert.AreEqual(choferExpected[0].Apellido, choferTest[0].Apellido);
             Assert.AreEqual(choferExpected[0].Celular, choferTest[0].Celular);
-            Assert.AreEqual(choferExpected[0].Edad, choferTest[0].Edad);
+            Assert.AreEqual(choferExpected[0].FechaNacimiento, choferTest[0].FechaNacimiento);
             Assert.AreEqual(choferExpected[0].Correo, choferTest[0].Correo);
             Assert.AreEqual(choferExpected[0].Direccion, choferTest[0].Direccion);
             Assert.AreEqual(choferExpected[0].Disponibilidad, choferTest[0].Disponibilidad);
@@ -331,12 +348,12 @@ namespace ProyectoCamioncitos.Modelo.DAO.Tests
         public void CrearNuevoChoferCorrectamenteTest()
         {
             /*
-             * chofer ejecuta el método Create con 8 parametros (CI, Nombre, Apellido, Celular, Edad, Correo, Direccion, Contraseña)
+             * chofer ejecuta el método Create con 8 parametros (CI, Nombre, Apellido, Celular, Fecha Nacimiento, Correo, Direccion, Contraseña)
              * Si se realiza la creacion del chofer correctamente el metodo Create devuelve true,
              * caso contrario se lanza una excepcion
              */
             ChoferDAO chofer = new ChoferDAO();
-            Assert.IsTrue(chofer.Create("Test", "Test", "Test", "Test", "1", "Test", "Test", "Test"));
+            Assert.IsTrue(chofer.Create("Test", "Test", "Test", "Test", "2001-06-1", "Test", "Test", "Test"));
         }
 
         [TestMethod]
@@ -344,7 +361,7 @@ namespace ProyectoCamioncitos.Modelo.DAO.Tests
         public void ConflictoDBCreateChoferTest()
         {
             /*
-             * chofer ejecuta el método Create con 8 parametros (CI, Nombre, Apellido, Celular, Edad, Correo, Direccion, Contraseña)
+             * chofer ejecuta el método Create con 8 parametros (CI, Nombre, Apellido, Celular, Fecha Nacimiento, Correo, Direccion, Contraseña)
              * Si se realiza la creacion del chofer correctamente el metodo Create devuelve true,
              * caso contrario se lanza una excepcion
              */
@@ -356,12 +373,12 @@ namespace ProyectoCamioncitos.Modelo.DAO.Tests
         public void ModificarChoferCorrectamenteTest()
         {
             /*
-             * chofer ejecuta el método Update con 8 parametros (CI, Nombre, Apellido, Celular, Edad, Correo, Direccion, Disponibilidad)
+             * chofer ejecuta el método Update con 8 parametros (CI, Nombre, Apellido, Celular, Fecha Nacimiento, Correo, Direccion, Disponibilidad)
              * Si se realiza la modificacion del chofer correctamente el metodo Update devuelve true,
              * caso contrario se lanza una excepcion
              */
             ChoferDAO chofer = new ChoferDAO();
-            chofer.Update("Test", "Test", "Test", "Test", "1", "Test", "Test", "Test");
+            chofer.Update("Test", "Test", "Test", "Test", "2001-06-1", "Test", "Test", "Test");
         }
 
         [TestMethod]
@@ -369,12 +386,12 @@ namespace ProyectoCamioncitos.Modelo.DAO.Tests
         public void ConflictoDBEditChoferTest()
         {
             /*
-             * chofer ejecuta el método Update con 8 parametros (CI, Nombre, Apellido, Celular, Edad, Correo, Direccion, Disponibilidad)
+             * chofer ejecuta el método Update con 8 parametros (CI, Nombre, Apellido, Celular, Fecha Nacimiento, Correo, Direccion, Disponibilidad)
              * Si se realiza la modificacion del chofer correctamente el metodo Update devuelve true,
              * caso contrario se lanza una excepcion
              */
             ChoferDAO chofer = new ChoferDAO();
-            Assert.IsTrue(chofer.Update("Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test"));
+            Assert.IsTrue(chofer.Update("1111111111", "Test", "Test", "Test", "Test", "Test", "Test", "Test"));
         }
 
         [TestMethod()]
@@ -391,7 +408,122 @@ namespace ProyectoCamioncitos.Modelo.DAO.Tests
 
         //--------------------------------------------------------TESTS SECRETARIA---------------------------------------------------
 
-        
+        [TestMethod()]
+        public void ObtencionCorrectaSecretariaTest()
+        {
 
+            //Preparacion
+
+            List<Secretaria> secretariaExpected = new List<Secretaria>();
+
+            secretariaExpected.Add(new Secretaria
+            {
+                CI = "1719963470",
+                Nombre = "Luis",
+                Apellido = "Vera",
+                Celular = "909090909",
+                FechaNacimiento = DateTime.Parse("2001-03-20"),
+                Correo = "luis@gmail.com",
+                Direccion = "Muy muy lejos"
+            });
+
+            //Ejecucion
+
+            SecretariaDAO secretariaDAO = new SecretariaDAO();
+            List<Secretaria> secretariaTest = secretariaDAO.VerRegistros("1719963470");
+
+            //Evaluacion
+
+            Assert.AreEqual(secretariaExpected[0].CI, secretariaTest[0].CI);
+            Assert.AreEqual(secretariaExpected[0].Nombre, secretariaTest[0].Nombre);
+            Assert.AreEqual(secretariaExpected[0].Apellido, secretariaTest[0].Apellido);
+            Assert.AreEqual(secretariaExpected[0].Celular, secretariaTest[0].Celular);
+            Assert.AreEqual(secretariaExpected[0].FechaNacimiento, secretariaTest[0].FechaNacimiento);
+            Assert.AreEqual(secretariaExpected[0].Correo, secretariaTest[0].Correo);
+            Assert.AreEqual(secretariaExpected[0].Direccion, secretariaTest[0].Direccion);
+        }
+
+        [TestMethod()]
+        public void ObtencionSecretariaNoEncontradoTest()
+        {
+            //Ejecucion
+
+            SecretariaDAO secretariaDAO= new SecretariaDAO();
+            List<Secretaria> secretariaTest = secretariaDAO.VerRegistros("ABC12345");
+
+            //Evaluacion
+
+            if (secretariaTest.Count == 0)
+            {
+                Assert.IsTrue(true);
+            }
+            else
+            {
+                Assert.IsTrue(false);
+            }
+        }
+
+        [TestMethod()]
+        public void CrearNuevoSecretariaCorrectamenteTest()
+        {
+            /*
+             * secretaria ejecuta el método Create con 8 parametros (CI, Nombre, Apellido, Celular, Fecha Nacimiento, Correo, Direccion, Contraseña)
+             * Si se realiza la creacion del chofer correctamente el metodo Create devuelve true,
+             * caso contrario se lanza una excepcion
+             */
+            SecretariaDAO secretaria = new SecretariaDAO();
+            Assert.IsTrue(secretaria.Create("Test0", "Test", "Test", "Test", "2001-03-15", "Test", "Test", "Test"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(DBErrorException))]
+        public void ConflictoDBCreateSecretariaTest()
+        {
+            /*
+             * chofer ejecuta el método Create con 8 parametros (CI, Nombre, Apellido, Celular, Fecha Nacimiento, Correo, Direccion, Contraseña)
+             * Si se realiza la creacion del chofer correctamente el metodo Create devuelve true,
+             * caso contrario se lanza una excepcion
+             */
+            SecretariaDAO secretaria = new SecretariaDAO();
+            secretaria.Create("1111111116", "Test", "Test", "Test", "Test", "Test", "Test", "Test");
+        }
+
+        [TestMethod()]
+        public void ModificarSecretariaCorrectamenteTest()
+        {
+            /*
+             * chofer ejecuta el método Update con 7 parametros (CI, Nombre, Apellido, Celular, Fecha Nacimiento, Correo, Direccion)
+             * Si se realiza la modificacion del chofer correctamente el metodo Update devuelve true,
+             * caso contrario se lanza una excepcion
+             */
+            SecretariaDAO secretaria = new SecretariaDAO();
+            secretaria.Update("Test", "Test", "Test", "Test", "2001-03-15", "Test", "Test");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(DBErrorException))]
+        public void ConflictoDBEditSecretariaTest()
+        {
+            /*
+             * chofer ejecuta el método Update con 7 parametros (CI, Nombre, Apellido, Celular, Fecha Nacimiento, Correo, Direccion)
+             * Si se realiza la modificacion del chofer correctamente el metodo Update devuelve true,
+             * caso contrario se lanza una excepcion
+             */
+            SecretariaDAO secretaria = new SecretariaDAO();
+            Assert.IsTrue(secretaria.Update("1719963470", "Test", "Test", "Test", "Test", "Test", "Test"));
+        }
+
+        [TestMethod()]
+        public void EliminarSecretariaCorrectamenteTest()
+        {
+            /*
+             * chofer ejecuta el método Delete con 1 parametros (CI)
+             * Si se realiza la eliminacion del chofer correctamente el metodo Delete devuelve true,
+             * caso contrario se lanza una excepcion
+             */
+            SecretariaDAO secretaria = new SecretariaDAO();
+            Assert.IsTrue(secretaria.Delete("Test"));
+
+        }
     }
 }
