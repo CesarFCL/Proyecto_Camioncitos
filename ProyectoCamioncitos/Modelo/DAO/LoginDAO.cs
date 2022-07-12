@@ -1,4 +1,5 @@
-﻿using ProyectoCamioncitos.Modelo.DAO.DaoExceptions;
+﻿using ProyectoCamioncitos.Controlador.ControllersExceptions;
+using ProyectoCamioncitos.Modelo.DAO.DaoExceptions;
 using ProyectoCamioncitos.Modelo.DTO;
 using System;
 using System.Data;
@@ -24,6 +25,10 @@ namespace ProyectoCamioncitos.Modelo.DAO
             Conexion.Open();
             Reader = Comando.ExecuteReader();
 
+            if (Intentos == -1)
+            {
+                throw new LimitLoginException();
+            }
             if (!Reader.Read())
             {
                 throw new DenyLoginException(Intentos.ToString());
@@ -41,17 +46,5 @@ namespace ProyectoCamioncitos.Modelo.DAO
             Conexion.Close();
             return DatosEmpleadoLogueado;
         }
-
-        /*
-         public Empleado ObtenerDatosEmpleado(SqlDataReader LoginResult)
-        {
-            Empleado EmpleadoLogueado = new Empleado();
-            EmpleadoLogueado.Nombre = LoginResult["Nombre"].ToString();
-            EmpleadoLogueado.Apellido = LoginResult["Apellido"].ToString();
-            EmpleadoLogueado.CI = LoginResult["CI"].ToString();
-            EmpleadoLogueado.Cargo = LoginResult["CARGO"].ToString();
-            return EmpleadoLogueado;
-        }
-         */
     }
 }

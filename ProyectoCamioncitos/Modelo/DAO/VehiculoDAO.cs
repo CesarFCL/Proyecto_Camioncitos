@@ -107,8 +107,8 @@ namespace ProyectoCamioncitos.Modelo.DAO
             }
         }
 
-        //Método Cargar Lista de Tipos de Vehiculos
-        public List<string> CargarListaTipos()
+        //Método Leer Lista de Tipos de Vehiculos
+        public List<string> CargarListaTiposVehiculos()
         {
             Comando.Connection = Conexion;
             Comando.CommandText = "Lista_Tipos_Vehiculos";
@@ -116,16 +116,16 @@ namespace ProyectoCamioncitos.Modelo.DAO
             Conexion.Open();
             Reader = Comando.ExecuteReader();
 
-            List<string> ListaVehiculo = new List<string>();
+            List<string> ListaTiposVehiculos = new List<string>();
             while (Reader.Read())
             {
-                ListaVehiculo.Add(Reader["NOMBRE"].ToString());
+                ListaTiposVehiculos.Add(Reader["NOMBRE"].ToString());
             }
-            if (ListaVehiculo.Count == 0)
+            if (ListaTiposVehiculos.Count == 0)
             {
                 throw new DBErrorException();
             }
-            return ListaVehiculo;
+            return ListaTiposVehiculos;
         }
     }
 }

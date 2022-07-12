@@ -34,7 +34,7 @@ namespace ProyectoCamioncitos.Modelo.DAO
                     Nombre = Reader["Nombre"].ToString(),
                     Apellido = Reader["Apellido"].ToString(),
                     Celular = Reader["Celular"].ToString(),
-                    Edad = Int32.Parse(Reader["Edad"].ToString()),
+                    FechaNacimiento = DateTime.Parse(Reader["Fecha de Nacimiento"].ToString()),
                     Correo = Reader["Correo"].ToString(),
                     Direccion = Reader["Direccion"].ToString(),
                     Disponibilidad = Reader["Disponibilidad"].ToString()
@@ -47,7 +47,7 @@ namespace ProyectoCamioncitos.Modelo.DAO
 
         //Metodo Crear Chofer
         public bool Create(string CI, string Nombre, string Apellido, string Celular,
-            string Edad, string Correo, string Direccion, string Contraseña)
+            string Fecha_N, string Correo, string Direccion, string Contraseña)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace ProyectoCamioncitos.Modelo.DAO
                 Comando.Parameters.AddWithValue("@NOMBRE", Nombre);
                 Comando.Parameters.AddWithValue("@APELLIDO", Apellido);
                 Comando.Parameters.AddWithValue("@CELULAR", Celular);
-                Comando.Parameters.AddWithValue("@EDAD", Edad);
+                Comando.Parameters.AddWithValue("@FECHA_N", Fecha_N);
                 Comando.Parameters.AddWithValue("@CORREO", Correo);
                 Comando.Parameters.AddWithValue("@DIRECCION", Direccion);
                 Comando.Parameters.AddWithValue("@CONTRASEÑA", Contraseña);
@@ -68,9 +68,8 @@ namespace ProyectoCamioncitos.Modelo.DAO
                 Conexion.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine("ERROR ------------- ::::::: " + ex.Message);
                 throw new DBErrorException(); ;
             }
         }
@@ -95,7 +94,7 @@ namespace ProyectoCamioncitos.Modelo.DAO
         }
 
         //Método Modificar Chofer
-        public bool Update(string CI, string Nombre, string Apellido, string Celular, string Edad, string Correo, string Direccion , string Disponibilidad)
+        public bool Update(string CI, string Nombre, string Apellido, string Celular, string Fecha_N, string Correo, string Direccion , string Disponibilidad)
         {
             try
             {
@@ -106,7 +105,7 @@ namespace ProyectoCamioncitos.Modelo.DAO
                 Comando.Parameters.AddWithValue("@NOMBRE", Nombre);
                 Comando.Parameters.AddWithValue("@APELLIDO", Apellido);
                 Comando.Parameters.AddWithValue("@CELULAR", Celular);
-                Comando.Parameters.AddWithValue("@EDAD", Edad);
+                Comando.Parameters.AddWithValue("@FECHA_N", Fecha_N);
                 Comando.Parameters.AddWithValue("@CORREO", Correo);
                 Comando.Parameters.AddWithValue("@DIRECCION", Direccion);
                 Comando.Parameters.AddWithValue("@DISPONIBILIDAD", Disponibilidad);

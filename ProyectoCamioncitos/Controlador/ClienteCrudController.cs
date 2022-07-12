@@ -12,49 +12,53 @@ using System.Windows.Forms;
 namespace ProyectoCamioncitos.Controlador
 {
     //Controlador de la Vista CRUD Cliente
-    class ClienteCrudController
+    class ClienteCrudController : GlobalCrud
     {
         ClienteCrudView Vista;
+        TextBox[] textboxs;
 
         //Constructor
         public ClienteCrudController(ClienteCrudView view)
         {
             Vista = view;
-            //inicializar eventos
-            Vista.Load += new EventHandler(Load);
-            Vista.txtBuscarCliente.TextChanged += new EventHandler(Busqueda);
-            Vista.tblClientes.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(dgvClientes_SelectedRows);
-            Vista.btnLimpiar.Click += new EventHandler(btnLimpiar);
+            textboxs = new TextBox[] { Vista.txtRUC, Vista.txtNombre, Vista.txtTelefono,
+                Vista.txtCorreo, Vista.txtDireccion};
+
+            //Inicializar eventos
+            Vista.Load += new EventHandler(LoadEvent);
+            Vista.txtBuscarCliente.TextChanged += new EventHandler(BusquedaEvent);
+            Vista.tblClientes.CellMouseClick += new DataGridViewCellMouseEventHandler(SelectClientEvent);
+            Vista.btnLimpiar.Click += new EventHandler(LimpiarEvent);
             Vista.btnGuardar.Click += new EventHandler(CreateClienteEvent);
             Vista.btnEliminar.Click += new EventHandler(DeleteClienteEvent);
             Vista.btnEditar.Click += new EventHandler(UpdateClienteEvent);
 
-            Vista.txtRUC.TextChanged += new EventHandler(txtRuc_TextChanged);
-            Vista.txtNombre.TextChanged += new EventHandler(txtNombre_TextChanged);
-            Vista.txtTelefono.TextChanged += new EventHandler(txtTelefono_TextChanged);
-            Vista.txtCorreo.TextChanged += new EventHandler(txtCorreo_TextChanged);
-            Vista.txtDireccion.TextChanged += new EventHandler(txtDireccion_TextChanged);
+            Vista.txtRUC.TextChanged += new EventHandler(RucLimit);
+            Vista.txtNombre.TextChanged += delegate (object sender, EventArgs e) { NombreLimit(sender, e, Vista.txtNombre); };
+            Vista.txtTelefono.TextChanged += delegate (object sender, EventArgs e) { CelularLimit(sender, e, Vista.txtTelefono); };
+            Vista.txtCorreo.TextChanged += delegate (object sender, EventArgs e) { CorreoLimit(sender, e, Vista.txtCorreo); };
+            Vista.txtDireccion.TextChanged += delegate (object sender, EventArgs e) { DireccionLimit(sender, e, Vista.txtDireccion); };
 
             Vista.txtRUC.KeyPress += new KeyPressEventHandler(OnlyNumbers_KeyPress);
             Vista.txtTelefono.KeyPress += new KeyPressEventHandler(OnlyNumbers_KeyPress);
-            Vista.txtCorreo.Leave += new EventHandler(ValCorreo);
+            Vista.txtCorreo.Leave += delegate (object sender, EventArgs e) { ValCorreoE(sender, e, Vista.txtCorreo); };
         }
 
         //Evento Cargar Vista para cuanto es abierta la Vista
-        public void Load(object sender, EventArgs e)
+        public void LoadEvent(object sender, EventArgs e)
         {
             CargarClientes();
             Limpiar();
         }
 
         //Evento Buscar Clientes
-        public void Busqueda(object sender, EventArgs e)
+        public void BusquedaEvent(object sender, EventArgs e)
         {
             CargarClientes();
         }
 
         //Evento Seleccion Fila Cliente
-        public void dgvClientes_SelectedRows(object sender, EventArgs e)
+        public void SelectClientEvent(object sender, EventArgs e)
         {
             //Pasa los datos de la fila seleccionada de la tabla Cliente a los textboxs
             if (Vista.tblClientes.SelectedRows.Count > 0)
@@ -67,15 +71,14 @@ namespace ProyectoCamioncitos.Controlador
                 Vista.txtCorreo.Text = ClienteR[0].Correo;
                 Vista.txtDireccion.Text = ClienteR[0].Direccion;
 
-                Vista.btnEditar.Enabled = true;
-                Vista.btnGuardar.Enabled = false;
-                Vista.btnEliminar.Enabled = true;
+                BotonesFaseEdit(Vista.btnGuardar, Vista.btnEliminar, Vista.btnEditar);
+
                 Vista.txtRUC.Enabled = false;
             }
         }
 
         //Evento Limpiar Datos
-        public void btnLimpiar(object sender, EventArgs e)
+        public void LimpiarEvent(object sender, EventArgs e)
         {
             Limpiar();
         }
@@ -101,8 +104,6 @@ namespace ProyectoCamioncitos.Controlador
         public void ValDatosCompletos()
         {
             //Se asegura que todos los datos de los textbox esten completos
-            TextBox[] textboxs = new TextBox[] { Vista.txtRUC, Vista.txtNombre, Vista.txtTelefono,
-                Vista.txtCorreo, Vista.txtDireccion};
             bool datosCompletos = !textboxs.Any(X => String.IsNullOrEmpty(X.Text));
             if (!datosCompletos)
             {
@@ -146,7 +147,6 @@ namespace ProyectoCamioncitos.Controlador
         }
 
         //Evento Modificar Cliente
-        //ESTO MUY PROBABLEMENTE SE TENGA QUE REFACTORIZAR !!!!!!!
         public void UpdateClienteEvent(object sender, EventArgs e)
         {
             try
@@ -186,11 +186,7 @@ namespace ProyectoCamioncitos.Controlador
         //Método limpiar txts
         public void Limpiar()
         {
-            Vista.txtRUC.Text = "";
-            Vista.txtNombre.Text = "";
-            Vista.txtTelefono.Text = "";
-            Vista.txtCorreo.Text = "";
-            Vista.txtDireccion.Text = "";
+            LimpiarTextBox(textboxs);
 
             Vista.tblClientes.ClearSelection();
             Vista.btnEditar.Enabled = false;
@@ -199,48 +195,10 @@ namespace ProyectoCamioncitos.Controlador
             Vista.txtRUC.Enabled = true;
         }
 
-        //Restricciones
-        private void txtRuc_TextChanged(object sender, EventArgs e)
+        //Restricciones particulares Cliente
+        public void RucLimit(object sender, EventArgs e)
         {
             Vista.txtRUC.MaxLength = 13;
-        }
-        private void txtNombre_TextChanged(object sender, EventArgs e)
-        {
-            Vista.txtNombre.MaxLength = 50;
-        }
-        private void txtTelefono_TextChanged(object sender, EventArgs e)
-        {
-            Vista.txtTelefono.MaxLength = 10;
-        }
-        private void txtCorreo_TextChanged(object sender, EventArgs e)
-        {
-            Vista.txtCorreo.MaxLength = 50;
-        }
-        private void txtDireccion_TextChanged(object sender, EventArgs e)
-        {
-            Vista.txtDireccion.MaxLength = 50;
-        }
-
-        //Validaciones
-        private void OnlyNumbers_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
-            {
-                MessageBox.Show("Ingrese solo números", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                e.Handled = true;
-                return;
-            }
-        }
-        private void ValCorreo(object sender, EventArgs e)
-        {
-            try
-            {
-                new MailAddress(Vista.txtCorreo.Text);
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Correo no valido", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
         }
     }
 }

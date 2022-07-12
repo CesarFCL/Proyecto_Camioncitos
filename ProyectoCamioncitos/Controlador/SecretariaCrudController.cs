@@ -13,52 +13,55 @@ using System.Windows.Forms;
 namespace ProyectoCamioncitos.Controlador
 {
     //Controlador de la Vista CRUD Secretaria
-    class SecretariaCrudController
+    class SecretariaCrudController : GlobalCrud
     {
         SecretariaCrudView Vista;
+        TextBox[] textboxs;
 
         //Constructor
         public SecretariaCrudController(SecretariaCrudView view)
         {
             Vista = view;
-            //inicializar eventos
-            Vista.Load += new EventHandler(Load);
-            Vista.txtBuscarSecretaria.TextChanged += new EventHandler(Busqueda);
-            Vista.tblSecretaria.CellMouseClick += new DataGridViewCellMouseEventHandler(dgvSecretaria_SelectedRows);
-            Vista.btnLimpiar.Click += new EventHandler(btnLimpiar);
+            textboxs = new TextBox[] { Vista.txtCI, Vista.txtNombre, Vista.txtApellido, Vista.txtCelular,
+                Vista.txtCorreo, Vista.txtDireccion, Vista.txtPassword};
+
+            //Inicializar eventos
+            Vista.Load += new EventHandler(LoadEvent);
+            Vista.txtBuscarSecretaria.TextChanged += new EventHandler(BusquedaEvent);
+            Vista.tblSecretaria.CellMouseClick += new DataGridViewCellMouseEventHandler(SelectSecretariaEvent);
+            Vista.btnLimpiar.Click += new EventHandler(LimpiarEvent);
             Vista.btnGuardar.Click += new EventHandler(CreateSecretariaEvent);
             Vista.btnEliminar.Click += new EventHandler(DeleteSecretariaEvent);
             Vista.btnEditar.Click += new EventHandler(UpdateSecretariaEvent);
 
-            Vista.txtCI.TextChanged += new EventHandler(txtCI_TextChanged);
-            Vista.txtNombre.TextChanged += new EventHandler(txtNombre_TextChanged);
-            Vista.txtApellido.TextChanged += new EventHandler(txtApellido_TextChanged);
-            Vista.txtCelular.TextChanged += new EventHandler(txtCelular_TextChanged);
-            Vista.txtEdad.TextChanged += new EventHandler(txtEdad_TextChanged);
-            Vista.txtCorreo.TextChanged += new EventHandler(txtCorreo_TextChanged);
-            Vista.txtDireccion.TextChanged += new EventHandler(txtDireccion_TextChanged);
+            Vista.txtCI.TextChanged += delegate (object sender, EventArgs e) { CI_Limit(sender, e, Vista.txtCI); };
+            Vista.txtNombre.TextChanged += delegate (object sender, EventArgs e) { NombreLimit(sender, e, Vista.txtNombre); };
+            Vista.txtApellido.TextChanged += delegate (object sender, EventArgs e) { ApellidoLimit(sender, e, Vista.txtApellido); };
+            Vista.txtCelular.TextChanged += delegate (object sender, EventArgs e) { CelularLimit(sender, e, Vista.txtCelular); };
+            Vista.txtCorreo.TextChanged += delegate (object sender, EventArgs e) { CorreoLimit(sender, e, Vista.txtCorreo); };
+            Vista.txtDireccion.TextChanged += delegate (object sender, EventArgs e) { DireccionLimit(sender, e, Vista.txtDireccion); };
+            Vista.txtPassword.TextChanged += delegate (object sender, EventArgs e) { PasswordLimit(sender, e, Vista.txtDireccion); };
 
             Vista.txtCI.KeyPress += new KeyPressEventHandler(OnlyNumbers_KeyPress);
             Vista.txtCelular.KeyPress += new KeyPressEventHandler(OnlyNumbers_KeyPress);
-            Vista.txtEdad.KeyPress += new KeyPressEventHandler(OnlyNumbers_KeyPress);
-            Vista.txtCorreo.Leave += new EventHandler(ValCorreo);
+            Vista.txtCorreo.Leave += delegate (object sender, EventArgs e) { ValCorreoE(sender, e, Vista.txtCorreo); };
         }
 
         //Evento Cargar Vista para cuanto es abierta la Vista
-        public void Load(object sender, EventArgs e)
+        public void LoadEvent(object sender, EventArgs e)
         {
             CargarSecretaria();
             Limpiar();
         }
 
         //Evento Buscar Secretaria
-        public void Busqueda(object sender, EventArgs e)
+        public void BusquedaEvent(object sender, EventArgs e)
         {
             CargarSecretaria();
         }
 
         //Evento Seleccion Fila Secretaria
-        public void dgvSecretaria_SelectedRows(object sender, EventArgs e)
+        public void SelectSecretariaEvent(object sender, EventArgs e)
         {
             //Pasa los datos de la fila seleccionada de la tabla Secretaria a los textboxs
             if (Vista.tblSecretaria.SelectedRows.Count > 0)
@@ -69,13 +72,11 @@ namespace ProyectoCamioncitos.Controlador
                 Vista.txtNombre.Text = SecretariaR[0].Nombre;
                 Vista.txtApellido.Text = SecretariaR[0].Apellido;
                 Vista.txtCelular.Text = SecretariaR[0].Celular;
-                Vista.txtEdad.Text = SecretariaR[0].Edad.ToString();
+                Vista.dtpFechaNacimiento.Value = SecretariaR[0].FechaNacimiento;
                 Vista.txtCorreo.Text = SecretariaR[0].Correo;
                 Vista.txtDireccion.Text = SecretariaR[0].Direccion;
 
-                Vista.btnEditar.Enabled = true;
-                Vista.btnGuardar.Enabled = false;
-                Vista.btnEliminar.Enabled = true;
+                BotonesFaseEdit(Vista.btnGuardar, Vista.btnEliminar, Vista.btnEditar);
 
                 Vista.txtPassword.Visible = false;
                 Vista.txtPassword.Enabled = false;
@@ -85,7 +86,7 @@ namespace ProyectoCamioncitos.Controlador
         }
 
         //Evento Limpiar Datos
-        public void btnLimpiar(object sender, EventArgs e)
+        public void LimpiarEvent(object sender, EventArgs e)
         {
             Limpiar();
         }
@@ -111,8 +112,6 @@ namespace ProyectoCamioncitos.Controlador
         public void ValCreateSecretaria()
         {
             //Se asegura que todos los datos de los textbox esten completos
-            TextBox[] textboxs = new TextBox[] { Vista.txtCI, Vista.txtNombre, Vista.txtApellido, Vista.txtCelular,
-                Vista.txtEdad, Vista.txtCorreo, Vista.txtDireccion, Vista.txtPassword};
             bool datosCompletos = !textboxs.Any(X => String.IsNullOrEmpty(X.Text));
             if (!datosCompletos)
             {
@@ -127,7 +126,7 @@ namespace ProyectoCamioncitos.Controlador
             {
                 SecretariaDAO db = new SecretariaDAO();
                 db.Create(Vista.txtCI.Text, Vista.txtNombre.Text, Vista.txtApellido.Text, Vista.txtCelular.Text,
-                Vista.txtEdad.Text, Vista.txtCorreo.Text, Vista.txtDireccion.Text, Vista.txtPassword.Text);
+                Vista.dtpFechaNacimiento.Value.ToString("yyyy-MM-dd"), Vista.txtCorreo.Text, Vista.txtDireccion.Text, Vista.txtPassword.Text);
             }
             catch { }
         }
@@ -176,9 +175,10 @@ namespace ProyectoCamioncitos.Controlador
         public void ValUpdateSecretaria()
         {
             //Se asegura que todos los datos de los textbox esten completos
-            TextBox[] textboxs = new TextBox[] { Vista.txtCI, Vista.txtNombre, Vista.txtApellido, Vista.txtCelular,
-                Vista.txtEdad, Vista.txtCorreo, Vista.txtDireccion};
-            bool datosCompletos = !textboxs.Any(X => String.IsNullOrEmpty(X.Text));
+            TextBox[] textboxsUpdate = new TextBox[] { Vista.txtCI, Vista.txtNombre, Vista.txtApellido, Vista.txtCelular, 
+                Vista.txtCorreo, Vista.txtDireccion};
+
+            bool datosCompletos = !textboxsUpdate.Any(X => String.IsNullOrEmpty(X.Text));
 
             if (!datosCompletos)
             {
@@ -193,7 +193,7 @@ namespace ProyectoCamioncitos.Controlador
             {
                 SecretariaDAO db = new SecretariaDAO();
                 db.Update(Vista.txtCI.Text, Vista.txtNombre.Text, Vista.txtApellido.Text,
-                    Vista.txtCelular.Text, Vista.txtEdad.Text, Vista.txtCorreo.Text, Vista.txtDireccion.Text);
+                    Vista.txtCelular.Text, Vista.dtpFechaNacimiento.Value.ToString("yyyy-MM-dd"), Vista.txtCorreo.Text, Vista.txtDireccion.Text);
 
             }
             catch { }
@@ -202,21 +202,13 @@ namespace ProyectoCamioncitos.Controlador
         //Método limpiar txts
         public void Limpiar()
         {
-            Vista.txtCI.Text = "";
-            Vista.txtNombre.Text = "";
-            Vista.txtApellido.Text = "";
-            Vista.txtCelular.Text = "";
-            Vista.txtEdad.Text = "";
-            Vista.txtCorreo.Text = "";
-            Vista.txtDireccion.Text = "";
-            Vista.txtPassword.Text = "";
+            LimpiarTextBox(textboxs);
+
+            BotonesFaseCreate(Vista.btnGuardar, Vista.btnEliminar, Vista.btnEditar);
 
             Vista.tblSecretaria.ClearSelection();
 
-            Vista.btnEditar.Enabled = false;
-            Vista.btnEliminar.Enabled = false;
-            Vista.btnGuardar.Enabled = true;
-
+            Vista.dtpFechaNacimiento.Value = DateTime.Now;
             Vista.txtPassword.Visible = true;
             Vista.txtPassword.Enabled = true;
             Vista.lblPassword.Visible = true;
@@ -230,70 +222,13 @@ namespace ProyectoCamioncitos.Controlador
             Vista.tblSecretaria.DataSource =
                 db.VerRegistros(Vista.txtBuscarSecretaria.Text);
 
+
             Vista.tblSecretaria.Columns["Contraseña"].Visible = false;
             Vista.tblSecretaria.Columns["Celular"].Visible = false;
-            Vista.tblSecretaria.Columns["Edad"].Visible = false;
+            Vista.tblSecretaria.Columns["FechaNacimiento"].Visible = false;
             Vista.tblSecretaria.Columns["Correo"].Visible = false;
             Vista.tblSecretaria.Columns["Direccion"].Visible = false;
             Vista.tblSecretaria.Columns["Cargo"].Visible = false;
-        }
-
-        //Restricciones
-        private void txtCI_TextChanged(object sender, EventArgs e)
-        {
-            Vista.txtCI.MaxLength = 10;
-        }
-
-        private void txtNombre_TextChanged(object sender, EventArgs e)
-        {
-            Vista.txtNombre.MaxLength = 50;
-        }
-
-        private void txtApellido_TextChanged(object sender, EventArgs e)
-        {
-            Vista.txtApellido.MaxLength = 50;
-        }
-
-        private void txtCelular_TextChanged(object sender, EventArgs e)
-        {
-            Vista.txtCelular.MaxLength = 10;
-        }
-
-        private void txtEdad_TextChanged(object sender, EventArgs e)
-        {
-            Vista.txtEdad.MaxLength = 3;
-        }
-
-        private void txtCorreo_TextChanged(object sender, EventArgs e)
-        {
-            Vista.txtCorreo.MaxLength = 50;
-        }
-        private void txtDireccion_TextChanged(object sender, EventArgs e)
-        {
-            Vista.txtDireccion.MaxLength = 50;
-        }
-
-        //Validaciones
-        private void OnlyNumbers_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
-            {
-                MessageBox.Show("Ingrese solo números", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                e.Handled = true;
-                return;
-            }
-        }
-
-        private void ValCorreo(object sender, EventArgs e)
-        {
-            try
-            {
-                new MailAddress(Vista.txtCorreo.Text);
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Correo no valido", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
         }
     }
 }

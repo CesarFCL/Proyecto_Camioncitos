@@ -12,32 +12,37 @@ using System.Windows.Forms;
 namespace ProyectoCamioncitos.Controlador
 {
     //Controlador de la Vista CRUD Vehiculo
-    class VehiculoCrudController
+    class VehiculoCrudController : GlobalCrud
     {
         VehiculoCrudView Vista;
+        TextBox[] textboxs;
+        ComboBox[] combobox;
 
         //Constructor
         public VehiculoCrudController(VehiculoCrudView view)
         {
             Vista = view;
-            //inicializar eventos
-            Vista.Load += new EventHandler(Load);
-            Vista.txtBuscarVehiculo.TextChanged += new EventHandler(Busqueda);
-            Vista.tblVehiculos.CellMouseClick += new DataGridViewCellMouseEventHandler(dgvVehiculos_SelectedRows);
-            Vista.btnLimpiar.Click += new EventHandler(btnLimpiar);
+            textboxs = new TextBox[] { Vista.txtMatricula, Vista.txtMarca, Vista.txtYear };
+            combobox = new ComboBox[] { Vista.cboxDisponibilidad, Vista.cboxTipo };
+
+            //Inicializar eventos
+            Vista.Load += new EventHandler(LoadEvent);
+            Vista.txtBuscarVehiculo.TextChanged += new EventHandler(BusquedaEvent);
+            Vista.tblVehiculos.CellMouseClick += new DataGridViewCellMouseEventHandler(SelectVehicleEvent);
+            Vista.btnLimpiar.Click += new EventHandler(LimpiarEvent);
             Vista.btnGuardar.Click += new EventHandler(CreateVehicleEvent);
             Vista.btnEliminar.Click += new EventHandler(DeleteVehicleEvent);
             Vista.btnEditar.Click += new EventHandler(UpdateVehicleEvent);
 
-            Vista.txtMatricula.TextChanged += new EventHandler(txtMatricula_TextChanged);
-            Vista.txtMarca.TextChanged += new EventHandler(txtMarca_TextChanged);
-            Vista.txtYear.TextChanged += new EventHandler(txtYear_TextChanged);
+            Vista.txtMatricula.TextChanged += new EventHandler(MatriculaLimit);
+            Vista.txtMarca.TextChanged += new EventHandler(MarcaLimit);
+            Vista.txtYear.TextChanged += new EventHandler(YearLimit);
 
             Vista.txtYear.KeyPress += new KeyPressEventHandler(OnlyNumbers_KeyPress);
         }
 
         //Evento Cargar Vista para cuanto es abierta la Vista
-        public void Load(object sender, EventArgs e)
+        public void LoadEvent(object sender, EventArgs e)
         {
             CargarVehiculos();
             CargarCboxTipo();
@@ -45,13 +50,13 @@ namespace ProyectoCamioncitos.Controlador
         }
 
         //Evento Buscar Vehiculos
-        public void Busqueda(object sender, EventArgs e)
+        public void BusquedaEvent(object sender, EventArgs e)
         {
             CargarVehiculos();
         }
 
         //Evento Seleccion Fila Vehiculo
-        public void dgvVehiculos_SelectedRows(object sender, EventArgs e)
+        public void SelectVehicleEvent(object sender, EventArgs e)
         {
             //Pasa los datos de la fila seleccionada de la tabla Vehiculo a los textboxs
             if (Vista.tblVehiculos.SelectedRows.Count > 0)
@@ -64,9 +69,8 @@ namespace ProyectoCamioncitos.Controlador
                 Vista.cboxTipo.SelectedItem = VehiculoR[0].Tipo;
                 Vista.cboxDisponibilidad.SelectedItem = VehiculoR[0].Disponibilidad;
 
-                Vista.btnEditar.Enabled = true;
-                Vista.btnGuardar.Enabled = false;
-                Vista.btnEliminar.Enabled = true;
+                BotonesFaseEdit(Vista.btnGuardar, Vista.btnEliminar, Vista.btnEditar);
+
                 Vista.txtMatricula.Enabled = false;
                 Vista.cboxDisponibilidad.Visible = true;
                 Vista.cboxDisponibilidad.Enabled = true;
@@ -75,13 +79,13 @@ namespace ProyectoCamioncitos.Controlador
         }
 
         //Evento Limpiar Datos
-        public void btnLimpiar(object sender, EventArgs e)
+        public void LimpiarEvent(object sender, EventArgs e)
         {
             Limpiar();
         }
 
         //Evento Crear Vehiculo
-        public void CreateVehicleEvent (object sender, EventArgs e)
+        public void CreateVehicleEvent(object sender, EventArgs e)
         {
             try
             {
@@ -100,10 +104,9 @@ namespace ProyectoCamioncitos.Controlador
         //Método Validar que los Datos esten completos al Crear un vehiculo
         public void ValCreateVehicle()
         {
-            TextBox[] textboxs = new TextBox[] { Vista.txtMatricula, Vista.txtMarca, Vista.txtYear };
-            ComboBox[] combobox = new ComboBox[] { Vista.cboxTipo };
+            ComboBox[] comboboxCreate = new ComboBox[] { Vista.cboxTipo };
             bool datosCompletos = !textboxs.Any(X => String.IsNullOrEmpty(X.Text))
-                && !combobox.Any(X => String.IsNullOrEmpty(X.Text));
+                && !comboboxCreate.Any(X => String.IsNullOrEmpty(X.Text));
             if (!datosCompletos)
             {
                 throw new DatosIncompletosException();
@@ -145,7 +148,6 @@ namespace ProyectoCamioncitos.Controlador
         }
 
         //Evento Modificar Vehiculo
-        //ESTO MUY PROBABLEMENTE SE TENGA QUE REFACTORIZAR !!!!!!!
         public void UpdateVehicleEvent(object sender, EventArgs e)
         {
             try
@@ -177,8 +179,6 @@ namespace ProyectoCamioncitos.Controlador
         //Método Validar que los Datos esten completos al Actualizar un vehiculo
         public void ValUpdateVehicle()
         {
-            TextBox[] textboxs = new TextBox[] { Vista.txtMatricula, Vista.txtMarca, Vista.txtYear };
-            ComboBox[] combobox = new ComboBox[] { Vista.cboxDisponibilidad, Vista.cboxTipo };
             bool datosCompletos = !textboxs.Any(X => String.IsNullOrEmpty(X.Text))
                 && !combobox.Any(X => String.IsNullOrEmpty(X.Text));
             if (!datosCompletos)
@@ -199,16 +199,13 @@ namespace ProyectoCamioncitos.Controlador
         //Método limpiar txts
         public void Limpiar()
         {
-            Vista.txtMatricula.Text = "";
-            Vista.txtMarca.Text = "";
-            Vista.txtYear.Text = "";
-            Vista.cboxTipo.SelectedItem = null;
-            Vista.cboxDisponibilidad.SelectedItem = null;
+            LimpiarTextBox(textboxs);
+            LimpiarComboBox(combobox);
 
             Vista.tblVehiculos.ClearSelection();
-            Vista.btnEditar.Enabled = false;
-            Vista.btnGuardar.Enabled = true;
-            Vista.btnEliminar.Enabled = false;
+
+            BotonesFaseCreate(Vista.btnGuardar, Vista.btnEliminar, Vista.btnEditar);
+
             Vista.txtMatricula.Enabled = true;
             Vista.cboxDisponibilidad.Enabled = false;
             Vista.cboxDisponibilidad.Visible = false;
@@ -221,35 +218,24 @@ namespace ProyectoCamioncitos.Controlador
             try
             {
                 VehiculoDAO db = new VehiculoDAO();
-                Vista.cboxTipo.DataSource = db.CargarListaTipos();
+                Vista.cboxTipo.DataSource = db.CargarListaTiposVehiculos();
             }
             catch
             { }
         }
 
-        //Restricciones
-        private void txtMatricula_TextChanged(object sender, EventArgs e)
+        //Restricciones Particulares Vehiculo
+        public void MatriculaLimit(object sender, EventArgs e)
         {
             Vista.txtMatricula.MaxLength = 10;
         }
-        private void txtMarca_TextChanged(object sender, EventArgs e)
+        public void MarcaLimit(object sender, EventArgs e)
         {
             Vista.txtMarca.MaxLength = 20;
         }
-        private void txtYear_TextChanged(object sender, EventArgs e)
+        public void YearLimit(object sender, EventArgs e)
         {
             Vista.txtYear.MaxLength = 5;
-        }
-
-        //Validaciones
-        private void OnlyNumbers_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
-            {
-                MessageBox.Show("Ingrese solo números", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                e.Handled = true;
-                return;
-            }
         }
     }
 }

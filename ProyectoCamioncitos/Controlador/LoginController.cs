@@ -15,46 +15,46 @@ namespace ProyectoCamioncitos.Controlador
     class LoginController
     {
         LoginView Vista;
-        int IntentosLogin = 3;
+        int IntentosLogin = 4;
         //Constructor
         public LoginController(LoginView view)
         {
             Vista = view;
             //inicializar eventos
-            Vista.pSalir.Click += new EventHandler(Cerrar);
-            Vista.pMinimizar.Click += new EventHandler(Minimizar);
-            Vista.btnIniciarSesion.Click += new EventHandler(LoginBtn);
-            Vista.txtUser.TextChanged += new EventHandler(txtUser_TextChanged);
+            Vista.pSalir.Click += new EventHandler(CerrarEvent);
+            Vista.pMinimizar.Click += new EventHandler(MinimizarEvent);
+            Vista.btnIniciarSesion.Click += new EventHandler(LoginEvent);
+            Vista.txtUser.TextChanged += new EventHandler(UserLimit);
+            Vista.txtPassword.TextChanged += new EventHandler(PasswordLimit);
             Vista.txtUser.KeyPress += new KeyPressEventHandler(OnlyNumbers_KeyPress);
-            Vista.txtPassword.TextChanged += new EventHandler(txtPassword_TextChanged);
 
-            Vista.MouseDown += new MouseEventHandler(DragPanel);
-            Vista.pBlue.MouseDown += new MouseEventHandler(DragPanel);
+            Vista.MouseDown += new MouseEventHandler(DragPanelEvent);
+            Vista.pBlue.MouseDown += new MouseEventHandler(DragPanelEvent);
         }
 
         //Evento Cerrar Vista
-        public void Cerrar(object sender, EventArgs e)
+        public void CerrarEvent(object sender, EventArgs e)
         {
             Vista.Close();
         }
 
         //Evento Minimizar Vista
-        public void Minimizar(object sender, EventArgs e)
+        public void MinimizarEvent(object sender, EventArgs e)
         {
             Vista.WindowState = FormWindowState.Minimized;
         }
 
         //Evento Login
-        public void LoginBtn(object sender, EventArgs e)
+        public void LoginEvent(object sender, EventArgs e)
         {
             Login();
         }
 
         //Evento Mover Ventana
-        private void DragPanel(object sender, MouseEventArgs e)
+        private void DragPanelEvent(object sender, MouseEventArgs e)
         {
             GlobalMenu gb = new GlobalMenu();
-            gb.DragPanel(Vista);
+            gb.DragPanelEvent(sender, e, Vista);
         }
 
         //Metodo Login
@@ -62,53 +62,40 @@ namespace ProyectoCamioncitos.Controlador
         {
             try
             {
+                DisminuirIntentos();
                 LoginDAO Login = new LoginDAO();
-                Empleado EmpleadoR = Login.LoginEmpleado(Vista.txtUser.Text, Vista.txtPassword.Text, IntentosLogin);
+                Empleado EmpleadoResult = Login.LoginEmpleado(Vista.txtUser.Text, Vista.txtPassword.Text, IntentosLogin);
 
-                //La DVD no se si esto este bien emplementado
-                //Porbablemente se tenga que refactorizar o algo xd !!!
-                LogOpen vistaP = new LogPropietario();
-                vistaP.OpenView(EmpleadoR);
-                LogOpen vistaS = new LogSecretaria();
-                vistaS.OpenView(EmpleadoR);
-                LogOpen vistaC = new LogChofer();
-                vistaC.OpenView(EmpleadoR);
+                //Porbablemente haya una mejor forma de hacer esto xd !!!
+                //A mi yo del futuro confio en que arreglaras esto !
+
+                //Yo tras varias semanas: Sigo sin saber si esto esta bien xd asi q asi se queda x ahora :3
+
+                LogOpen vistaAdmin = new LogAdmin();
+                vistaAdmin.OpenView(EmpleadoResult);
+                LogOpen vistaSecretaria = new LogSecretaria();
+                vistaSecretaria.OpenView(EmpleadoResult);
+                LogOpen vistaChofer = new LogChofer();
+                vistaChofer.OpenView(EmpleadoResult);
 
                 Vista.Close();
-
             }
-            catch
-            {
-                LoginFallido();
-            }
+            catch { }
         }
 
         //Método Login Fallido
-        public void LoginFallido()
+        public void DisminuirIntentos()
         {
             IntentosLogin--;
-            try
-            {
-                if (IntentosLogin == -1)
-                {
-                    throw new LimitLoginException();
-                }
-            }
-            catch
-            {
-                //Aqui en realidad deberia ir algo como que se niega el acceso al usuario que se intenta entrar
-                //o algun tipo de tiempo de espera pero si eso se implementara despues, por ahora esto sirve :3
-                Console.WriteLine("Sistema cerrado por Limite de intentos de Login");
-            }
         }
 
         //Restricciones
-        private void txtUser_TextChanged(object sender, EventArgs e)
+        private void UserLimit(object sender, EventArgs e)
         {
             Vista.txtUser.MaxLength = 10;
         }
 
-        private void txtPassword_TextChanged(object sender, EventArgs e)
+        private void PasswordLimit(object sender, EventArgs e)
         {
             Vista.txtPassword.MaxLength = 10;
         }
@@ -116,59 +103,63 @@ namespace ProyectoCamioncitos.Controlador
         //Validaciones
         private void OnlyNumbers_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
-            {
-                MessageBox.Show("Ingrese solo números", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                e.Handled = true;
-                return;
-            }
+            GlobalCrud gb = new GlobalCrud();
+            gb.OnlyNumbers_KeyPress(sender, e);
         }
     }
+
+    //Probablemente las clases de aqui para abajo deban ir como otro apartado en el controlador pero
+    //por ahora aqui estan bien, a la final solo se usan en este controlador :3
 
     //Clase Abtsracta Para los Tipos de Login
     abstract class LogOpen
     {
-        public abstract void OpenView(Empleado t_empleado);
+        public abstract void OpenView(Empleado EmpleadoLogin);
+
+        protected void EnviarDatos(TextBox txtNombre, TextBox txtApellido, TextBox txtCI, Empleado EmpleadoLogin)
+        {
+            txtNombre.Text = EmpleadoLogin.Nombre;
+            txtApellido.Text = EmpleadoLogin.Apellido;
+            txtCI.Text = EmpleadoLogin.CI;
+        }
     }
     //Clase Tipo Login Secretaria
     class LogSecretaria : LogOpen
     {
-        public override void OpenView(Empleado t_empleado)
+        public override void OpenView(Empleado EmpleadoLogin)
         {
-            if (t_empleado.Cargo.Equals("Secretaria"))
+            if (EmpleadoLogin.Cargo.Equals("Secretaria"))
             {
                 SecretariaMenuView VistaSecretaria = new SecretariaMenuView();
                 VistaSecretaria.Show();
-                VistaSecretaria.txtNombre.Text = t_empleado.Nombre;
-                VistaSecretaria.txtApellido.Text = t_empleado.Apellido;
-                VistaSecretaria.txtCI.Text = t_empleado.CI;
+                EnviarDatos(VistaSecretaria.txtNombre,VistaSecretaria.txtApellido, VistaSecretaria.txtCI, EmpleadoLogin);
             }
         }
     }
     //Clase Tipo Login Chofer
     class LogChofer : LogOpen
     {
-        public override void OpenView(Empleado t_empleado)
+        public override void OpenView(Empleado EmpleadoLogin)
         {
-            if (t_empleado.Cargo == "Chofer")
+            if (EmpleadoLogin.Cargo == "Chofer")
             {
+                //
                 //Proceso
+                //
             }
         }
     } 
 
-    //Clase Tipo Login Propietario
-    class LogPropietario : LogOpen
+    //Clase Tipo Login Admin
+    class LogAdmin : LogOpen
     {
-        public override void OpenView(Empleado t_empleado)
+        public override void OpenView(Empleado EmpleadoLogin)
         {
-            if (t_empleado.Cargo == "Admin")
+            if (EmpleadoLogin.Cargo == "Admin")
             {
-                AdminMenuView VistaSecretaria = new AdminMenuView();
-                VistaSecretaria.Show();
-                VistaSecretaria.txtNombre.Text = t_empleado.Nombre;
-                VistaSecretaria.txtApellido.Text = t_empleado.Apellido;
-                VistaSecretaria.txtCI.Text = t_empleado.CI;
+                AdminMenuView VistaAdmin = new AdminMenuView();
+                VistaAdmin.Show();
+                EnviarDatos(VistaAdmin.txtNombre, VistaAdmin.txtApellido, VistaAdmin.txtCI, EmpleadoLogin);
             }
         }
     }
