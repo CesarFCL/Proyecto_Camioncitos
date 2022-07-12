@@ -44,7 +44,6 @@
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.txtCelular = new System.Windows.Forms.TextBox();
-            this.txtEdad = new System.Windows.Forms.TextBox();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
@@ -53,6 +52,7 @@
             this.txtBuscarSecretaria = new System.Windows.Forms.TextBox();
             this.tblSecretaria = new System.Windows.Forms.DataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
             this.gbClienteDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblSecretaria)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -60,6 +60,7 @@
             // 
             // gbClienteDatos
             // 
+            this.gbClienteDatos.Controls.Add(this.dtpFechaNacimiento);
             this.gbClienteDatos.Controls.Add(this.txtPassword);
             this.gbClienteDatos.Controls.Add(this.lblPassword);
             this.gbClienteDatos.Controls.Add(this.txtDireccion);
@@ -75,9 +76,8 @@
             this.gbClienteDatos.Controls.Add(this.txtNombre);
             this.gbClienteDatos.Controls.Add(this.txtApellido);
             this.gbClienteDatos.Controls.Add(this.txtCelular);
-            this.gbClienteDatos.Controls.Add(this.txtEdad);
             this.gbClienteDatos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbClienteDatos.Location = new System.Drawing.Point(478, 62);
+            this.gbClienteDatos.Location = new System.Drawing.Point(478, 56);
             this.gbClienteDatos.Name = "gbClienteDatos";
             this.gbClienteDatos.Size = new System.Drawing.Size(283, 282);
             this.gbClienteDatos.TabIndex = 35;
@@ -87,7 +87,7 @@
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(109, 247);
+            this.txtPassword.Location = new System.Drawing.Point(109, 249);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(168, 23);
             this.txtPassword.TabIndex = 31;
@@ -96,7 +96,7 @@
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword.Location = new System.Drawing.Point(6, 251);
+            this.lblPassword.Location = new System.Drawing.Point(6, 253);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(96, 16);
             this.lblPassword.TabIndex = 30;
@@ -105,7 +105,7 @@
             // txtDireccion
             // 
             this.txtDireccion.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDireccion.Location = new System.Drawing.Point(95, 218);
+            this.txtDireccion.Location = new System.Drawing.Point(95, 220);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(182, 23);
             this.txtDireccion.TabIndex = 22;
@@ -113,7 +113,7 @@
             // txtCorreo
             // 
             this.txtCorreo.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCorreo.Location = new System.Drawing.Point(95, 189);
+            this.txtCorreo.Location = new System.Drawing.Point(95, 191);
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(182, 23);
             this.txtCorreo.TabIndex = 21;
@@ -122,7 +122,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(6, 221);
+            this.label8.Location = new System.Drawing.Point(6, 223);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(80, 16);
             this.label8.TabIndex = 19;
@@ -132,7 +132,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(6, 192);
+            this.label7.Location = new System.Drawing.Point(6, 194);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(62, 16);
             this.label7.TabIndex = 18;
@@ -142,11 +142,11 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(6, 163);
+            this.label6.Location = new System.Drawing.Point(6, 165);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(42, 16);
+            this.label6.Size = new System.Drawing.Size(157, 16);
             this.label6.TabIndex = 17;
-            this.label6.Text = "EDAD";
+            this.label6.Text = "FECHA DE NACIMIENTO";
             // 
             // label5
             // 
@@ -219,14 +219,6 @@
             this.txtCelular.Name = "txtCelular";
             this.txtCelular.Size = new System.Drawing.Size(182, 23);
             this.txtCelular.TabIndex = 11;
-            // 
-            // txtEdad
-            // 
-            this.txtEdad.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEdad.Location = new System.Drawing.Point(95, 160);
-            this.txtEdad.Name = "txtEdad";
-            this.txtEdad.Size = new System.Drawing.Size(182, 23);
-            this.txtEdad.TabIndex = 12;
             // 
             // btnLimpiar
             // 
@@ -336,6 +328,17 @@
             this.pictureBox1.TabIndex = 30;
             this.pictureBox1.TabStop = false;
             // 
+            // dtpFechaNacimiento
+            // 
+            this.dtpFechaNacimiento.CustomFormat = "dd-MM-yyyy";
+            this.dtpFechaNacimiento.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaNacimiento.Location = new System.Drawing.Point(170, 161);
+            this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
+            this.dtpFechaNacimiento.Size = new System.Drawing.Size(107, 23);
+            this.dtpFechaNacimiento.TabIndex = 36;
+            this.dtpFechaNacimiento.Value = new System.DateTime(2022, 7, 10, 0, 0, 0, 0);
+            // 
             // SecretariaCrudView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -380,7 +383,6 @@
         public System.Windows.Forms.TextBox txtNombre;
         public System.Windows.Forms.TextBox txtApellido;
         public System.Windows.Forms.TextBox txtCelular;
-        public System.Windows.Forms.TextBox txtEdad;
         public System.Windows.Forms.Button btnLimpiar;
         public System.Windows.Forms.Button btnEditar;
         public System.Windows.Forms.Button btnEliminar;
@@ -389,5 +391,6 @@
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox txtBuscarSecretaria;
         public System.Windows.Forms.DataGridView tblSecretaria;
+        public System.Windows.Forms.DateTimePicker dtpFechaNacimiento;
     }
 }

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.gbClienteDatos = new System.Windows.Forms.GroupBox();
+            this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.lblPassword = new System.Windows.Forms.Label();
             this.cboxDisponibilidad = new System.Windows.Forms.ComboBox();
@@ -37,7 +39,6 @@
             this.lblDisponibilidad = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,11 +47,10 @@
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.txtCelular = new System.Windows.Forms.TextBox();
-            this.txtEdad = new System.Windows.Forms.TextBox();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnNuevoChofer = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtBuscarChofer = new System.Windows.Forms.TextBox();
@@ -62,6 +62,8 @@
             // 
             // gbClienteDatos
             // 
+            this.gbClienteDatos.Controls.Add(this.dtpFechaNacimiento);
+            this.gbClienteDatos.Controls.Add(this.label6);
             this.gbClienteDatos.Controls.Add(this.txtPassword);
             this.gbClienteDatos.Controls.Add(this.lblPassword);
             this.gbClienteDatos.Controls.Add(this.cboxDisponibilidad);
@@ -70,7 +72,6 @@
             this.gbClienteDatos.Controls.Add(this.lblDisponibilidad);
             this.gbClienteDatos.Controls.Add(this.label8);
             this.gbClienteDatos.Controls.Add(this.label7);
-            this.gbClienteDatos.Controls.Add(this.label6);
             this.gbClienteDatos.Controls.Add(this.label5);
             this.gbClienteDatos.Controls.Add(this.label4);
             this.gbClienteDatos.Controls.Add(this.label3);
@@ -79,7 +80,6 @@
             this.gbClienteDatos.Controls.Add(this.txtNombre);
             this.gbClienteDatos.Controls.Add(this.txtApellido);
             this.gbClienteDatos.Controls.Add(this.txtCelular);
-            this.gbClienteDatos.Controls.Add(this.txtEdad);
             this.gbClienteDatos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbClienteDatos.Location = new System.Drawing.Point(478, 39);
             this.gbClienteDatos.Name = "gbClienteDatos";
@@ -87,6 +87,27 @@
             this.gbClienteDatos.TabIndex = 26;
             this.gbClienteDatos.TabStop = false;
             this.gbClienteDatos.Text = "Datos";
+            // 
+            // dtpFechaNacimiento
+            // 
+            this.dtpFechaNacimiento.CustomFormat = "dd-MM-yyyy";
+            this.dtpFechaNacimiento.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaNacimiento.Location = new System.Drawing.Point(170, 160);
+            this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
+            this.dtpFechaNacimiento.Size = new System.Drawing.Size(107, 23);
+            this.dtpFechaNacimiento.TabIndex = 38;
+            this.dtpFechaNacimiento.Value = new System.DateTime(2022, 7, 10, 0, 0, 0, 0);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(6, 164);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(157, 16);
+            this.label6.TabIndex = 37;
+            this.label6.Text = "FECHA DE NACIMIENTO";
             // 
             // txtPassword
             // 
@@ -165,16 +186,6 @@
             this.label7.TabIndex = 18;
             this.label7.Text = "CORREO";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(6, 163);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(42, 16);
-            this.label6.TabIndex = 17;
-            this.label6.Text = "EDAD";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -247,14 +258,6 @@
             this.txtCelular.Size = new System.Drawing.Size(182, 23);
             this.txtCelular.TabIndex = 11;
             // 
-            // txtEdad
-            // 
-            this.txtEdad.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEdad.Location = new System.Drawing.Point(95, 160);
-            this.txtEdad.Name = "txtEdad";
-            this.txtEdad.Size = new System.Drawing.Size(182, 23);
-            this.txtEdad.TabIndex = 12;
-            // 
             // btnLimpiar
             // 
             this.btnLimpiar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(41)))), ((int)(((byte)(68)))));
@@ -303,21 +306,21 @@
             this.btnEliminar.Text = "ELIMINAR";
             this.btnEliminar.UseVisualStyleBackColor = false;
             // 
-            // btnNuevoChofer
+            // btnGuardar
             // 
-            this.btnNuevoChofer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(41)))), ((int)(((byte)(68)))));
-            this.btnNuevoChofer.FlatAppearance.BorderSize = 0;
-            this.btnNuevoChofer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(20)))), ((int)(((byte)(30)))));
-            this.btnNuevoChofer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(93)))), ((int)(((byte)(142)))));
-            this.btnNuevoChofer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNuevoChofer.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevoChofer.ForeColor = System.Drawing.Color.White;
-            this.btnNuevoChofer.Location = new System.Drawing.Point(478, 367);
-            this.btnNuevoChofer.Name = "btnNuevoChofer";
-            this.btnNuevoChofer.Size = new System.Drawing.Size(137, 38);
-            this.btnNuevoChofer.TabIndex = 22;
-            this.btnNuevoChofer.Text = "GUARDAR";
-            this.btnNuevoChofer.UseVisualStyleBackColor = false;
+            this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(41)))), ((int)(((byte)(68)))));
+            this.btnGuardar.FlatAppearance.BorderSize = 0;
+            this.btnGuardar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(20)))), ((int)(((byte)(30)))));
+            this.btnGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(93)))), ((int)(((byte)(142)))));
+            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardar.ForeColor = System.Drawing.Color.White;
+            this.btnGuardar.Location = new System.Drawing.Point(478, 367);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(137, 38);
+            this.btnGuardar.TabIndex = 22;
+            this.btnGuardar.Text = "GUARDAR";
+            this.btnGuardar.UseVisualStyleBackColor = false;
             // 
             // pictureBox1
             // 
@@ -372,7 +375,7 @@
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.btnNuevoChofer);
+            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtBuscarChofer);
@@ -396,7 +399,6 @@
         public System.Windows.Forms.TextBox txtCorreo;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -405,11 +407,10 @@
         public System.Windows.Forms.TextBox txtNombre;
         public System.Windows.Forms.TextBox txtApellido;
         public System.Windows.Forms.TextBox txtCelular;
-        public System.Windows.Forms.TextBox txtEdad;
         public System.Windows.Forms.Button btnLimpiar;
         public System.Windows.Forms.Button btnEditar;
         public System.Windows.Forms.Button btnEliminar;
-        public System.Windows.Forms.Button btnNuevoChofer;
+        public System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox txtBuscarChofer;
@@ -418,5 +419,7 @@
         public System.Windows.Forms.TextBox txtPassword;
         public System.Windows.Forms.Label lblPassword;
         public System.Windows.Forms.Label lblDisponibilidad;
+        public System.Windows.Forms.DateTimePicker dtpFechaNacimiento;
+        private System.Windows.Forms.Label label6;
     }
 }

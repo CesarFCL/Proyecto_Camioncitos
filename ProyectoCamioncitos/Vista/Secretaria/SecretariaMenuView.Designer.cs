@@ -43,9 +43,9 @@
             this.btnChofer = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.picCliente = new System.Windows.Forms.PictureBox();
+            this.picVehiculo = new System.Windows.Forms.PictureBox();
+            this.picChofer = new System.Windows.Forms.PictureBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.txtCI = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -63,9 +63,9 @@
             this.panel8.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCliente)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picVehiculo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picChofer)).BeginInit();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -233,9 +233,9 @@
             // panel6
             // 
             this.panel6.Controls.Add(this.pictureBox6);
-            this.panel6.Controls.Add(this.pictureBox5);
-            this.panel6.Controls.Add(this.pictureBox4);
-            this.panel6.Controls.Add(this.pictureBox3);
+            this.panel6.Controls.Add(this.picCliente);
+            this.panel6.Controls.Add(this.picVehiculo);
+            this.panel6.Controls.Add(this.picChofer);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel6.Location = new System.Drawing.Point(0, 262);
             this.panel6.Name = "panel6";
@@ -253,38 +253,38 @@
             this.pictureBox6.TabIndex = 2;
             this.pictureBox6.TabStop = false;
             // 
-            // pictureBox5
+            // picCliente
             // 
-            this.pictureBox5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pictureBox5.Image = global::ProyectoCamioncitos.Properties.Resources.UsersConfig;
-            this.pictureBox5.Location = new System.Drawing.Point(0, 72);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(58, 36);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox5.TabIndex = 2;
-            this.pictureBox5.TabStop = false;
+            this.picCliente.Dock = System.Windows.Forms.DockStyle.Top;
+            this.picCliente.Image = global::ProyectoCamioncitos.Properties.Resources.UsersConfig;
+            this.picCliente.Location = new System.Drawing.Point(0, 72);
+            this.picCliente.Name = "picCliente";
+            this.picCliente.Size = new System.Drawing.Size(58, 36);
+            this.picCliente.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picCliente.TabIndex = 2;
+            this.picCliente.TabStop = false;
             // 
-            // pictureBox4
+            // picVehiculo
             // 
-            this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pictureBox4.Image = global::ProyectoCamioncitos.Properties.Resources.vehiculo;
-            this.pictureBox4.Location = new System.Drawing.Point(0, 36);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(58, 36);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 2;
-            this.pictureBox4.TabStop = false;
+            this.picVehiculo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.picVehiculo.Image = global::ProyectoCamioncitos.Properties.Resources.vehiculo;
+            this.picVehiculo.Location = new System.Drawing.Point(0, 36);
+            this.picVehiculo.Name = "picVehiculo";
+            this.picVehiculo.Size = new System.Drawing.Size(58, 36);
+            this.picVehiculo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picVehiculo.TabIndex = 2;
+            this.picVehiculo.TabStop = false;
             // 
-            // pictureBox3
+            // picChofer
             // 
-            this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pictureBox3.Image = global::ProyectoCamioncitos.Properties.Resources.Volante;
-            this.pictureBox3.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(58, 36);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 2;
-            this.pictureBox3.TabStop = false;
+            this.picChofer.Dock = System.Windows.Forms.DockStyle.Top;
+            this.picChofer.Image = global::ProyectoCamioncitos.Properties.Resources.Volante;
+            this.picChofer.Location = new System.Drawing.Point(0, 0);
+            this.picChofer.Name = "picChofer";
+            this.picChofer.Size = new System.Drawing.Size(58, 36);
+            this.picChofer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picChofer.TabIndex = 2;
+            this.picChofer.TabStop = false;
             // 
             // panel7
             // 
@@ -406,9 +406,9 @@
             this.panel8.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCliente)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picVehiculo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picChofer)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -430,9 +430,6 @@
         public System.Windows.Forms.Button btnChofer;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox3;
         public System.Windows.Forms.Panel panelForms;
         private System.Windows.Forms.Panel panel5;
         public System.Windows.Forms.TextBox txtCI;
@@ -443,5 +440,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel4;
         public System.Windows.Forms.Panel pTop;
+        public System.Windows.Forms.PictureBox picCliente;
+        public System.Windows.Forms.PictureBox picVehiculo;
+        public System.Windows.Forms.PictureBox picChofer;
     }
 }
