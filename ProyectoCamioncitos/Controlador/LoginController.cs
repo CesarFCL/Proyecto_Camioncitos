@@ -20,8 +20,10 @@ namespace ProyectoCamioncitos.Controlador
         public LoginController(LoginView view)
         {
             Vista = view;
+            Vista.Show();
 
             //inicializar eventos
+            Vista.FormClosed += CerrarPrograma;
             Vista.pSalir.Click += new EventHandler(CerrarEvent);
             Vista.pMinimizar.Click += new EventHandler(MinimizarEvent);
             Vista.btnIniciarSesion.Click += new EventHandler(LoginEvent);
@@ -90,6 +92,21 @@ namespace ProyectoCamioncitos.Controlador
             IntentosLogin--;
         }
 
+        //Cuando detecta que no hay ninguna ventana abierta cierra el programa
+        public void CerrarPrograma(object sender, FormClosedEventArgs e)
+        {
+            ((Form)sender).FormClosed -= CerrarPrograma;
+
+            if (Application.OpenForms.Count == 0)
+            {
+                Application.ExitThread();
+            }
+            else
+            {
+                Application.OpenForms[0].FormClosed += CerrarPrograma;
+            }
+        }
+        
         //Restricciones
         private void UserLimit(object sender, EventArgs e)
         {
