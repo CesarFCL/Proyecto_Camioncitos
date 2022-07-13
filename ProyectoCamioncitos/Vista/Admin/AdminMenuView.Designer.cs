@@ -51,7 +51,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.pTop = new System.Windows.Forms.Panel();
+            this.TopPanel = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -67,7 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picChofer)).BeginInit();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.pTop.SuspendLayout();
+            this.TopPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pMinimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pCerrar)).BeginInit();
@@ -346,19 +346,19 @@
             this.panel4.Size = new System.Drawing.Size(186, 11);
             this.panel4.TabIndex = 3;
             // 
-            // pTop
+            // TopPanel
             // 
-            this.pTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(93)))), ((int)(((byte)(142)))));
-            this.pTop.Controls.Add(this.label2);
-            this.pTop.Controls.Add(this.label1);
-            this.pTop.Controls.Add(this.pictureBox2);
-            this.pTop.Controls.Add(this.pMinimizar);
-            this.pTop.Controls.Add(this.pCerrar);
-            this.pTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pTop.Location = new System.Drawing.Point(0, 0);
-            this.pTop.Name = "pTop";
-            this.pTop.Size = new System.Drawing.Size(958, 29);
-            this.pTop.TabIndex = 3;
+            this.TopPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(93)))), ((int)(((byte)(142)))));
+            this.TopPanel.Controls.Add(this.label2);
+            this.TopPanel.Controls.Add(this.label1);
+            this.TopPanel.Controls.Add(this.pictureBox2);
+            this.TopPanel.Controls.Add(this.pMinimizar);
+            this.TopPanel.Controls.Add(this.pCerrar);
+            this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TopPanel.Location = new System.Drawing.Point(0, 0);
+            this.TopPanel.Name = "TopPanel";
+            this.TopPanel.Size = new System.Drawing.Size(958, 29);
+            this.TopPanel.TabIndex = 3;
             // 
             // label2
             // 
@@ -420,7 +420,7 @@
             this.ClientSize = new System.Drawing.Size(958, 502);
             this.Controls.Add(this.panelForms);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.pTop);
+            this.Controls.Add(this.TopPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AdminMenuView";
@@ -438,8 +438,8 @@
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.pTop.ResumeLayout(false);
-            this.pTop.PerformLayout();
+            this.TopPanel.ResumeLayout(false);
+            this.TopPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pMinimizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pCerrar)).EndInit();
@@ -466,7 +466,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel4;
-        public System.Windows.Forms.Panel pTop;
+        public System.Windows.Forms.Panel TopPanel;
         public System.Windows.Forms.Label label2;
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.PictureBox pictureBox2;

@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace ProyectoCamioncitos.Vista.Secretaria
 {
-    //Vista Menu Secretaria
+    //Vista CRUD Secretaria
     public partial class SecretariaCrudView : Form
     {
         public SecretariaCrudView()
