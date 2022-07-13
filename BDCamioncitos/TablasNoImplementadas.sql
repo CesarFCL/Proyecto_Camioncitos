@@ -44,4 +44,3 @@ create table  GESTION_VEHICULO
   ON DELETE cascade
 );
 go
-
