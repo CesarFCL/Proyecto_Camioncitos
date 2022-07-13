@@ -13,7 +13,7 @@ namespace ProyectoCamioncitos.Controlador
 {
     /*
      * La DVD no estoy seguro si este tipo de clases Global esta bien, pero avr en teoria si, no?
-     * Son clases con los métodos generales que se usan en varios controlladores, entonces
+     * Son clases con los métodos generales que se usan en varios controladores, entonces
      * para no repetir los mismos metodos en cada controlador Menu se hace una clase que los abarque (que seria esta)
      * y ya luego los controladores Menu heredan estos metodos y asi no se debe repetir estos metodos en cada
      * controlador Menu. La dvd nse, en mi cabeza suena bien y todo pero capaz y se debe hacer de otra forma xd
@@ -31,12 +31,14 @@ namespace ProyectoCamioncitos.Controlador
         }
 
         //Método Minimizar Vista
-        public void MinimizarEvent(object sender, EventArgs e, Form v)
+        public void MinimizarEvent(object sender, EventArgs e, Form vista)
         {
-            v.WindowState = FormWindowState.Minimized;
+            vista.WindowState = FormWindowState.Minimized;
         }
 
         //Método Mover Ventana
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
@@ -44,11 +46,11 @@ namespace ProyectoCamioncitos.Controlador
         public void DragPanelEvent(object sender, MouseEventArgs e, Form v)
         {
             ReleaseCapture();
-            SendMessage(v.Handle, 0x112, 0xf012, 0);
+            SendMessage(v.Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
         }
 
         //Metodo abrir Nuevo Form en el panel del Menu
-        public void AbrirForm(Form newForm, Panel p)
+        public void AbrirForm(Form newForm, Panel panel)
         {
             Form activeForm = null;
             if (activeForm != null)
@@ -59,16 +61,16 @@ namespace ProyectoCamioncitos.Controlador
             newForm.TopLevel = false;
             newForm.FormBorderStyle = FormBorderStyle.None;
             newForm.Dock = DockStyle.Fill;
-            p.Controls.Add(newForm);
-            p.Tag = newForm;
+            panel.Controls.Add(newForm);
+            panel.Tag = newForm;
             newForm.BringToFront();
             newForm.Show();
         }
 
         //Método Cerrar Vista Abierta dentro del panel de Menu
-        public void CerrarFormInternoEvent(object sender, EventArgs e, Panel p)
+        public void CerrarFormInternoEvent(object sender, EventArgs e, Panel panel)
         {
-            p.Dispose();
+            panel.Dispose();
         }
 
         //Método activar color de boton

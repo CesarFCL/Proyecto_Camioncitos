@@ -20,6 +20,7 @@ namespace ProyectoCamioncitos.Controlador
         public LoginController(LoginView view)
         {
             Vista = view;
+
             //inicializar eventos
             Vista.pSalir.Click += new EventHandler(CerrarEvent);
             Vista.pMinimizar.Click += new EventHandler(MinimizarEvent);
@@ -63,8 +64,8 @@ namespace ProyectoCamioncitos.Controlador
             try
             {
                 DisminuirIntentos();
-                LoginDAO Login = new LoginDAO();
-                Empleado EmpleadoResult = Login.LoginEmpleado(Vista.txtUser.Text, Vista.txtPassword.Text, IntentosLogin);
+                LoginDAO login = new LoginDAO();
+                Empleado EmpleadoResult = login.LoginEmpleado(Vista.txtUser.Text, Vista.txtPassword.Text, IntentosLogin);
 
                 //Porbablemente haya una mejor forma de hacer esto xd !!!
                 //A mi yo del futuro confio en que arreglaras esto !

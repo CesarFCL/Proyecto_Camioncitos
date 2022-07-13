@@ -65,16 +65,16 @@ namespace ProyectoCamioncitos.Controlador
             //Pasa los datos de la fila seleccionada de la tabla Chofer a los textboxs
             if (Vista.tblChofer.SelectedRows.Count > 0)
             {
-                ChoferDAO db = new ChoferDAO();
-                List<Chofer> ChoferR = db.VerRegistros(Vista.tblChofer.CurrentRow.Cells[1].Value.ToString());
-                Vista.txtCI.Text = ChoferR[0].CI;
-                Vista.txtNombre.Text = ChoferR[0].Nombre;
-                Vista.txtApellido.Text = ChoferR[0].Apellido;
-                Vista.txtCelular.Text = ChoferR[0].Celular;
-                Vista.dtpFechaNacimiento.Value = ChoferR[0].FechaNacimiento;
-                Vista.txtCorreo.Text = ChoferR[0].Correo;
-                Vista.txtDireccion.Text = ChoferR[0].Direccion;
-                Vista.cboxDisponibilidad.SelectedItem = ChoferR[0].Disponibilidad;
+                ChoferDAO chofer = new ChoferDAO();
+                List<Chofer> ChoferResult = chofer.VerRegistros(Vista.tblChofer.CurrentRow.Cells[1].Value.ToString());
+                Vista.txtCI.Text = ChoferResult[0].CI;
+                Vista.txtNombre.Text = ChoferResult[0].Nombre;
+                Vista.txtApellido.Text = ChoferResult[0].Apellido;
+                Vista.txtCelular.Text = ChoferResult[0].Celular;
+                Vista.dtpFechaNacimiento.Value = ChoferResult[0].FechaNacimiento;
+                Vista.txtCorreo.Text = ChoferResult[0].Correo;
+                Vista.txtDireccion.Text = ChoferResult[0].Direccion;
+                Vista.cboxDisponibilidad.SelectedItem = ChoferResult[0].Disponibilidad;
 
                 BotonesFaseEdit(Vista.btnGuardar, Vista.btnEliminar, Vista.btnEditar);
 
@@ -128,8 +128,8 @@ namespace ProyectoCamioncitos.Controlador
         {
             try
             {
-                ChoferDAO db = new ChoferDAO();
-                db.Create(Vista.txtCI.Text, Vista.txtNombre.Text, Vista.txtApellido.Text, Vista.txtCelular.Text,
+                ChoferDAO chofer = new ChoferDAO();
+                chofer.Create(Vista.txtCI.Text, Vista.txtNombre.Text, Vista.txtApellido.Text, Vista.txtCelular.Text,
                 Vista.dtpFechaNacimiento.Value.ToString("yyyy-MM-dd"), Vista.txtCorreo.Text, Vista.txtDireccion.Text, Vista.txtPassword.Text);
             }
             catch { }
@@ -152,8 +152,8 @@ namespace ProyectoCamioncitos.Controlador
         {
             try
             {
-                ChoferDAO db = new ChoferDAO();
-                db.Delete(Vista.txtCI.Text);
+                ChoferDAO chofer = new ChoferDAO();
+                chofer.Delete(Vista.txtCI.Text);
             }
             catch { }
         }
@@ -196,8 +196,8 @@ namespace ProyectoCamioncitos.Controlador
         {
             try
             {
-                ChoferDAO db = new ChoferDAO();
-                db.Update(Vista.txtCI.Text, Vista.txtNombre.Text, Vista.txtApellido.Text,
+                ChoferDAO chofer = new ChoferDAO();
+                chofer.Update(Vista.txtCI.Text, Vista.txtNombre.Text, Vista.txtApellido.Text,
                     Vista.txtCelular.Text, Vista.dtpFechaNacimiento.Value.ToString("yyyy-MM-dd"), Vista.txtCorreo.Text, Vista.txtDireccion.Text,
                     Vista.cboxDisponibilidad.SelectedItem.ToString());
 
@@ -228,9 +228,9 @@ namespace ProyectoCamioncitos.Controlador
         //Método Cargar Chofer
         public void CargarChofer()
         {
-            ChoferDAO db = new ChoferDAO();
+            ChoferDAO chofer = new ChoferDAO();
             Vista.tblChofer.DataSource =
-                db.VerRegistros(Vista.txtBuscarChofer.Text);
+                chofer.VerRegistros(Vista.txtBuscarChofer.Text);
 
             Vista.tblChofer.Columns["Contraseña"].Visible = false;
             Vista.tblChofer.Columns["Celular"].Visible = false;

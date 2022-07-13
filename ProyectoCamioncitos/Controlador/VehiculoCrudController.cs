@@ -45,7 +45,7 @@ namespace ProyectoCamioncitos.Controlador
         public void LoadEvent(object sender, EventArgs e)
         {
             CargarVehiculos();
-            CargarCboxTipo();
+            CargarCboxTiposVehiculos();
             Limpiar();
         }
 
@@ -61,13 +61,13 @@ namespace ProyectoCamioncitos.Controlador
             //Pasa los datos de la fila seleccionada de la tabla Vehiculo a los textboxs
             if (Vista.tblVehiculos.SelectedRows.Count > 0)
             {
-                VehiculoDAO db = new VehiculoDAO();
-                List<Vehiculo> VehiculoR = db.VerRegistros(Vista.tblVehiculos.CurrentRow.Cells[0].Value.ToString());
-                Vista.txtMatricula.Text = VehiculoR[0].Matricula;
-                Vista.txtMarca.Text = VehiculoR[0].Marca;
-                Vista.txtYear.Text = VehiculoR[0].Year;
-                Vista.cboxTipo.SelectedItem = VehiculoR[0].Tipo;
-                Vista.cboxDisponibilidad.SelectedItem = VehiculoR[0].Disponibilidad;
+                VehiculoDAO vehiculo = new VehiculoDAO();
+                List<Vehiculo> VehiculoResult = vehiculo.VerRegistros(Vista.tblVehiculos.CurrentRow.Cells[0].Value.ToString());
+                Vista.txtMatricula.Text = VehiculoResult[0].Matricula;
+                Vista.txtMarca.Text = VehiculoResult[0].Marca;
+                Vista.txtYear.Text = VehiculoResult[0].Year;
+                Vista.cboxTipo.SelectedItem = VehiculoResult[0].Tipo;
+                Vista.cboxDisponibilidad.SelectedItem = VehiculoResult[0].Disponibilidad;
 
                 BotonesFaseEdit(Vista.btnGuardar, Vista.btnEliminar, Vista.btnEditar);
 
@@ -118,8 +118,8 @@ namespace ProyectoCamioncitos.Controlador
         {
             try
             {
-                VehiculoDAO db = new VehiculoDAO();
-                db.Create(Vista.txtMatricula.Text, Vista.txtMarca.Text, Vista.txtYear.Text, Vista.cboxTipo.SelectedItem.ToString());
+                VehiculoDAO vehiculo = new VehiculoDAO();
+                vehiculo.Create(Vista.txtMatricula.Text, Vista.txtMarca.Text, Vista.txtYear.Text, Vista.cboxTipo.SelectedItem.ToString());
             }
             catch { }
         }
@@ -141,8 +141,8 @@ namespace ProyectoCamioncitos.Controlador
         {
             try
             {
-                VehiculoDAO db = new VehiculoDAO();
-                db.Delete(Vista.txtMatricula.Text);
+                VehiculoDAO vehiculo = new VehiculoDAO();
+                vehiculo.Delete(Vista.txtMatricula.Text);
             }
             catch { }
         }
@@ -169,8 +169,8 @@ namespace ProyectoCamioncitos.Controlador
         {
             try
             {
-                VehiculoDAO db = new VehiculoDAO(); ;
-                db.Update(Vista.txtMatricula.Text, Vista.txtMarca.Text, Vista.txtYear.Text,
+                VehiculoDAO vehiculo = new VehiculoDAO(); ;
+                vehiculo.Update(Vista.txtMatricula.Text, Vista.txtMarca.Text, Vista.txtYear.Text,
                     Vista.cboxTipo.SelectedItem.ToString(), Vista.cboxDisponibilidad.SelectedItem.ToString());
             }
             catch { }
@@ -190,9 +190,9 @@ namespace ProyectoCamioncitos.Controlador
         //Método Cargar Vehiculos
         public void CargarVehiculos()
         {
-            VehiculoDAO db = new VehiculoDAO();
+            VehiculoDAO vehiculo = new VehiculoDAO();
             Vista.tblVehiculos.DataSource =
-                db.VerRegistros(Vista.txtBuscarVehiculo.Text);
+                vehiculo.VerRegistros(Vista.txtBuscarVehiculo.Text);
 
             Vista.tblVehiculos.Columns["Year"].Visible = false;
         }
@@ -213,12 +213,12 @@ namespace ProyectoCamioncitos.Controlador
         }
 
         //Metodo Cargar el combobox de tipos de vehiculos
-        public void CargarCboxTipo()
+        public void CargarCboxTiposVehiculos()
         {
             try
             {
-                VehiculoDAO db = new VehiculoDAO();
-                Vista.cboxTipo.DataSource = db.CargarListaTiposVehiculos();
+                VehiculoDAO vehiculo = new VehiculoDAO();
+                Vista.cboxTipo.DataSource = vehiculo.CargarListaTiposVehiculos();
             }
             catch
             { }

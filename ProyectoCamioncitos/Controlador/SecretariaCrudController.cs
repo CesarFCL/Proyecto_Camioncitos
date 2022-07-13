@@ -66,15 +66,15 @@ namespace ProyectoCamioncitos.Controlador
             //Pasa los datos de la fila seleccionada de la tabla Secretaria a los textboxs
             if (Vista.tblSecretaria.SelectedRows.Count > 0)
             {
-                SecretariaDAO db = new SecretariaDAO();
-                List<Secretaria> SecretariaR = db.VerRegistros(Vista.tblSecretaria.CurrentRow.Cells[1].Value.ToString());
-                Vista.txtCI.Text = SecretariaR[0].CI;
-                Vista.txtNombre.Text = SecretariaR[0].Nombre;
-                Vista.txtApellido.Text = SecretariaR[0].Apellido;
-                Vista.txtCelular.Text = SecretariaR[0].Celular;
-                Vista.dtpFechaNacimiento.Value = SecretariaR[0].FechaNacimiento;
-                Vista.txtCorreo.Text = SecretariaR[0].Correo;
-                Vista.txtDireccion.Text = SecretariaR[0].Direccion;
+                SecretariaDAO secretaria = new SecretariaDAO();
+                List<Secretaria> SecretariaResult = secretaria.VerRegistros(Vista.tblSecretaria.CurrentRow.Cells[1].Value.ToString());
+                Vista.txtCI.Text = SecretariaResult[0].CI;
+                Vista.txtNombre.Text = SecretariaResult[0].Nombre;
+                Vista.txtApellido.Text = SecretariaResult[0].Apellido;
+                Vista.txtCelular.Text = SecretariaResult[0].Celular;
+                Vista.dtpFechaNacimiento.Value = SecretariaResult[0].FechaNacimiento;
+                Vista.txtCorreo.Text = SecretariaResult[0].Correo;
+                Vista.txtDireccion.Text = SecretariaResult[0].Direccion;
 
                 BotonesFaseEdit(Vista.btnGuardar, Vista.btnEliminar, Vista.btnEditar);
 
@@ -124,8 +124,8 @@ namespace ProyectoCamioncitos.Controlador
         {
             try
             {
-                SecretariaDAO db = new SecretariaDAO();
-                db.Create(Vista.txtCI.Text, Vista.txtNombre.Text, Vista.txtApellido.Text, Vista.txtCelular.Text,
+                SecretariaDAO secretaria = new SecretariaDAO();
+                secretaria.Create(Vista.txtCI.Text, Vista.txtNombre.Text, Vista.txtApellido.Text, Vista.txtCelular.Text,
                 Vista.dtpFechaNacimiento.Value.ToString("yyyy-MM-dd"), Vista.txtCorreo.Text, Vista.txtDireccion.Text, Vista.txtPassword.Text);
             }
             catch { }
@@ -148,8 +148,8 @@ namespace ProyectoCamioncitos.Controlador
         {
             try
             {
-                SecretariaDAO db = new SecretariaDAO();
-                db.Delete(Vista.txtCI.Text);
+                SecretariaDAO secretaria = new SecretariaDAO();
+                secretaria.Delete(Vista.txtCI.Text);
             }
             catch { }
         }
@@ -191,8 +191,8 @@ namespace ProyectoCamioncitos.Controlador
         {
             try
             {
-                SecretariaDAO db = new SecretariaDAO();
-                db.Update(Vista.txtCI.Text, Vista.txtNombre.Text, Vista.txtApellido.Text,
+                SecretariaDAO secretaria = new SecretariaDAO();
+                secretaria.Update(Vista.txtCI.Text, Vista.txtNombre.Text, Vista.txtApellido.Text,
                     Vista.txtCelular.Text, Vista.dtpFechaNacimiento.Value.ToString("yyyy-MM-dd"), Vista.txtCorreo.Text, Vista.txtDireccion.Text);
 
             }
@@ -218,9 +218,9 @@ namespace ProyectoCamioncitos.Controlador
         //Método Cargar Secretaria
         public void CargarSecretaria()
         {
-            SecretariaDAO db = new SecretariaDAO();
+            SecretariaDAO secretaria = new SecretariaDAO();
             Vista.tblSecretaria.DataSource =
-                db.VerRegistros(Vista.txtBuscarSecretaria.Text);
+                secretaria.VerRegistros(Vista.txtBuscarSecretaria.Text);
 
 
             Vista.tblSecretaria.Columns["Contraseña"].Visible = false;

@@ -25,7 +25,7 @@ namespace ProyectoCamioncitos.Modelo.DAO
             Conexion.Open();
             Reader = Comando.ExecuteReader();
 
-            List<Cliente> ListaCliente = new List<Cliente>();//Lista generica
+            List<Cliente> ListaCliente = new List<Cliente>();
             while (Reader.Read())
             {
                 ListaCliente.Add(new Cliente

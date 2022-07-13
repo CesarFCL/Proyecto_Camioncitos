@@ -26,7 +26,7 @@ namespace ProyectoCamioncitos.Controlador
             Vista.btnChofer.Click += new EventHandler(AbrirFormChoferEvent);
             Vista.btnSecretaria.Click += new EventHandler(AbrirFormSecretariaEvent);
             Vista.FormClosed += delegate (object sender, FormClosedEventArgs e) { CerrarFormInternoEvent(sender, e, Vista.panelForms); };
-            Vista.pTop.MouseDown += delegate (object sender, MouseEventArgs e) { DragPanelEvent(sender, e, Vista); };
+            Vista.TopPanel.MouseDown += delegate (object sender, MouseEventArgs e) { DragPanelEvent(sender, e, Vista); };
         }
         //Evento Abrir Vista CRUD Cliente
         public void AbrirFormClientesEvent(object sender, EventArgs e)

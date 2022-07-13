@@ -63,13 +63,13 @@ namespace ProyectoCamioncitos.Controlador
             //Pasa los datos de la fila seleccionada de la tabla Cliente a los textboxs
             if (Vista.tblClientes.SelectedRows.Count > 0)
             {
-                ClienteDAO db = new ClienteDAO();
-                List<Cliente> ClienteR = db.VerRegistros(Vista.tblClientes.CurrentRow.Cells[0].Value.ToString());
-                Vista.txtRUC.Text = ClienteR[0].RUC;
-                Vista.txtNombre.Text = ClienteR[0].Nombre;
-                Vista.txtTelefono.Text = ClienteR[0].Telefono;
-                Vista.txtCorreo.Text = ClienteR[0].Correo;
-                Vista.txtDireccion.Text = ClienteR[0].Direccion;
+                ClienteDAO cliente = new ClienteDAO();
+                List<Cliente> ClienteResult = cliente.VerRegistros(Vista.tblClientes.CurrentRow.Cells[0].Value.ToString());
+                Vista.txtRUC.Text = ClienteResult[0].RUC;
+                Vista.txtNombre.Text = ClienteResult[0].Nombre;
+                Vista.txtTelefono.Text = ClienteResult[0].Telefono;
+                Vista.txtCorreo.Text = ClienteResult[0].Correo;
+                Vista.txtDireccion.Text = ClienteResult[0].Direccion;
 
                 BotonesFaseEdit(Vista.btnGuardar, Vista.btnEliminar, Vista.btnEditar);
 
@@ -116,8 +116,8 @@ namespace ProyectoCamioncitos.Controlador
         {
             try
             {
-                ClienteDAO db = new ClienteDAO();
-                db.Create(Vista.txtRUC.Text, Vista.txtNombre.Text, Vista.txtTelefono.Text,
+                ClienteDAO cliente = new ClienteDAO();
+                cliente.Create(Vista.txtRUC.Text, Vista.txtNombre.Text, Vista.txtTelefono.Text,
                 Vista.txtCorreo.Text, Vista.txtDireccion.Text);
             }
             catch { }
@@ -140,8 +140,8 @@ namespace ProyectoCamioncitos.Controlador
         {
             try
             {
-                ClienteDAO db = new ClienteDAO();
-                db.Delete(Vista.txtRUC.Text);
+                ClienteDAO cliente = new ClienteDAO();
+                cliente.Delete(Vista.txtRUC.Text);
             }
             catch { }
         }
@@ -168,8 +168,8 @@ namespace ProyectoCamioncitos.Controlador
         {
             try
             {
-                ClienteDAO db = new ClienteDAO();
-                db.Update(Vista.txtRUC.Text, Vista.txtNombre.Text, Vista.txtTelefono.Text,
+                ClienteDAO cliente = new ClienteDAO();
+                cliente.Update(Vista.txtRUC.Text, Vista.txtNombre.Text, Vista.txtTelefono.Text,
                 Vista.txtCorreo.Text, Vista.txtDireccion.Text);
             }
             catch { }
@@ -178,9 +178,9 @@ namespace ProyectoCamioncitos.Controlador
         //Método Cargar Clientes
         public void CargarClientes()
         {
-            ClienteDAO db = new ClienteDAO();
+            ClienteDAO cliente = new ClienteDAO();
             Vista.tblClientes.DataSource =
-                db.VerRegistros(Vista.txtBuscarCliente.Text);
+                cliente.VerRegistros(Vista.txtBuscarCliente.Text);
         }
 
         //Método limpiar txts
