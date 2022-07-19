@@ -64,7 +64,7 @@ namespace ProyectoCamioncitos.Controlador
             if (Vista.tblClientes.SelectedRows.Count > 0)
             {
                 ClienteDAO cliente = new ClienteDAO();
-                List<Cliente> ClienteResult = cliente.VerRegistros(Vista.tblClientes.CurrentRow.Cells[0].Value.ToString());
+                List<Cliente> ClienteResult = cliente.ObtenerCliente(Vista.tblClientes.CurrentRow.Cells[0].Value.ToString());
                 Vista.txtRUC.Text = ClienteResult[0].RUC;
                 Vista.txtNombre.Text = ClienteResult[0].Nombre;
                 Vista.txtTelefono.Text = ClienteResult[0].Telefono;
@@ -180,7 +180,7 @@ namespace ProyectoCamioncitos.Controlador
         {
             ClienteDAO cliente = new ClienteDAO();
             Vista.tblClientes.DataSource =
-                cliente.VerRegistros(Vista.txtBuscarCliente.Text);
+                cliente.ObtenerCliente(Vista.txtBuscarCliente.Text);
         }
 
         //Método limpiar txts

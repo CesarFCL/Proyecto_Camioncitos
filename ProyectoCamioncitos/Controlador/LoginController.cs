@@ -20,7 +20,6 @@ namespace ProyectoCamioncitos.Controlador
         public LoginController(LoginView view)
         {
             Vista = view;
-            Vista.Show();
 
             //inicializar eventos
             Vista.FormClosed += CerrarPrograma;

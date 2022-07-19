@@ -16,7 +16,7 @@ namespace ProyectoCamioncitos.Modelo.DAO
         //METODOS CRUD
 
         //Metodo Leer Chofer
-        public List<Chofer> VerRegistros(string Condicion)
+        public List<Chofer> ObtenerChofer(string Condicion)
         {
             Comando.Connection = Conexion;
             Comando.CommandText = "ObtenerChofer";

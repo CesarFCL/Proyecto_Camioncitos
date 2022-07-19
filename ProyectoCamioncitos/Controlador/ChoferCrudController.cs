@@ -66,7 +66,7 @@ namespace ProyectoCamioncitos.Controlador
             if (Vista.tblChofer.SelectedRows.Count > 0)
             {
                 ChoferDAO chofer = new ChoferDAO();
-                List<Chofer> ChoferResult = chofer.VerRegistros(Vista.tblChofer.CurrentRow.Cells[1].Value.ToString());
+                List<Chofer> ChoferResult = chofer.ObtenerChofer(Vista.tblChofer.CurrentRow.Cells[1].Value.ToString());
                 Vista.txtCI.Text = ChoferResult[0].CI;
                 Vista.txtNombre.Text = ChoferResult[0].Nombre;
                 Vista.txtApellido.Text = ChoferResult[0].Apellido;
@@ -230,7 +230,7 @@ namespace ProyectoCamioncitos.Controlador
         {
             ChoferDAO chofer = new ChoferDAO();
             Vista.tblChofer.DataSource =
-                chofer.VerRegistros(Vista.txtBuscarChofer.Text);
+                chofer.ObtenerChofer(Vista.txtBuscarChofer.Text);
 
             Vista.tblChofer.Columns["Contraseña"].Visible = false;
             Vista.tblChofer.Columns["Celular"].Visible = false;

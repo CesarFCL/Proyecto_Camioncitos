@@ -62,7 +62,7 @@ namespace ProyectoCamioncitos.Controlador
             if (Vista.tblVehiculos.SelectedRows.Count > 0)
             {
                 VehiculoDAO vehiculo = new VehiculoDAO();
-                List<Vehiculo> VehiculoResult = vehiculo.VerRegistros(Vista.tblVehiculos.CurrentRow.Cells[0].Value.ToString());
+                List<Vehiculo> VehiculoResult = vehiculo.ObtenerVehiculo(Vista.tblVehiculos.CurrentRow.Cells[0].Value.ToString());
                 Vista.txtMatricula.Text = VehiculoResult[0].Matricula;
                 Vista.txtMarca.Text = VehiculoResult[0].Marca;
                 Vista.txtYear.Text = VehiculoResult[0].Year;
@@ -192,7 +192,7 @@ namespace ProyectoCamioncitos.Controlador
         {
             VehiculoDAO vehiculo = new VehiculoDAO();
             Vista.tblVehiculos.DataSource =
-                vehiculo.VerRegistros(Vista.txtBuscarVehiculo.Text);
+                vehiculo.ObtenerVehiculo(Vista.txtBuscarVehiculo.Text);
 
             Vista.tblVehiculos.Columns["Year"].Visible = false;
         }

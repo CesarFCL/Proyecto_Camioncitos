@@ -16,7 +16,7 @@ namespace ProyectoCamioncitos.Modelo.DAO
         //METODOS CRUD
 
         //Metodo Leer Secretaria
-        public List<Secretaria> VerRegistros(string Condicion)
+        public List<Secretaria> ObtenerSecretaria(string Condicion)
         {
             Comando.Connection = Conexion;
             Comando.CommandText = "ObtenerSecretaria";

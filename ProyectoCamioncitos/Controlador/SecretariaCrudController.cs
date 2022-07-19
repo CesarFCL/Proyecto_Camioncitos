@@ -67,7 +67,7 @@ namespace ProyectoCamioncitos.Controlador
             if (Vista.tblSecretaria.SelectedRows.Count > 0)
             {
                 SecretariaDAO secretaria = new SecretariaDAO();
-                List<Secretaria> SecretariaResult = secretaria.VerRegistros(Vista.tblSecretaria.CurrentRow.Cells[1].Value.ToString());
+                List<Secretaria> SecretariaResult = secretaria.ObtenerSecretaria(Vista.tblSecretaria.CurrentRow.Cells[1].Value.ToString());
                 Vista.txtCI.Text = SecretariaResult[0].CI;
                 Vista.txtNombre.Text = SecretariaResult[0].Nombre;
                 Vista.txtApellido.Text = SecretariaResult[0].Apellido;
@@ -220,7 +220,7 @@ namespace ProyectoCamioncitos.Controlador
         {
             SecretariaDAO secretaria = new SecretariaDAO();
             Vista.tblSecretaria.DataSource =
-                secretaria.VerRegistros(Vista.txtBuscarSecretaria.Text);
+                secretaria.ObtenerSecretaria(Vista.txtBuscarSecretaria.Text);
 
 
             Vista.tblSecretaria.Columns["Contraseña"].Visible = false;

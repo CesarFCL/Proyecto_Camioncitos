@@ -16,7 +16,7 @@ namespace ProyectoCamioncitos.Modelo.DAO
         //METODOS CRUD
 
         //Metodo Leer Usuario
-        public List<Cliente> VerRegistros(string Condicion)
+        public List<Cliente> ObtenerCliente(string Condicion)
         {
             Comando.Connection = Conexion;
             Comando.CommandText = "ObtenerCliente";

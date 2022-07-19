@@ -17,7 +17,7 @@ namespace ProyectoCamioncitos.Modelo.DAO
         //METODOS CRUD
 
         //Metodo Leer Vehiculo
-        public List<Vehiculo> VerRegistros(string Condicion)
+        public List<Vehiculo> ObtenerVehiculo(string Condicion)
         {
             Comando.Connection = Conexion;
             Comando.CommandText = "ObtenerVehiculo";
