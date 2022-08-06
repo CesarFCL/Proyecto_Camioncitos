@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gbClienteDatos = new System.Windows.Forms.GroupBox();
+            this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.lblPassword = new System.Windows.Forms.Label();
             this.txtDireccion = new System.Windows.Forms.TextBox();
@@ -52,7 +53,6 @@
             this.txtBuscarSecretaria = new System.Windows.Forms.TextBox();
             this.tblSecretaria = new System.Windows.Forms.DataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
             this.gbClienteDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblSecretaria)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -77,12 +77,23 @@
             this.gbClienteDatos.Controls.Add(this.txtApellido);
             this.gbClienteDatos.Controls.Add(this.txtCelular);
             this.gbClienteDatos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbClienteDatos.Location = new System.Drawing.Point(478, 56);
+            this.gbClienteDatos.Location = new System.Drawing.Point(764, 56);
             this.gbClienteDatos.Name = "gbClienteDatos";
             this.gbClienteDatos.Size = new System.Drawing.Size(283, 282);
             this.gbClienteDatos.TabIndex = 35;
             this.gbClienteDatos.TabStop = false;
             this.gbClienteDatos.Text = "Datos";
+            // 
+            // dtpFechaNacimiento
+            // 
+            this.dtpFechaNacimiento.CustomFormat = "dd-MM-yyyy";
+            this.dtpFechaNacimiento.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaNacimiento.Location = new System.Drawing.Point(170, 161);
+            this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
+            this.dtpFechaNacimiento.Size = new System.Drawing.Size(107, 23);
+            this.dtpFechaNacimiento.TabIndex = 36;
+            this.dtpFechaNacimiento.Value = new System.DateTime(2022, 7, 10, 0, 0, 0, 0);
             // 
             // txtPassword
             // 
@@ -229,7 +240,7 @@
             this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpiar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiar.ForeColor = System.Drawing.Color.White;
-            this.btnLimpiar.Location = new System.Drawing.Point(624, 414);
+            this.btnLimpiar.Location = new System.Drawing.Point(910, 414);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(137, 36);
             this.btnLimpiar.TabIndex = 34;
@@ -245,7 +256,7 @@
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditar.ForeColor = System.Drawing.Color.White;
-            this.btnEditar.Location = new System.Drawing.Point(624, 358);
+            this.btnEditar.Location = new System.Drawing.Point(910, 358);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(137, 38);
             this.btnEditar.TabIndex = 33;
@@ -261,7 +272,7 @@
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
-            this.btnEliminar.Location = new System.Drawing.Point(478, 414);
+            this.btnEliminar.Location = new System.Drawing.Point(764, 414);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(137, 36);
             this.btnEliminar.TabIndex = 32;
@@ -277,7 +288,7 @@
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.ForeColor = System.Drawing.Color.White;
-            this.btnGuardar.Location = new System.Drawing.Point(478, 358);
+            this.btnGuardar.Location = new System.Drawing.Point(764, 358);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(137, 38);
             this.btnGuardar.TabIndex = 31;
@@ -288,7 +299,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(89, 21);
+            this.label1.Location = new System.Drawing.Point(257, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(168, 32);
             this.label1.TabIndex = 29;
@@ -297,7 +308,7 @@
             // txtBuscarSecretaria
             // 
             this.txtBuscarSecretaria.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscarSecretaria.Location = new System.Drawing.Point(305, 30);
+            this.txtBuscarSecretaria.Location = new System.Drawing.Point(591, 31);
             this.txtBuscarSecretaria.Name = "txtBuscarSecretaria";
             this.txtBuscarSecretaria.Size = new System.Drawing.Size(140, 23);
             this.txtBuscarSecretaria.TabIndex = 28;
@@ -315,35 +326,24 @@
             this.tblSecretaria.MultiSelect = false;
             this.tblSecretaria.Name = "tblSecretaria";
             this.tblSecretaria.ReadOnly = true;
-            this.tblSecretaria.Size = new System.Drawing.Size(462, 394);
+            this.tblSecretaria.Size = new System.Drawing.Size(748, 394);
             this.tblSecretaria.TabIndex = 27;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::ProyectoCamioncitos.Properties.Resources.search2;
-            this.pictureBox1.Location = new System.Drawing.Point(451, 29);
+            this.pictureBox1.Location = new System.Drawing.Point(737, 30);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(21, 24);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 30;
             this.pictureBox1.TabStop = false;
             // 
-            // dtpFechaNacimiento
-            // 
-            this.dtpFechaNacimiento.CustomFormat = "dd-MM-yyyy";
-            this.dtpFechaNacimiento.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaNacimiento.Location = new System.Drawing.Point(170, 161);
-            this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
-            this.dtpFechaNacimiento.Size = new System.Drawing.Size(107, 23);
-            this.dtpFechaNacimiento.TabIndex = 36;
-            this.dtpFechaNacimiento.Value = new System.DateTime(2022, 7, 10, 0, 0, 0, 0);
-            // 
             // SecretariaCrudView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(770, 471);
+            this.ClientSize = new System.Drawing.Size(1056, 471);
             this.Controls.Add(this.gbClienteDatos);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnEditar);

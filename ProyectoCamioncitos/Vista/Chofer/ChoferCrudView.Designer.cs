@@ -81,7 +81,7 @@
             this.gbClienteDatos.Controls.Add(this.txtApellido);
             this.gbClienteDatos.Controls.Add(this.txtCelular);
             this.gbClienteDatos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbClienteDatos.Location = new System.Drawing.Point(478, 39);
+            this.gbClienteDatos.Location = new System.Drawing.Point(764, 38);
             this.gbClienteDatos.Name = "gbClienteDatos";
             this.gbClienteDatos.Size = new System.Drawing.Size(283, 322);
             this.gbClienteDatos.TabIndex = 26;
@@ -267,7 +267,7 @@
             this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpiar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiar.ForeColor = System.Drawing.Color.White;
-            this.btnLimpiar.Location = new System.Drawing.Point(624, 423);
+            this.btnLimpiar.Location = new System.Drawing.Point(910, 422);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(137, 36);
             this.btnLimpiar.TabIndex = 25;
@@ -283,7 +283,7 @@
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditar.ForeColor = System.Drawing.Color.White;
-            this.btnEditar.Location = new System.Drawing.Point(624, 367);
+            this.btnEditar.Location = new System.Drawing.Point(910, 366);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(137, 38);
             this.btnEditar.TabIndex = 24;
@@ -299,7 +299,7 @@
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
-            this.btnEliminar.Location = new System.Drawing.Point(478, 423);
+            this.btnEliminar.Location = new System.Drawing.Point(764, 422);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(137, 36);
             this.btnEliminar.TabIndex = 23;
@@ -315,7 +315,7 @@
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.ForeColor = System.Drawing.Color.White;
-            this.btnGuardar.Location = new System.Drawing.Point(478, 367);
+            this.btnGuardar.Location = new System.Drawing.Point(764, 366);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(137, 38);
             this.btnGuardar.TabIndex = 22;
@@ -325,7 +325,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::ProyectoCamioncitos.Properties.Resources.search2;
-            this.pictureBox1.Location = new System.Drawing.Point(451, 38);
+            this.pictureBox1.Location = new System.Drawing.Point(737, 38);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(21, 24);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -336,7 +336,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(89, 30);
+            this.label1.Location = new System.Drawing.Point(245, 29);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(147, 32);
             this.label1.TabIndex = 20;
@@ -345,7 +345,7 @@
             // txtBuscarChofer
             // 
             this.txtBuscarChofer.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscarChofer.Location = new System.Drawing.Point(305, 39);
+            this.txtBuscarChofer.Location = new System.Drawing.Point(591, 39);
             this.txtBuscarChofer.Name = "txtBuscarChofer";
             this.txtBuscarChofer.Size = new System.Drawing.Size(140, 23);
             this.txtBuscarChofer.TabIndex = 19;
@@ -363,14 +363,14 @@
             this.tblChofer.MultiSelect = false;
             this.tblChofer.Name = "tblChofer";
             this.tblChofer.ReadOnly = true;
-            this.tblChofer.Size = new System.Drawing.Size(462, 394);
+            this.tblChofer.Size = new System.Drawing.Size(748, 394);
             this.tblChofer.TabIndex = 18;
             // 
             // ChoferCrudView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(770, 471);
+            this.ClientSize = new System.Drawing.Size(1056, 471);
             this.Controls.Add(this.gbClienteDatos);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnEditar);
