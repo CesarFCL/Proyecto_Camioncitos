@@ -11,13 +11,6 @@ using System.Windows.Forms;
 
 namespace ProyectoCamioncitos.Controlador
 {
-    /*
-     * La DVD no estoy seguro si este tipo de clases Global esta bien, pero avr en teoria si, no?
-     * Son clases con los métodos generales que se usan en varios controladores, entonces
-     * para no repetir los mismos metodos en cada controlador Menu se hace una clase que los abarque (que seria esta)
-     * y ya luego los controladores Menu heredan estos metodos y asi no se debe repetir estos metodos en cada
-     * controlador Menu. La dvd nse, en mi cabeza suena bien y todo pero capaz y se debe hacer de otra forma xd
-     */
 
     //Clase con los métodos usados por los controladores de menus
     public class GlobalMenu

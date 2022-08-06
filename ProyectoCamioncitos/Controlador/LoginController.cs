@@ -2,6 +2,7 @@
 using ProyectoCamioncitos.Modelo.DAO;
 using ProyectoCamioncitos.Modelo.DTO;
 using ProyectoCamioncitos.Vista;
+using ProyectoCamioncitos.Vista.Chofer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,11 +68,6 @@ namespace ProyectoCamioncitos.Controlador
                 DisminuirIntentos();
                 LoginDAO login = new LoginDAO();
                 Empleado EmpleadoResult = login.LoginEmpleado(Vista.txtUser.Text, Vista.txtPassword.Text, IntentosLogin);
-
-                //Porbablemente haya una mejor forma de hacer esto xd !!!
-                //A mi yo del futuro confio en que arreglaras esto !
-
-                //Yo tras varias semanas: Sigo sin saber si esto esta bien xd asi q asi se queda x ahora :3
 
                 LogOpen vistaAdmin = new LogAdmin();
                 vistaAdmin.OpenView(EmpleadoResult);
@@ -160,9 +156,9 @@ namespace ProyectoCamioncitos.Controlador
         {
             if (EmpleadoLogin.Cargo == "Chofer")
             {
-                //
-                //Proceso
-                //
+                ChoferMenuView VistaChofer = new ChoferMenuView();
+                VistaChofer.Show();
+                EnviarDatos(VistaChofer.txtNombre, VistaChofer.txtApellido, VistaChofer.txtCI, EmpleadoLogin);
             }
         }
     } 

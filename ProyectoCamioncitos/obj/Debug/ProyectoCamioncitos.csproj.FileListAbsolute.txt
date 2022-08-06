@@ -15,3 +15,6 @@ C:\Users\cesar\source\repos\ProyectoCamioncitos\obj\Debug\ProyectoCamioncitos.Vi
 C:\Users\cesar\source\repos\ProyectoCamioncitos\obj\Debug\ProyectoCamioncitos.Vista.Conductor.ChoferCrudView.resources
 C:\Users\cesar\source\repos\ProyectoCamioncitos\obj\Debug\ProyectoCamioncitos.Vista.AdminMenuView.resources
 C:\Users\cesar\source\repos\ProyectoCamioncitos\obj\Debug\ProyectoCamioncitos.Vista.Secretaria.SecretariaCrudView.resources
+C:\Users\cesar\source\repos\ProyectoCamioncitos\obj\Debug\ProyectoCamioncitos.Vista.Chofer.AsignacionChoferVehiculoView.resources
+C:\Users\cesar\source\repos\ProyectoCamioncitos\obj\Debug\ProyectoCamioncitos.Vista.Chofer.ChoferMenuView.resources
+C:\Users\cesar\source\repos\ProyectoCamioncitos\obj\Debug\ProyectoCamioncitos.Vista.Chofer.ChoferProfileView.resources

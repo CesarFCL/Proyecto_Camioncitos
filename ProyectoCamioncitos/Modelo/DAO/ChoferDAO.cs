@@ -45,6 +45,36 @@ namespace ProyectoCamioncitos.Modelo.DAO
             return ListaChofer;
         }
 
+        //Metodo Leer Chofer Disponible
+        public List<Chofer> ObtenerChoferDisponible(string Condicion)
+        {
+            Comando.Connection = Conexion;
+            Comando.CommandText = "ObtenerChoferDisponible";
+            Comando.CommandType = CommandType.StoredProcedure;
+            Comando.Parameters.AddWithValue("@Condicion", Condicion);
+            Conexion.Open();
+            Reader = Comando.ExecuteReader();
+
+            List<Chofer> ListaChofer = new List<Chofer>();
+            while (Reader.Read())
+            {
+                ListaChofer.Add(new Chofer
+                {
+                    CI = Reader["Cedula"].ToString(),
+                    Nombre = Reader["Nombre"].ToString(),
+                    Apellido = Reader["Apellido"].ToString(),
+                    Celular = Reader["Celular"].ToString(),
+                    FechaNacimiento = DateTime.Parse(Reader["Fecha de Nacimiento"].ToString()),
+                    Correo = Reader["Correo"].ToString(),
+                    Direccion = Reader["Direccion"].ToString(),
+                    Disponibilidad = Reader["Disponibilidad"].ToString()
+                });
+            }
+            Reader.Close();
+            Conexion.Close();
+            return ListaChofer;
+        }
+
         //Metodo Crear Chofer
         public bool Create(string CI, string Nombre, string Apellido, string Celular,
             string Fecha_N, string Correo, string Direccion, string Contraseña)
@@ -108,6 +138,26 @@ namespace ProyectoCamioncitos.Modelo.DAO
                 Comando.Parameters.AddWithValue("@FECHA_N", Fecha_N);
                 Comando.Parameters.AddWithValue("@CORREO", Correo);
                 Comando.Parameters.AddWithValue("@DIRECCION", Direccion);
+                Comando.Parameters.AddWithValue("@DISPONIBILIDAD", Disponibilidad);
+                Conexion.Open();
+                Comando.ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                throw new DBErrorException();
+            }
+        }
+
+        //Método Modificar Disponibilidad Chofer
+        public bool UpdateDisponibilidad(string CI, string Disponibilidad)
+        {
+            try
+            {
+                Comando.Connection = Conexion;
+                Comando.CommandText = "ModificarDisponibilidadChofer";
+                Comando.CommandType = CommandType.StoredProcedure;
+                Comando.Parameters.AddWithValue("@CI", CI);
                 Comando.Parameters.AddWithValue("@DISPONIBILIDAD", Disponibilidad);
                 Conexion.Open();
                 Comando.ExecuteNonQuery();

@@ -43,6 +43,33 @@ namespace ProyectoCamioncitos.Modelo.DAO
             return ListaVehiculo;
         }
 
+        //Metodo Leer Vehiculos Disponibles
+        public List<Vehiculo> ObtenerVehiculoDisponible(string Condicion)
+        {
+            Comando.Connection = Conexion;
+            Comando.CommandText = "ObtenerVehiculoDisponible";
+            Comando.CommandType = CommandType.StoredProcedure;
+            Comando.Parameters.AddWithValue("@Condicion", Condicion);
+            Conexion.Open();
+            Reader = Comando.ExecuteReader();
+
+            List<Vehiculo> ListaVehiculo = new List<Vehiculo>();
+            while (Reader.Read())
+            {
+                ListaVehiculo.Add(new Vehiculo
+                {
+                    Matricula = Reader["MATRICULA"].ToString(),
+                    Marca = Reader["MARCA"].ToString(),
+                    Year = Reader["AÑO"].ToString(),
+                    Tipo = Reader["TIPO"].ToString(),
+                    Disponibilidad = Reader["DISPONIBILIDAD"].ToString(),
+                });
+            }
+            Reader.Close();
+            Conexion.Close();
+            return ListaVehiculo;
+        }
+
         //Metodo Crear Vehiculo
         public bool Create(string Matricula, string Marca, string Year, string Tipo)
         {

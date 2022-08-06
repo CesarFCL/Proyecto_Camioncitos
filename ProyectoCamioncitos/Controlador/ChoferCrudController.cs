@@ -83,7 +83,7 @@ namespace ProyectoCamioncitos.Controlador
                 Vista.lblPassword.Visible = false;
                 Vista.txtCI.Enabled = false;
                 Vista.cboxDisponibilidad.Visible = true;
-                Vista.cboxDisponibilidad.Enabled = true;
+                DisponibilidadChofer();
                 Vista.lblDisponibilidad.Visible = true;
             }
         }
@@ -116,7 +116,7 @@ namespace ProyectoCamioncitos.Controlador
         {
             //Se asegura que todos los datos de los textbox esten completos
 
-            bool datosCompletos = textboxs.Any(X => String.IsNullOrEmpty(X.Text));
+            bool datosCompletos = !textboxs.Any(X => String.IsNullOrEmpty(X.Text));
             if (!datosCompletos)
             {
                 throw new DatosIncompletosException();
@@ -156,6 +156,15 @@ namespace ProyectoCamioncitos.Controlador
                 chofer.Delete(Vista.txtCI.Text);
             }
             catch { }
+        }
+
+        //Método condicion para poder modificar la disponibilidad de un chofer
+        public void DisponibilidadChofer()
+        {
+            if (Vista.cboxDisponibilidad.SelectedItem.ToString() == "Disponible")
+            {
+                Vista.cboxDisponibilidad.Enabled = true;
+            }
         }
 
         //Evento Modificar Chofer

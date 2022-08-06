@@ -73,7 +73,7 @@ namespace ProyectoCamioncitos.Controlador
 
                 Vista.txtMatricula.Enabled = false;
                 Vista.cboxDisponibilidad.Visible = true;
-                Vista.cboxDisponibilidad.Enabled = true;
+                DisponibilidadVehiculo();
                 Vista.lblDisponibilidad.Visible = true;
             }
         }
@@ -222,6 +222,15 @@ namespace ProyectoCamioncitos.Controlador
             }
             catch
             { }
+        }
+
+        //Método condicion para poder modificar la disponibilidad del vehiculo
+        public void DisponibilidadVehiculo()
+        {
+            if (Vista.cboxDisponibilidad.SelectedItem.ToString() == "Disponible")
+            {
+                Vista.cboxDisponibilidad.Enabled = true;
+            }
         }
 
         //Restricciones Particulares Vehiculo

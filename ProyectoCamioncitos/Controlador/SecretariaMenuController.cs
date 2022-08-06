@@ -1,4 +1,5 @@
 ﻿using ProyectoCamioncitos.Vista;
+using ProyectoCamioncitos.Vista.Chofer;
 using ProyectoCamioncitos.Vista.Conductor;
 using System;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace ProyectoCamioncitos.Controlador
             Vista.btnVehiculo.Click += new EventHandler(AbrirFormVehiculoEvent);
             Vista.btnChofer.Click += new EventHandler(AbrirFormChoferEvent);
             Vista.FormClosed += delegate (object sender, FormClosedEventArgs e) { CerrarFormInternoEvent(sender, e, Vista.panelForms); };
+            Vista.btnDisponibilidad.Click += new EventHandler(AbrirFormDisponibilidadEvent);
             Vista.TopPanel.MouseDown += delegate (object sender, MouseEventArgs e) { DragPanelEvent(sender, e, Vista); };
         }
 
@@ -35,6 +37,7 @@ namespace ProyectoCamioncitos.Controlador
             ActiveColorBtn(Vista.btnCliente, Vista.picCliente);
             InactiveColorBtn(Vista.btnVehiculo, Vista.picVehiculo);
             InactiveColorBtn(Vista.btnChofer, Vista.picChofer);
+            InactiveColorBtn(Vista.btnDisponibilidad, Vista.picAsignacionChoferVehiculo);
         }
 
         //Evento Abrir Vista CRUD Vehiculo
@@ -45,6 +48,7 @@ namespace ProyectoCamioncitos.Controlador
             ActiveColorBtn(Vista.btnVehiculo, Vista.picVehiculo);
             InactiveColorBtn(Vista.btnCliente, Vista.picCliente);
             InactiveColorBtn(Vista.btnChofer, Vista.picChofer);
+            InactiveColorBtn(Vista.btnDisponibilidad, Vista.picAsignacionChoferVehiculo);
         }
 
         //Evento Abrir Vista CRUD Chofer
@@ -53,6 +57,18 @@ namespace ProyectoCamioncitos.Controlador
             AbrirForm(new ChoferCrudView(), Vista.panelForms);
 
             ActiveColorBtn(Vista.btnChofer, Vista.picChofer);
+            InactiveColorBtn(Vista.btnCliente, Vista.picCliente);
+            InactiveColorBtn(Vista.btnVehiculo, Vista.picVehiculo);
+            InactiveColorBtn(Vista.btnDisponibilidad, Vista.picAsignacionChoferVehiculo);
+        }
+
+        //Evento Abrir Vista Disponibilidad Chofer Vehiculo
+        public void AbrirFormDisponibilidadEvent(object sender, EventArgs e)
+        {
+            AbrirForm(new AsignacionChoferVehiculoView(), Vista.panelForms);
+
+            ActiveColorBtn(Vista.btnDisponibilidad, Vista.picAsignacionChoferVehiculo);
+            InactiveColorBtn(Vista.btnChofer, Vista.picChofer);
             InactiveColorBtn(Vista.btnCliente, Vista.picCliente);
             InactiveColorBtn(Vista.btnVehiculo, Vista.picVehiculo);
         }
