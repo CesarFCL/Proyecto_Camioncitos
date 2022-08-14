@@ -53,6 +53,7 @@
     <Compile Include="Controlador\ClienteCrudController.cs" />
     <Compile Include="Controlador\ControllersExceptions\DatosIncompletosException.cs" />
     <Compile Include="Controlador\AsignacionChoferVehiculoController.cs" />
+    <Compile Include="Modelo\DAO\DaoExceptions\DenyChangeDisponibilidad.cs" />
     <Compile Include="Modelo\DAO\DaoExceptions\LimitLoginException.cs" />
     <Compile Include="Controlador\GlobalCrud.cs" />
     <Compile Include="Controlador\GlobalMenu.cs" />
