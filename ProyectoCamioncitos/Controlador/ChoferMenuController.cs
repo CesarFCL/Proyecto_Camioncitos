@@ -74,7 +74,7 @@ namespace ProyectoCamioncitos.Controlador
         //Evento Cambiar Status
         public void CambiarStatusChoferEvent(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Esta seguro de querer cambiar a " + ObtenerDisponibilidadObjetivo(), "Editar Disponibilidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MessageBox.Show("Esta seguro de querer cambiar su estado a " + ObtenerDisponibilidadObjetivo(), "Cambiar Disponibilidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
                 UpdateDisponibilidadChofer();
@@ -90,7 +90,7 @@ namespace ProyectoCamioncitos.Controlador
                 ChoferDAO chofer = new ChoferDAO();
                 chofer.UpdateDisponibilidad(Vista.txtCI.Text, ObtenerDisponibilidadObjetivo());
             }
-            catch { }
+            catch{}
         }
 
         //Método actualizar disponibilidad chofer

@@ -124,7 +124,7 @@ namespace ProyectoCamioncitos.Modelo.DAO
         }
 
         //Método Modificar Chofer
-        public bool Update(string CI, string Nombre, string Apellido, string Celular, string Fecha_N, string Correo, string Direccion , string Disponibilidad)
+        public bool Update(string CI, string Nombre, string Apellido, string Celular, string Fecha_N, string Correo, string Direccion, string Disponibilidad)
         {
             try
             {
@@ -152,21 +152,27 @@ namespace ProyectoCamioncitos.Modelo.DAO
         //Método Modificar Disponibilidad Chofer
         public bool UpdateDisponibilidad(string CI, string Disponibilidad)
         {
-            try
+            Comando.Connection = Conexion;
+            Comando.CommandText = "ModificarDisponibilidadChofer";
+            Comando.CommandType = CommandType.StoredProcedure;
+            Comando.Parameters.AddWithValue("@CI", CI);
+            Comando.Parameters.AddWithValue("@DISPONIBILIDAD", Disponibilidad);
+            Conexion.Open();
+            Reader = Comando.ExecuteReader();
+
+            bool Resultado = false;
+
+            if (Reader.Read())
             {
-                Comando.Connection = Conexion;
-                Comando.CommandText = "ModificarDisponibilidadChofer";
-                Comando.CommandType = CommandType.StoredProcedure;
-                Comando.Parameters.AddWithValue("@CI", CI);
-                Comando.Parameters.AddWithValue("@DISPONIBILIDAD", Disponibilidad);
-                Conexion.Open();
-                Comando.ExecuteNonQuery();
-                return true;
+                Resultado = bool.Parse(Reader["Resultado"].ToString());
             }
-            catch
+            if (!Resultado)
             {
-                throw new DBErrorException();
+                throw new DenyChangeDisponibilidad();
             }
+            Reader.Close();
+            Conexion.Close();
+            return true;
         }
     }
 }
