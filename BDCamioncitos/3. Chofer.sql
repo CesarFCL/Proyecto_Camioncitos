@@ -112,8 +112,3 @@ BEGIN
 END 
 go
 
-drop procedure ModificarDisponibilidadChofer
-
-select * from DISPONIBILIDAD_CHOFER
-exec ModificarDisponibilidadChofer '1111111111','1'
-
