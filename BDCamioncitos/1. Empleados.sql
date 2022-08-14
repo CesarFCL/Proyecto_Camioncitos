@@ -63,11 +63,19 @@ CREATE PROC CrearEmpleado
 @TIPO VARCHAR(50)
 as
 begin
-	SET NOCOUNT ON
-	insert into EMPLEADOS values(@CI,@NOMBRE,@APELLIDO,@CELULAR,@FECHA_N,@CORREO,@DIRECCION,HASHBYTES('SHA2_512',@CONTRASEÑA));
-	insert into EMPLEADOS_CARGOS values(@CI,(select C.ID_CARGO FROM CARGO C WHERE  C.NOMBRE = @TIPO));
-	IF @TIPO = 'Chofer' 
-		insert into DISPONIBILIDAD_CHOFER values(@CI,1);
+	if exists
+	(
+		select NOMBRE
+		from CARGO
+		where NOMBRE = @TIPO 
+	)
+	begin
+		SET NOCOUNT ON
+		insert into EMPLEADOS values(@CI,@NOMBRE,@APELLIDO,@CELULAR,@FECHA_N,@CORREO,@DIRECCION,HASHBYTES('SHA2_512',@CONTRASEÑA));
+		insert into EMPLEADOS_CARGOS values(@CI,(select C.ID_CARGO FROM CARGO C WHERE  C.NOMBRE = @TIPO));
+		IF @TIPO = 'Chofer' 
+			insert into DISPONIBILIDAD_CHOFER values(@CI,1);
+	end
 end
 go
 
