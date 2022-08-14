@@ -87,9 +87,33 @@ CREATE PROC ModificarDisponibilidadChofer
 @DISPONIBILIDAD VARCHAR(15)
 as
 BEGIN 
-     SET NOCOUNT ON 
-	 UPDATE DISPONIBILIDAD_CHOFER
-	 SET	DISPONIBILIDAD = CASE WHEN @DISPONIBILIDAD = 'Disponible' then 1 else 0 end
-	 WHERE	CI = @CI
+	DECLARE @Result BIT;
+	if not exists
+	(
+		SELECT
+		CI_CHOFER as 'CEDULA CHOFER',
+		MATRICULA_VEHICULO as 'MATRICULA VEHICULO'
+		FROM CHOFER_VEHICULO
+		where CI_CHOFER like @CI
+	)
+		begin
+			SET NOCOUNT ON 
+			UPDATE DISPONIBILIDAD_CHOFER
+			SET	DISPONIBILIDAD = CASE WHEN @DISPONIBILIDAD = 'Disponible' then 1 else 0 end
+			WHERE	CI = @CI;
+			SET @Result = 1;
+			SELECT @Result as Resultado;
+		end
+	else
+		begin
+			SET @Result = 0;
+			SELECT @Result as Resultado;
+		end
 END 
 go
+
+drop procedure ModificarDisponibilidadChofer
+
+select * from DISPONIBILIDAD_CHOFER
+exec ModificarDisponibilidadChofer '1111111111','1'
+
