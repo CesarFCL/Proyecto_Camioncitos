@@ -49,6 +49,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.pStatus = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.TopPanel = new System.Windows.Forms.Panel();
@@ -57,7 +58,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pMinimizar = new System.Windows.Forms.PictureBox();
             this.pCerrar = new System.Windows.Forms.PictureBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -79,7 +79,7 @@
             this.panelForms.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelForms.Location = new System.Drawing.Point(186, 29);
             this.panelForms.Name = "panelForms";
-            this.panelForms.Size = new System.Drawing.Size(1056, 473);
+            this.panelForms.Size = new System.Drawing.Size(1056, 573);
             this.panelForms.TabIndex = 5;
             // 
             // panel2
@@ -96,7 +96,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 29);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(186, 473);
+            this.panel2.Size = new System.Drawing.Size(186, 573);
             this.panel2.TabIndex = 4;
             // 
             // panel8
@@ -108,7 +108,7 @@
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel8.Location = new System.Drawing.Point(58, 262);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(128, 211);
+            this.panel8.Size = new System.Drawing.Size(128, 311);
             this.panel8.TabIndex = 2;
             // 
             // btnSalir
@@ -120,7 +120,7 @@
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalir.ForeColor = System.Drawing.Color.White;
-            this.btnSalir.Location = new System.Drawing.Point(0, 175);
+            this.btnSalir.Location = new System.Drawing.Point(0, 275);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(128, 36);
             this.btnSalir.TabIndex = 3;
@@ -184,14 +184,14 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel6.Location = new System.Drawing.Point(0, 262);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(58, 211);
+            this.panel6.Size = new System.Drawing.Size(58, 311);
             this.panel6.TabIndex = 2;
             // 
             // pictureBox6
             // 
             this.pictureBox6.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pictureBox6.Image = global::ProyectoCamioncitos.Properties.Resources.salida;
-            this.pictureBox6.Location = new System.Drawing.Point(0, 175);
+            this.pictureBox6.Location = new System.Drawing.Point(0, 275);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(58, 36);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -321,6 +321,17 @@
             this.panel4.Size = new System.Drawing.Size(186, 17);
             this.panel4.TabIndex = 3;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Silver;
+            this.label4.Location = new System.Drawing.Point(69, 3);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(92, 12);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "<-- pulsa para cambiar";
+            // 
             // pStatus
             // 
             this.pStatus.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -407,22 +418,11 @@
             this.pCerrar.TabIndex = 0;
             this.pCerrar.TabStop = false;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Silver;
-            this.label4.Location = new System.Drawing.Point(69, 3);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(92, 12);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "<-- pulsa para cambiar";
-            // 
             // ChoferMenuView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1242, 502);
+            this.ClientSize = new System.Drawing.Size(1242, 602);
             this.Controls.Add(this.panelForms);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.TopPanel);

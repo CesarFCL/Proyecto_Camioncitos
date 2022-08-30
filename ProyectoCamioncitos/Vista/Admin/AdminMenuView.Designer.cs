@@ -78,7 +78,7 @@
             this.panelForms.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelForms.Location = new System.Drawing.Point(186, 29);
             this.panelForms.Name = "panelForms";
-            this.panelForms.Size = new System.Drawing.Size(772, 473);
+            this.panelForms.Size = new System.Drawing.Size(1056, 573);
             this.panelForms.TabIndex = 5;
             // 
             // panel2
@@ -95,7 +95,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 29);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(186, 473);
+            this.panel2.Size = new System.Drawing.Size(186, 573);
             this.panel2.TabIndex = 4;
             // 
             // panel8
@@ -108,7 +108,7 @@
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel8.Location = new System.Drawing.Point(58, 269);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(128, 204);
+            this.panel8.Size = new System.Drawing.Size(128, 304);
             this.panel8.TabIndex = 2;
             // 
             // btnSecretaria
@@ -136,7 +136,7 @@
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalir.ForeColor = System.Drawing.Color.White;
-            this.btnSalir.Location = new System.Drawing.Point(0, 168);
+            this.btnSalir.Location = new System.Drawing.Point(0, 268);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(128, 36);
             this.btnSalir.TabIndex = 3;
@@ -201,7 +201,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel6.Location = new System.Drawing.Point(0, 269);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(58, 204);
+            this.panel6.Size = new System.Drawing.Size(58, 304);
             this.panel6.TabIndex = 2;
             // 
             // picSecretaria
@@ -219,7 +219,7 @@
             // 
             this.pictureBox6.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pictureBox6.Image = global::ProyectoCamioncitos.Properties.Resources.salida;
-            this.pictureBox6.Location = new System.Drawing.Point(0, 168);
+            this.pictureBox6.Location = new System.Drawing.Point(0, 268);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(58, 36);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -357,14 +357,14 @@
             this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.TopPanel.Location = new System.Drawing.Point(0, 0);
             this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Size = new System.Drawing.Size(958, 29);
+            this.TopPanel.Size = new System.Drawing.Size(1242, 29);
             this.TopPanel.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(460, 6);
+            this.label2.Location = new System.Drawing.Point(581, 4);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(135, 19);
             this.label2.TabIndex = 2;
@@ -395,7 +395,7 @@
             // 
             this.pMinimizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pMinimizar.Image = global::ProyectoCamioncitos.Properties.Resources.minimize;
-            this.pMinimizar.Location = new System.Drawing.Point(891, 4);
+            this.pMinimizar.Location = new System.Drawing.Point(1181, 4);
             this.pMinimizar.Name = "pMinimizar";
             this.pMinimizar.Size = new System.Drawing.Size(26, 22);
             this.pMinimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -406,7 +406,7 @@
             // 
             this.pCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pCerrar.Image = global::ProyectoCamioncitos.Properties.Resources.cancel;
-            this.pCerrar.Location = new System.Drawing.Point(924, 4);
+            this.pCerrar.Location = new System.Drawing.Point(1213, 4);
             this.pCerrar.Name = "pCerrar";
             this.pCerrar.Size = new System.Drawing.Size(26, 22);
             this.pCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -417,7 +417,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(958, 502);
+            this.ClientSize = new System.Drawing.Size(1242, 602);
             this.Controls.Add(this.panelForms);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.TopPanel);

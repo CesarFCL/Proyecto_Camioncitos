@@ -53,7 +53,11 @@
     <Compile Include="Controlador\ClienteCrudController.cs" />
     <Compile Include="Controlador\ControllersExceptions\DatosIncompletosException.cs" />
     <Compile Include="Controlador\AsignacionChoferVehiculoController.cs" />
+    <Compile Include="Controlador\PedidosCrudController.cs" />
     <Compile Include="Modelo\DAO\DaoExceptions\DenyChangeDisponibilidad.cs" />
+    <Compile Include="Modelo\DAO\DaoExceptions\DenyCreatePedidoRucInexistente.cs" />
+    <Compile Include="Modelo\DAO\DaoExceptions\DenyDeletePedidoFinalizado.cs" />
+    <Compile Include="Modelo\DAO\DaoExceptions\DenyEditPedidoFinalizado.cs" />
     <Compile Include="Modelo\DAO\DaoExceptions\LimitLoginException.cs" />
     <Compile Include="Controlador\GlobalCrud.cs" />
     <Compile Include="Controlador\GlobalMenu.cs" />
@@ -64,6 +68,7 @@
     <Compile Include="Modelo\DAO\ChoferDAO.cs" />
     <Compile Include="Modelo\DAO\DaoExceptions\DBErrorException.cs" />
     <Compile Include="Modelo\DAO\DaoExceptions\DenyLoginException.cs" />
+    <Compile Include="Modelo\DAO\PedidoEnvioDAO.cs" />
     <Compile Include="Modelo\DAO\LoginDAO.cs" />
     <Compile Include="Modelo\DAO\SecretariaDAO.cs" />
     <Compile Include="Modelo\DAO\VehiculoDAO.cs" />
@@ -71,6 +76,8 @@
     <Compile Include="Modelo\DTO\Admin.cs" />
     <Compile Include="Modelo\DTO\Chofer.cs" />
     <Compile Include="Modelo\DTO\Empleado.cs" />
+    <Compile Include="Modelo\DTO\Envio.cs" />
+    <Compile Include="Modelo\DTO\Pedido.cs" />
     <Compile Include="Modelo\DTO\Secretaria.cs" />
     <Compile Include="Modelo\DTO\Vehiculo.cs" />
     <Compile Include="Modelo\DTO\AsignacionChoferVehiculo.cs" />
@@ -114,6 +121,18 @@
     </Compile>
     <Compile Include="Vista\Chofer\ChoferCrudView.Designer.cs">
       <DependentUpon>ChoferCrudView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Pedidos\AsignarEnviosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\Pedidos\AsignarEnviosView.Designer.cs">
+      <DependentUpon>AsignarEnviosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Pedidos\PedidosCrudView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\Pedidos\PedidosCrudView.Designer.cs">
+      <DependentUpon>PedidosCrudView.cs</DependentUpon>
     </Compile>
     <Compile Include="Vista\Secretaria\SecretariaCrudView.cs">
       <SubType>Form</SubType>
@@ -166,6 +185,12 @@
     </Compile>
     <EmbeddedResource Include="Vista\Chofer\ChoferCrudView.resx">
       <DependentUpon>ChoferCrudView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\Pedidos\AsignarEnviosView.resx">
+      <DependentUpon>AsignarEnviosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\Pedidos\PedidosCrudView.resx">
+      <DependentUpon>PedidosCrudView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vista\Login\LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>
@@ -245,6 +270,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Chofer_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\order.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

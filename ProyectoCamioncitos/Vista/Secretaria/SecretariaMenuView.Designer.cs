@@ -37,12 +37,16 @@
             this.pCerrar = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.btnDisponibilidad = new System.Windows.Forms.Button();
+            this.btnAsignarEnvios = new System.Windows.Forms.Button();
+            this.btnFacturas = new System.Windows.Forms.Button();
+            this.btnAsignarChoferVehiculo = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnCliente = new System.Windows.Forms.Button();
             this.btnVehiculo = new System.Windows.Forms.Button();
             this.btnChofer = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.picAsignarPedidos = new System.Windows.Forms.PictureBox();
+            this.picFacturas = new System.Windows.Forms.PictureBox();
             this.picAsignacionChoferVehiculo = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.picCliente = new System.Windows.Forms.PictureBox();
@@ -64,6 +68,8 @@
             this.panel2.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picAsignarPedidos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFacturas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAsignacionChoferVehiculo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCliente)).BeginInit();
@@ -154,12 +160,14 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 29);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(186, 473);
+            this.panel2.Size = new System.Drawing.Size(186, 573);
             this.panel2.TabIndex = 1;
             // 
             // panel8
             // 
-            this.panel8.Controls.Add(this.btnDisponibilidad);
+            this.panel8.Controls.Add(this.btnAsignarEnvios);
+            this.panel8.Controls.Add(this.btnFacturas);
+            this.panel8.Controls.Add(this.btnAsignarChoferVehiculo);
             this.panel8.Controls.Add(this.btnSalir);
             this.panel8.Controls.Add(this.btnCliente);
             this.panel8.Controls.Add(this.btnVehiculo);
@@ -167,24 +175,56 @@
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel8.Location = new System.Drawing.Point(58, 262);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(128, 211);
+            this.panel8.Size = new System.Drawing.Size(128, 311);
             this.panel8.TabIndex = 2;
             // 
-            // btnDisponibilidad
+            // btnAsignarEnvios
             // 
-            this.btnDisponibilidad.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnDisponibilidad.FlatAppearance.BorderSize = 0;
-            this.btnDisponibilidad.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(20)))), ((int)(((byte)(30)))));
-            this.btnDisponibilidad.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(93)))), ((int)(((byte)(142)))));
-            this.btnDisponibilidad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDisponibilidad.Font = new System.Drawing.Font("Century Gothic", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDisponibilidad.ForeColor = System.Drawing.Color.White;
-            this.btnDisponibilidad.Location = new System.Drawing.Point(0, 108);
-            this.btnDisponibilidad.Name = "btnDisponibilidad";
-            this.btnDisponibilidad.Size = new System.Drawing.Size(128, 36);
-            this.btnDisponibilidad.TabIndex = 4;
-            this.btnDisponibilidad.Text = "Asignacion Chofer/Vehiculo";
-            this.btnDisponibilidad.UseVisualStyleBackColor = true;
+            this.btnAsignarEnvios.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAsignarEnvios.FlatAppearance.BorderSize = 0;
+            this.btnAsignarEnvios.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(20)))), ((int)(((byte)(30)))));
+            this.btnAsignarEnvios.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(93)))), ((int)(((byte)(142)))));
+            this.btnAsignarEnvios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAsignarEnvios.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAsignarEnvios.ForeColor = System.Drawing.Color.White;
+            this.btnAsignarEnvios.Location = new System.Drawing.Point(0, 180);
+            this.btnAsignarEnvios.Name = "btnAsignarEnvios";
+            this.btnAsignarEnvios.Size = new System.Drawing.Size(128, 36);
+            this.btnAsignarEnvios.TabIndex = 6;
+            this.btnAsignarEnvios.Text = "Asignar Envios";
+            this.btnAsignarEnvios.UseVisualStyleBackColor = true;
+            // 
+            // btnFacturas
+            // 
+            this.btnFacturas.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnFacturas.FlatAppearance.BorderSize = 0;
+            this.btnFacturas.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(20)))), ((int)(((byte)(30)))));
+            this.btnFacturas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(93)))), ((int)(((byte)(142)))));
+            this.btnFacturas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFacturas.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFacturas.ForeColor = System.Drawing.Color.White;
+            this.btnFacturas.Location = new System.Drawing.Point(0, 144);
+            this.btnFacturas.Name = "btnFacturas";
+            this.btnFacturas.Size = new System.Drawing.Size(128, 36);
+            this.btnFacturas.TabIndex = 5;
+            this.btnFacturas.Text = "Pedidos";
+            this.btnFacturas.UseVisualStyleBackColor = true;
+            // 
+            // btnAsignarChoferVehiculo
+            // 
+            this.btnAsignarChoferVehiculo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAsignarChoferVehiculo.FlatAppearance.BorderSize = 0;
+            this.btnAsignarChoferVehiculo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(20)))), ((int)(((byte)(30)))));
+            this.btnAsignarChoferVehiculo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(93)))), ((int)(((byte)(142)))));
+            this.btnAsignarChoferVehiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAsignarChoferVehiculo.Font = new System.Drawing.Font("Century Gothic", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAsignarChoferVehiculo.ForeColor = System.Drawing.Color.White;
+            this.btnAsignarChoferVehiculo.Location = new System.Drawing.Point(0, 108);
+            this.btnAsignarChoferVehiculo.Name = "btnAsignarChoferVehiculo";
+            this.btnAsignarChoferVehiculo.Size = new System.Drawing.Size(128, 36);
+            this.btnAsignarChoferVehiculo.TabIndex = 4;
+            this.btnAsignarChoferVehiculo.Text = "Asignacion Chofer/Vehiculo";
+            this.btnAsignarChoferVehiculo.UseVisualStyleBackColor = true;
             // 
             // btnSalir
             // 
@@ -195,7 +235,7 @@
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalir.ForeColor = System.Drawing.Color.White;
-            this.btnSalir.Location = new System.Drawing.Point(0, 175);
+            this.btnSalir.Location = new System.Drawing.Point(0, 275);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(128, 36);
             this.btnSalir.TabIndex = 3;
@@ -252,6 +292,8 @@
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.picAsignarPedidos);
+            this.panel6.Controls.Add(this.picFacturas);
             this.panel6.Controls.Add(this.picAsignacionChoferVehiculo);
             this.panel6.Controls.Add(this.pictureBox6);
             this.panel6.Controls.Add(this.picCliente);
@@ -260,8 +302,30 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel6.Location = new System.Drawing.Point(0, 262);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(58, 211);
+            this.panel6.Size = new System.Drawing.Size(58, 311);
             this.panel6.TabIndex = 2;
+            // 
+            // picAsignarPedidos
+            // 
+            this.picAsignarPedidos.Dock = System.Windows.Forms.DockStyle.Top;
+            this.picAsignarPedidos.Image = global::ProyectoCamioncitos.Properties.Resources.order;
+            this.picAsignarPedidos.Location = new System.Drawing.Point(0, 180);
+            this.picAsignarPedidos.Name = "picAsignarPedidos";
+            this.picAsignarPedidos.Size = new System.Drawing.Size(58, 36);
+            this.picAsignarPedidos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picAsignarPedidos.TabIndex = 5;
+            this.picAsignarPedidos.TabStop = false;
+            // 
+            // picFacturas
+            // 
+            this.picFacturas.Dock = System.Windows.Forms.DockStyle.Top;
+            this.picFacturas.Image = global::ProyectoCamioncitos.Properties.Resources.order;
+            this.picFacturas.Location = new System.Drawing.Point(0, 144);
+            this.picFacturas.Name = "picFacturas";
+            this.picFacturas.Size = new System.Drawing.Size(58, 36);
+            this.picFacturas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picFacturas.TabIndex = 4;
+            this.picFacturas.TabStop = false;
             // 
             // picAsignacionChoferVehiculo
             // 
@@ -278,7 +342,7 @@
             // 
             this.pictureBox6.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pictureBox6.Image = global::ProyectoCamioncitos.Properties.Resources.salida;
-            this.pictureBox6.Location = new System.Drawing.Point(0, 175);
+            this.pictureBox6.Location = new System.Drawing.Point(0, 275);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(58, 36);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -410,14 +474,14 @@
             this.panelForms.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelForms.Location = new System.Drawing.Point(186, 29);
             this.panelForms.Name = "panelForms";
-            this.panelForms.Size = new System.Drawing.Size(1056, 473);
+            this.panelForms.Size = new System.Drawing.Size(1056, 573);
             this.panelForms.TabIndex = 2;
             // 
             // SecretariaMenuView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1242, 502);
+            this.ClientSize = new System.Drawing.Size(1242, 602);
             this.ControlBox = false;
             this.Controls.Add(this.panelForms);
             this.Controls.Add(this.panel2);
@@ -437,6 +501,8 @@
             this.panel2.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picAsignarPedidos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFacturas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAsignacionChoferVehiculo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCliente)).EndInit();
@@ -476,7 +542,11 @@
         public System.Windows.Forms.PictureBox picCliente;
         public System.Windows.Forms.PictureBox picVehiculo;
         public System.Windows.Forms.PictureBox picChofer;
-        public System.Windows.Forms.Button btnDisponibilidad;
+        public System.Windows.Forms.Button btnAsignarChoferVehiculo;
         public System.Windows.Forms.PictureBox picAsignacionChoferVehiculo;
+        public System.Windows.Forms.Button btnFacturas;
+        public System.Windows.Forms.PictureBox picFacturas;
+        public System.Windows.Forms.Button btnAsignarEnvios;
+        public System.Windows.Forms.PictureBox picAsignarPedidos;
     }
 }
