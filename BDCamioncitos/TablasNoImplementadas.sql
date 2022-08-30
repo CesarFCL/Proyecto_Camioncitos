@@ -1,36 +1,15 @@
--- Tabla Envio
-create table ENVIO
-(
-  ID_FACTURA VARCHAR(10) primary key,
-  DIRECCION_DESTINATARIO VARCHAR(50) not null,
-  CI_DESTINATARIO VARCHAR(10) not null,
-  Telefono_DESTINATARIO VARCHAR(10) not null,
-  ESTADO BIT not null,
-  FECHA_FINALIZACION DATE,
-  CONSTRAINT fk_RUC FOREIGN KEY (RUC_REMITENTE) REFERENCES CLIENTE (RUC) -- 
-);
-
 -- Tabla Chofer_Envio
 create table CHOFER_ENVIO
 (
-  ID VARCHAR(20) primary key,
   CI_CHOFER VARCHAR(10) not null,
-  ID_ENVIO VARCHAR(10) not null,
-  CONSTRAINT fk_RUC FOREIGN KEY (RUC_REMITENTE) REFERENCES CLIENTE (RUC) --
-);
-
--- Tabla Factura
-create table FACTURA
-(
-  ID VARCHAR(10) primary key,
-  FECHA DATE not null,
-  RUC_CLIENTE  VARCHAR(10) not null,
-  DIRECCION_CLIENTE VARCHAR(50) not null,
-  TELEFONO_CLIENTE VARCHAR(10) not null,
-  DETALLES VARCHAR(50) not null,
-  COSTO FLOAT not null,
-  CONSTRAINT fk_RUC FOREIGN KEY (RUC_CLIENTE) REFERENCES CLIENTE (RUC),
-  CONSTRAINT fk_ID_ENVIO FOREIGN KEY (ID_ENVIO) REFERENCES ENVIO (ID_ENVIO)
+  ID_ENVIO int not null,
+  CONSTRAINT fk_ID_ENVIO FOREIGN KEY (ID_ENVIO) REFERENCES ENVIO (ID_FACTURA)
+  ON UPDATE cascade 
+  ON DELETE cascade,
+  CONSTRAINT fk_CI_CHOFER_ENVIO FOREIGN KEY (CI_CHOFER) REFERENCES EMPLEADOS (CI)
+  ON UPDATE cascade 
+  ON DELETE cascade,
+  primary key(CI_CHOFER,ID_ENVIO)
 );
 
 -- Tabla Informe
@@ -48,4 +27,40 @@ create table Informe
   ON DELETE cascade
 );
 
+-- Procedimiento para Obtener Facturas
+CREATE PROC ObtenerPedido
+@Condicion nvarchar(30)
+as
+begin
+	SET NOCOUNT ON
+	SELECT
+		ID as 'ID',
+		FECHA as 'Fecha',
+		RUC_CLIENTE as 'RUC Cliente',
+		DETALLES as 'Detalles',
+		PESO as 'Peso',
+		ENVIO_INTRAPROVINCIAL as 'Envio Intraprovincial',
+		COSTO as 'Costo'
+		FROM PEDIDO 
+		where ID like @Condicion+'%' or RUC_CLIENTE like @Condicion+'%'
+end
+go
+
+-- Procedimiento para Obtener Envios
+CREATE PROC ObtenerEnvios
+@Condicion nvarchar(30)
+as
+begin
+	SET NOCOUNT ON
+	SELECT
+		ID_FACTURA as 'ID',
+		DIRECCION_DESTINATARIO as 'Direccion Destinatario',
+		CI_DESTINATARIO as 'CI Destinatario',
+		TELEFONO_DESTINATARIO as 'Telefono Destinatario',
+		CASE WHEN ESTADO = 1 then 'Finalizado' else 'Pendiente' end as 'Estado',
+		FECHA_FINALIZACION as 'Fecha Finalizacion'
+		FROM ENVIO
+		where ID_PEDIDO like @Condicion+'%' or CI_DESTINATARIO like @Condicion+'%'
+end
+go
 
