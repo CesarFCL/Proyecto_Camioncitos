@@ -29,12 +29,25 @@ create table ENVIO
 );
 go
 
+-- Tabla Chofer_Envio
+create table CHOFER_ENVIO
+(
+  ID_PEDIDO int primary key,
+  CI_CHOFER VARCHAR(10) not null,
+  CONSTRAINT fk_ID_ENVIO FOREIGN KEY (ID_PEDIDO) REFERENCES ENVIO (ID_PEDIDO)
+  ON UPDATE cascade 
+  ON DELETE cascade,
+  CONSTRAINT fk_CI_CHOFER_ENVIO FOREIGN KEY (CI_CHOFER) REFERENCES EMPLEADOS (CI)
+  ON UPDATE cascade 
+  ON DELETE cascade
+);
+
 -- Procedimiento para Crear Factura y Envio
 CREATE PROC CrearPedidoEnvio
 @FECHA VARCHAR(10),
 @RUC_CLIENTE VARCHAR(13),
 @DETALLES VARCHAR(50),
-@PESO VARCHAR(10),
+@PESO VARCHAR(8),
 @ENVIO_INTRAPROVINCIAL VARCHAR(5),
 @DIRECCION_DESTINATARIO VARCHAR(50),
 @CI_DESTINATARIO VARCHAR(10),
@@ -87,7 +100,7 @@ begin
 		F.DETALLES as 'Detalles',
 		F.PESO as 'Peso',
 		CASE WHEN F.ENVIO_INTRAPROVINCIAL = 1 then 'Si' else 'No' end as 'Envio Intraprovincial',
-		F.COSTO as 'Costo',
+		CAST(ROUND(F.COSTO, 2, 1) AS DECIMAL(20,2)) 'Costo',
 		E.DIRECCION_DESTINATARIO as 'Direccion Destinatario',
 		E.CI_DESTINATARIO as 'CI Destinatario',
 		E.TELEFONO_DESTINATARIO as 'Telefono Destinatario',
@@ -123,7 +136,7 @@ go
 CREATE PROC ModificarPedidoEnvio
 @ID int,
 @DETALLES VARCHAR(50),
-@PESO VARCHAR(10),
+@PESO VARCHAR(8),
 @ENVIO_INTRAPROVINCIAL VARCHAR(5),
 @DIRECCION_DESTINATARIO VARCHAR(50),
 @TELEFONO_DESTINATARIO VARCHAR(10),
@@ -180,5 +193,142 @@ BEGIN
 		 begin
 			select @PostEstado as 'PostEstado';
 		 end
+END 
+go
+
+-- Procedimiento para Obtener DATOS Facturas/Envios Pendientes NO ASIGNADOS
+CREATE PROC ObtenerPedidoEnvioPendienteNoAsignado
+@Condicion nvarchar(30)
+as
+begin
+	SET NOCOUNT ON
+	SELECT
+		F.ID as 'ID',
+		F.FECHA as 'Fecha',
+		F.RUC_CLIENTE as 'RUC Cliente',
+		F.DETALLES as 'Detalles',
+		F.PESO as 'Peso',
+		CASE WHEN F.ENVIO_INTRAPROVINCIAL = 1 then 'Si' else 'No' end as 'Envio Intraprovincial',
+		CAST(ROUND(F.COSTO, 2, 1) AS DECIMAL(20,2)) 'Costo',
+		E.DIRECCION_DESTINATARIO as 'Direccion Destinatario',
+		E.CI_DESTINATARIO as 'CI Destinatario',
+		E.TELEFONO_DESTINATARIO as 'Telefono Destinatario',
+		CASE WHEN E.ESTADO = 1 then 'Finalizado' else 'Pendiente' end as 'Estado',
+		E.FECHA_FINALIZACION as 'Fecha Finalizacion'
+
+	FROM PEDIDO F
+	JOIN ENVIO E ON F.ID = E.ID_PEDIDO
+	where (F.ID like ''+'%' or F.RUC_CLIENTE like ''+'%' or E.CI_DESTINATARIO like ''+'%') and (E.ESTADO=0)
+			and (F.ID NOT IN(SELECT ID_PEDIDO FROM CHOFER_ENVIO))
+end
+go
+
+-- Procedimiento para Obtener ENVIOS ASIGNADOS
+CREATE PROC ObtenerEnvioAsignado
+@Condicion nvarchar(30)
+as
+begin
+	SET NOCOUNT ON
+	SELECT
+		C.ID_PEDIDO AS 'ID Envio',
+		C.CI_CHOFER AS 'CI Chofer'
+
+		FROM CHOFER_ENVIO C
+		JOIN ENVIO E ON C.ID_PEDIDO = E.ID_PEDIDO
+		where (C.ID_PEDIDO like @Condicion+'%' or C.CI_CHOFER like @Condicion+'%') and (E.ESTADO = 0)
+end
+go
+
+--Procedimiento para Asignar Envio
+CREATE PROC AsignarEnvio
+@ID_PEDIDO int,
+@CI_CHOFER VARCHAR(10)
+as
+begin
+	SET NOCOUNT ON
+	if exists
+	(
+		select ID_PEDIDO
+		from ENVIO
+		where ID_PEDIDO = @ID_PEDIDO and ESTADO = 0
+	)
+	begin
+		SET NOCOUNT ON
+		insert into CHOFER_ENVIO values(@ID_PEDIDO,@CI_CHOFER);
+	end
+end
+go
+
+--Procedimiento para Eliminar Asignacion Envio
+CREATE PROC EliminarAsignacionEnvio
+@ID_PEDIDO int,
+@CI_CHOFER VARCHAR(10)
+as
+begin
+	SET NOCOUNT ON
+	if exists
+	(
+		select ID_PEDIDO
+		from CHOFER_ENVIO
+		where ID_PEDIDO = @ID_PEDIDO and CI_CHOFER = @CI_CHOFER
+	)
+	begin
+		SET NOCOUNT ON
+		delete from CHOFER_ENVIO where ID_PEDIDO = @ID_PEDIDO and CI_CHOFER = @CI_CHOFER;
+	end
+end
+go
+
+-- Procedimiento para Obtener Envios Pendientes Chofer
+CREATE PROC ObtenerEnviosPendientesDetalladosChofer
+@CI nvarchar(10),
+@Condicion nvarchar(30)
+as
+begin
+	SET NOCOUNT ON
+	SELECT
+		F.ID as 'ID',
+		F.FECHA as 'Fecha',
+		F.RUC_CLIENTE as 'RUC Cliente',
+		C.NOMBRE as 'Nombre Cliente',
+		C.DIRECCION as 'Direccion Cliente',
+		C.TELEFONO as 'Telefono Cliente',
+		F.DETALLES as 'Detalles',
+		F.PESO as 'Peso',
+		CASE WHEN F.ENVIO_INTRAPROVINCIAL = 1 then 'Si' else 'No' end as 'Envio Intraprovincial',
+		CAST(ROUND(F.COSTO, 2, 1) AS DECIMAL(20,2)) 'Costo',
+		E.DIRECCION_DESTINATARIO as 'Direccion Destinatario',
+		E.CI_DESTINATARIO as 'CI Destinatario',
+		E.TELEFONO_DESTINATARIO as 'Telefono Destinatario',
+		CASE WHEN E.ESTADO = 1 then 'Finalizado' else 'Pendiente' end as 'Estado',
+		E.FECHA_FINALIZACION as 'Fecha Finalizacion'
+
+		FROM PEDIDO F
+		JOIN ENVIO E ON F.ID = E.ID_PEDIDO
+		JOIN CHOFER_ENVIO CE ON CE.ID_PEDIDO = F.ID
+		JOIN CLIENTE C ON C.RUC = F.RUC_CLIENTE
+		where (CE.CI_CHOFER = @CI) and (F.ID like @Condicion+'%') and (E.ESTADO = 0)
+end
+go
+
+--Procedimiento para PedidoEnvio
+CREATE PROC FinalizarEnvio
+@ID_ENVIO int
+as
+BEGIN 
+     SET NOCOUNT ON 
+	 if exists
+	 (
+		select ID_PEDIDO from ENVIO where ID_PEDIDO = @ID_ENVIO and ESTADO = 0
+	 )
+		begin
+		SET NOCOUNT ON 
+			UPDATE ENVIO
+			SET	ESTADO = 1
+			WHERE ID_PEDIDO = @ID_ENVIO
+			UPDATE ENVIO
+			SET	FECHA_FINALIZACION = CAST(GETDATE() AS Date)
+			WHERE ID_PEDIDO = @ID_ENVIO
+		end
 END 
 go

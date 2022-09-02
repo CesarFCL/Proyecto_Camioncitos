@@ -1,17 +1,3 @@
--- Tabla Chofer_Envio
-create table CHOFER_ENVIO
-(
-  CI_CHOFER VARCHAR(10) not null,
-  ID_ENVIO int not null,
-  CONSTRAINT fk_ID_ENVIO FOREIGN KEY (ID_ENVIO) REFERENCES ENVIO (ID_FACTURA)
-  ON UPDATE cascade 
-  ON DELETE cascade,
-  CONSTRAINT fk_CI_CHOFER_ENVIO FOREIGN KEY (CI_CHOFER) REFERENCES EMPLEADOS (CI)
-  ON UPDATE cascade 
-  ON DELETE cascade,
-  primary key(CI_CHOFER,ID_ENVIO)
-);
-
 -- Tabla Informe
 create table Informe
 (
@@ -63,4 +49,3 @@ begin
 		where ID_PEDIDO like @Condicion+'%' or CI_DESTINATARIO like @Condicion+'%'
 end
 go
-

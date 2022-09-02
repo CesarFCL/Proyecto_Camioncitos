@@ -14,15 +14,31 @@ exec CrearEmpleado '1111111111','Jesus','Monserrate','1231231231','2001-06-19','
 go
 exec CrearEmpleado '2222222222','Cesar','Carrion','3213213213','2002-05-17','cesar@gmail.com','Marte','1234','Admin'
 go
-insert into CLIENTE values('123123123','Coca-Cola-Company','1231231231','coca_cola@cocacola.com','La Luna');
+exec CrearCliente '1231231231231','Coca-Cola-Company','1231231231','coca_cola@cocacola.com','La Luna'
+go
+exec CrearCliente '3213213213213','FaustoShop','2222222222','fausto@gmail.com','Jupiter'
 go
 insert into LISTADO_TIPOS_VEHICULOS values('000C1','Camioneta');
 go
 insert into LISTADO_TIPOS_VEHICULOS values('000C0','Camion');
 go
+insert into LISTADO_TIPOS_VEHICULOS values('000T1','Tanque Aleman Tiger I');
+go
+insert into LISTADO_TIPOS_VEHICULOS values('000A1','Airbus A380');
+go
+insert into LISTADO_TIPOS_VEHICULOS values('000B1','Burro');
+go
 exec CrearVehiculo 'ABC1234','Toyota','2017','Camioneta'
 go
 exec CrearVehiculo 'CBA4321','Ferrari','2018','Camion'
 go
-exec CrearPedidoEnvio '2022-08-29','123123123','5 paquetes de 6 Cocacolas de 5L','50','No','Muy lejos','1234567890','0990634712'
+exec CrearVehiculo 'TKK6666','Tanque Pesado','1942','Tanque Aleman Tiger I'
+go
+exec CrearVehiculo 'HCabc91','Avión comercial','2015','AirbusA380'
+go
+exec CrearVehiculo 'susij00','Currincho','2018','Burro'
+go
+exec CrearPedidoEnvio '2022-08-29','1231231231231','5 paquetes de 6 Cocacolas de 5L','50','No','Muy lejos','1234567890','0990634712'
+go
+exec CrearPedidoEnvio '2022-08-28','3213213213213','70 kg de madera','70','Si','La tiendita de Luis','1234567890','0990634713'
 go
