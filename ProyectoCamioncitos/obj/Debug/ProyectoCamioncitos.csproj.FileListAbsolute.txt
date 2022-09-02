@@ -20,3 +20,5 @@ C:\Users\cesar\source\repos\ProyectoCamioncitos\obj\Debug\ProyectoCamioncitos.Vi
 C:\Users\cesar\source\repos\ProyectoCamioncitos\obj\Debug\ProyectoCamioncitos.Vista.Chofer.ChoferProfileView.resources
 C:\Users\cesar\source\repos\ProyectoCamioncitos\obj\Debug\ProyectoCamioncitos.Vista.FacturasEnvios.PedidosCrudView.resources
 C:\Users\cesar\source\repos\ProyectoCamioncitos\obj\Debug\ProyectoCamioncitos.Vista.Pedidos.AsignarEnviosView.resources
+C:\Users\cesar\source\repos\ProyectoCamioncitos\obj\Debug\ProyectoCamioncitos.Vista.Pedidos.EnviosPendientesChoferView.resources
+C:\Users\cesar\source\repos\ProyectoCamioncitos\obj\Debug\ProyectoCamioncitos.Vista.Vehiculo.VehiculoInforme.resources

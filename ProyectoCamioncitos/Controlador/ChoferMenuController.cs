@@ -1,6 +1,7 @@
 ﻿using ProyectoCamioncitos.Modelo.DAO;
 using ProyectoCamioncitos.Modelo.DTO;
 using ProyectoCamioncitos.Vista.Chofer;
+using ProyectoCamioncitos.Vista.Pedidos;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -24,7 +25,7 @@ namespace ProyectoCamioncitos.Controlador
             Vista.btnSalir.Click += delegate (object sender, EventArgs e) { CerrarEvent(sender, e, Vista); };
             Vista.pMinimizar.Click += delegate (object sender, EventArgs e) { MinimizarEvent(sender, e, Vista); };
             Vista.btnInforme.Click += new EventHandler(AbrirFormChoferStatusEvent);
-            Vista.btnEncargos.Click += new EventHandler(AbrirFormChoferStatusEvent);
+            Vista.btnEnvios.Click += new EventHandler(AbrirFormChoferEnviosEvent);
             Vista.btnPerfil.Click += new EventHandler(AbrirFormChoferStatusEvent);
             Vista.FormClosed += delegate (object sender, FormClosedEventArgs e) { CerrarFormInternoEvent(sender, e, Vista.panelForms); };
             Vista.TopPanel.MouseDown += delegate (object sender, MouseEventArgs e) { DragPanelEvent(sender, e, Vista); };
@@ -39,23 +40,24 @@ namespace ProyectoCamioncitos.Controlador
 
             ActiveColorBtn(Vista.btnPerfil, Vista.picChofer);
             InactiveColorBtn(Vista.btnInforme, Vista.picCliente);
-            InactiveColorBtn(Vista.btnEncargos, Vista.picVehiculo);
+            InactiveColorBtn(Vista.btnEnvios, Vista.picVehiculo);
         }
 
         //Evento Abrir Vista 
-        public void AbrirFormChoferInformeEventt(object sender, EventArgs e)
+        public void AbrirFormChoferInformeEvent(object sender, EventArgs e)
         {
 
             ActiveColorBtn(Vista.btnInforme, Vista.picCliente);
             InactiveColorBtn(Vista.btnPerfil, Vista.picChofer);
-            InactiveColorBtn(Vista.btnEncargos, Vista.picVehiculo);
+            InactiveColorBtn(Vista.btnEnvios, Vista.picVehiculo);
         }
 
         //Evento Abrir Vista
-        public void AbrirFormChoferEncargosEvent(object sender, EventArgs e)
+        public void AbrirFormChoferEnviosEvent(object sender, EventArgs e)
         {
+            AbrirForm(new EnviosPendientesChoferView(Vista), Vista.panelForms);
 
-            ActiveColorBtn(Vista.btnEncargos, Vista.picVehiculo);
+            ActiveColorBtn(Vista.btnEnvios, Vista.picVehiculo);
             InactiveColorBtn(Vista.btnPerfil, Vista.picChofer);
             InactiveColorBtn(Vista.btnInforme, Vista.picCliente);
         }

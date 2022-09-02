@@ -2,6 +2,7 @@
 using ProyectoCamioncitos.Vista.Chofer;
 using ProyectoCamioncitos.Vista.Conductor;
 using ProyectoCamioncitos.Vista.FacturasEnvios;
+using ProyectoCamioncitos.Vista.Pedidos;
 using System;
 using System.Linq;
 using System.Text;
@@ -26,8 +27,9 @@ namespace ProyectoCamioncitos.Controlador
             Vista.btnVehiculo.Click += new EventHandler(AbrirFormVehiculoEvent);
             Vista.btnChofer.Click += new EventHandler(AbrirFormChoferEvent);
             Vista.btnFacturas.Click += new EventHandler(AbrirFormFacturasEnviosEvent);
-            Vista.FormClosed += delegate (object sender, FormClosedEventArgs e) { CerrarFormInternoEvent(sender, e, Vista.panelForms); };
-            Vista.btnAsignarChoferVehiculo.Click += new EventHandler(AbrirFormDisponibilidadEvent);
+            Vista.btnAsignarChoferVehiculo.Click += new EventHandler(AbrirFormAsignarChoferVehiculoEvent);
+            Vista.btnAsignarEnvios.Click += new EventHandler(AbrirFormAsignarEnviosEvent);
+            Vista.FormClosed += delegate (object sender, FormClosedEventArgs e) { CerrarFormInternoEvent(sender, e, Vista.panelForms); };       
             Vista.TopPanel.MouseDown += delegate (object sender, MouseEventArgs e) { DragPanelEvent(sender, e, Vista); };
         }
 
@@ -41,6 +43,7 @@ namespace ProyectoCamioncitos.Controlador
             InactiveColorBtn(Vista.btnChofer, Vista.picChofer);
             InactiveColorBtn(Vista.btnAsignarChoferVehiculo, Vista.picAsignacionChoferVehiculo);
             InactiveColorBtn(Vista.btnFacturas, Vista.picFacturas);
+            InactiveColorBtn(Vista.btnAsignarEnvios, Vista.picAsignarEnvios);
         }
         //Evento Abrir Vista CRUD Facturas Envios
         public void AbrirFormFacturasEnviosEvent(object sender, EventArgs e)
@@ -52,6 +55,7 @@ namespace ProyectoCamioncitos.Controlador
             InactiveColorBtn(Vista.btnVehiculo, Vista.picVehiculo);
             InactiveColorBtn(Vista.btnChofer, Vista.picChofer);
             InactiveColorBtn(Vista.btnAsignarChoferVehiculo, Vista.picAsignacionChoferVehiculo);
+            InactiveColorBtn(Vista.btnAsignarEnvios, Vista.picAsignarEnvios);
         }
 
         //Evento Abrir Vista CRUD Vehiculo
@@ -64,6 +68,7 @@ namespace ProyectoCamioncitos.Controlador
             InactiveColorBtn(Vista.btnChofer, Vista.picChofer);
             InactiveColorBtn(Vista.btnAsignarChoferVehiculo, Vista.picAsignacionChoferVehiculo);
             InactiveColorBtn(Vista.btnFacturas, Vista.picFacturas);
+            InactiveColorBtn(Vista.btnAsignarEnvios, Vista.picAsignarEnvios);
         }
 
         //Evento Abrir Vista CRUD Chofer
@@ -76,14 +81,29 @@ namespace ProyectoCamioncitos.Controlador
             InactiveColorBtn(Vista.btnVehiculo, Vista.picVehiculo);
             InactiveColorBtn(Vista.btnAsignarChoferVehiculo, Vista.picAsignacionChoferVehiculo);
             InactiveColorBtn(Vista.btnFacturas, Vista.picFacturas);
+            InactiveColorBtn(Vista.btnAsignarEnvios, Vista.picAsignarEnvios);
         }
 
-        //Evento Abrir Vista Disponibilidad Chofer Vehiculo
-        public void AbrirFormDisponibilidadEvent(object sender, EventArgs e)
+        //Evento Abrir Vista Asignar Chofer Vehiculo
+        public void AbrirFormAsignarChoferVehiculoEvent(object sender, EventArgs e)
         {
             AbrirForm(new AsignacionChoferVehiculoView(), Vista.panelForms);
 
             ActiveColorBtn(Vista.btnAsignarChoferVehiculo, Vista.picAsignacionChoferVehiculo);
+            InactiveColorBtn(Vista.btnChofer, Vista.picChofer);
+            InactiveColorBtn(Vista.btnCliente, Vista.picCliente);
+            InactiveColorBtn(Vista.btnVehiculo, Vista.picVehiculo);
+            InactiveColorBtn(Vista.btnFacturas, Vista.picFacturas);
+            InactiveColorBtn(Vista.btnAsignarEnvios, Vista.picAsignarEnvios);
+        }
+
+        //Evento Abrir Vista Asignar Envios
+        public void AbrirFormAsignarEnviosEvent(object sender, EventArgs e)
+        {
+            AbrirForm(new AsignarEnviosView(), Vista.panelForms);
+
+            ActiveColorBtn(Vista.btnAsignarEnvios, Vista.picAsignarEnvios);
+            InactiveColorBtn(Vista.btnAsignarChoferVehiculo, Vista.picAsignacionChoferVehiculo);
             InactiveColorBtn(Vista.btnChofer, Vista.picChofer);
             InactiveColorBtn(Vista.btnCliente, Vista.picCliente);
             InactiveColorBtn(Vista.btnVehiculo, Vista.picVehiculo);

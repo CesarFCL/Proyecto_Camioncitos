@@ -33,7 +33,7 @@ namespace ProyectoCamioncitos.Controlador
             Vista.btnEliminar.Click += new EventHandler(DeleteClienteEvent);
             Vista.btnEditar.Click += new EventHandler(UpdateClienteEvent);
 
-            Vista.txtRUC.TextChanged += new EventHandler(RucLimit);
+            Vista.txtRUC.TextChanged += delegate (object sender, EventArgs e) { RUC_Limit(sender, e, Vista.txtRUC); };
             Vista.txtNombre.TextChanged += delegate (object sender, EventArgs e) { NombreLimit(sender, e, Vista.txtNombre); };
             Vista.txtTelefono.TextChanged += delegate (object sender, EventArgs e) { CelularLimit(sender, e, Vista.txtTelefono); };
             Vista.txtCorreo.TextChanged += delegate (object sender, EventArgs e) { CorreoLimit(sender, e, Vista.txtCorreo); };
@@ -193,12 +193,6 @@ namespace ProyectoCamioncitos.Controlador
             Vista.btnGuardar.Enabled = true;
             Vista.btnEliminar.Enabled = false;
             Vista.txtRUC.Enabled = true;
-        }
-
-        //Restricciones particulares Cliente
-        public void RucLimit(object sender, EventArgs e)
-        {
-            Vista.txtRUC.MaxLength = 13;
         }
     }
 }

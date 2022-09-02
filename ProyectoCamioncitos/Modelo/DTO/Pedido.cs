@@ -9,13 +9,13 @@ namespace ProyectoCamioncitos.Modelo.DTO
     public class Pedido
     {
         //ATRIBUTOS
-        private int _ID;
-        private DateTime _Fecha;
-        private string _RucCliente;
-        private string _Detalles;
-        private string _Peso;
-        private string _EnvioIntraprovincial;
-        private float _Costo;
+        protected int _ID;
+        protected DateTime _Fecha;
+        protected string _RucCliente;
+        protected string _Detalles;
+        protected string _Peso;
+        protected string _EnvioIntraprovincial;
+        protected float _Costo;
 
         //Getters y Setters
         public int ID { get => _ID; set => _ID = value; }

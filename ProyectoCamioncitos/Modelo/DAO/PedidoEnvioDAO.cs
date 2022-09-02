@@ -19,7 +19,7 @@ namespace ProyectoCamioncitos.Modelo.DAO
         //METODOS CRUD
 
         //Metodo Leer Pedidos
-        public List<Tuple<Pedido, Envio>> ObtenerFacturaEnvio(string Condicion)
+        public List<Tuple<Pedido, Envio>> ObtenerPedidoEnvio(string Condicion)
         {
             Comando.Connection = Conexion;
             Comando.CommandText = "ObtenerPedidoEnvio";
@@ -28,10 +28,10 @@ namespace ProyectoCamioncitos.Modelo.DAO
             Conexion.Open();
             Reader = Comando.ExecuteReader();
 
-            List<Tuple<Pedido, Envio>> ListaFacturaEnvio = new List<Tuple<Pedido, Envio>>();
+            List<Tuple<Pedido, Envio>> ListaPedidoEnvio = new List<Tuple<Pedido, Envio>>();
             while (Reader.Read())
             {
-                ListaFacturaEnvio.Add(new Tuple<Pedido, Envio>(
+                ListaPedidoEnvio.Add(new Tuple<Pedido, Envio>(
                     new Pedido
                     {
                         ID = Int32.Parse(Reader["ID"].ToString()),
@@ -53,7 +53,7 @@ namespace ProyectoCamioncitos.Modelo.DAO
             }
             Reader.Close();
             Conexion.Close();
-            return ListaFacturaEnvio;
+            return ListaPedidoEnvio;
         }
 
         //Metodo Crear PedidoEnvio
@@ -152,6 +152,63 @@ namespace ProyectoCamioncitos.Modelo.DAO
             {
                 throw new DBErrorException();
             }
+        }
+
+        //Método Finalizar Envio
+        public bool UpdateFinalizarEnvio(int ID_Envio)
+        {
+            try
+            {
+                Comando.Connection = Conexion;
+                Comando.CommandText = "FinalizarEnvio";
+                Comando.CommandType = CommandType.StoredProcedure;
+                Comando.Parameters.AddWithValue("@ID_ENVIO", ID_Envio);
+                Conexion.Open();
+                Comando.ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                throw new DBErrorException();
+            }
+        }
+
+        //Metodo Leer Pedidos Pendientes
+        public List<Tuple<Pedido, Envio>> ObtenerPedidoEnvioPendiente(string Condicion)
+        {
+            Comando.Connection = Conexion;
+            Comando.CommandText = "ObtenerPedidoEnvioPendienteNoAsignado";
+            Comando.CommandType = CommandType.StoredProcedure;
+            Comando.Parameters.AddWithValue("@Condicion", Condicion);
+            Conexion.Open();
+            Reader = Comando.ExecuteReader();
+
+            List<Tuple<Pedido, Envio>> ListaPedidoEnvio = new List<Tuple<Pedido, Envio>>();
+            while (Reader.Read())
+            {
+                ListaPedidoEnvio.Add(new Tuple<Pedido, Envio>(
+                    new Pedido
+                    {
+                        ID = Int32.Parse(Reader["ID"].ToString()),
+                        Fecha = DateTime.Parse(Reader["Fecha"].ToString()),
+                        RucCliente = Reader["RUC Cliente"].ToString(),
+                        Detalles = Reader["Detalles"].ToString(),
+                        Peso = Reader["Peso"].ToString(),
+                        EnvioIntraprovincial = Reader["Envio Intraprovincial"].ToString(),
+                        Costo = float.Parse(Reader["Costo"].ToString())
+                    }, new Envio
+                    {
+                        Id = Int32.Parse(Reader["ID"].ToString()),
+                        DireccionDestinatario = Reader["Direccion Destinatario"].ToString(),
+                        CiDestinatario = Reader["CI Destinatario"].ToString(),
+                        TelefonoDestinatario = Reader["Telefono Destinatario"].ToString(),
+                        Estado = Reader["Estado"].ToString(),
+                        FechaFinalizacion = Reader["Fecha Finalizacion"].ToString()
+                    }));
+            }
+            Reader.Close();
+            Conexion.Close();
+            return ListaPedidoEnvio;
         }
     }
 }

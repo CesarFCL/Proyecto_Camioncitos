@@ -53,7 +53,21 @@ namespace ProyectoCamioncitos.Controlador
             {
                 MessageBox.Show("Ingrese solo números", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 e.Handled = true;
-                return;
+            }
+        }
+
+        //Validar numeros decimales
+        public void ValDecimal_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Solo poder poner un decimal
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
             }
         }
 
@@ -102,6 +116,12 @@ namespace ProyectoCamioncitos.Controlador
         public void PasswordLimit(object sender, EventArgs e, TextBox Password)
         {
             Password.MaxLength = 10;
+        }
+
+        //Restricciones Particulares Cliente
+        public void RUC_Limit(object sender, EventArgs e, TextBox RUC)
+        {
+            RUC.MaxLength = 13;
         }
     }
 }

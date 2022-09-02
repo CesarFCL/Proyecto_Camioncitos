@@ -25,73 +25,12 @@ namespace ProyectoCamioncitos.Controlador
 
             //inicializar eventos
             Vista.Load += new EventHandler(LoadEvent);
-            Vista.btnEditar.Click += new EventHandler(UpdateChoferEvent);
-
-            Vista.txtCI.TextChanged += delegate (object sender, EventArgs e) { CI_Limit(sender, e, Vista.txtCI); };
-            Vista.txtNombre.TextChanged += delegate (object sender, EventArgs e) { NombreLimit(sender, e, Vista.txtNombre); };
-            Vista.txtApellido.TextChanged += delegate (object sender, EventArgs e) { ApellidoLimit(sender, e, Vista.txtApellido); };
-            Vista.txtCelular.TextChanged += delegate (object sender, EventArgs e) { CelularLimit(sender, e, Vista.txtCelular); };
-            Vista.txtCorreo.TextChanged += delegate (object sender, EventArgs e) { CorreoLimit(sender, e, Vista.txtCorreo); };
-            Vista.txtDireccion.TextChanged += delegate (object sender, EventArgs e) { DireccionLimit(sender, e, Vista.txtDireccion); };
-
-            Vista.txtCI.KeyPress += new KeyPressEventHandler(OnlyNumbers_KeyPress);
-            Vista.txtCelular.KeyPress += new KeyPressEventHandler(OnlyNumbers_KeyPress);
-            Vista.txtCorreo.Leave += delegate (object sender, EventArgs e) { ValCorreoE(sender, e, Vista.txtCorreo); };
         }
 
         //Evento Cargar Vista para cuanto es abierta la Vista
         public void LoadEvent(object sender, EventArgs e)
         {
             CargarChofer();
-        }
-
-        //Evento Buscar Chofer
-        public void BusquedaEvent(object sender, EventArgs e)
-        {
-            CargarChofer();
-        }
-
-        //Evento Modificar Chofer
-        public void UpdateChoferEvent(object sender, EventArgs e)
-        {
-            try
-            {
-                ValUpdateChofer();
-                DialogResult dialogResult = MessageBox.Show("Esta seguro de querer editar la informacion del chofer con cedula: " + Vista.txtCI.Text, "Editar Chofer", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    UpdateChofer();
-                    CargarChofer();
-                }
-            }
-            catch { }
-        }
-
-        //Metodo Validacion Datos Completos Update Chofer
-        public void ValUpdateChofer()
-        {
-            //Se asegura que todos los datos de los textbox esten completos
-            TextBox[] textboxsUpdate = new TextBox[] { Vista.txtCI, Vista.txtNombre, Vista.txtApellido, Vista.txtCelular,
-                Vista.txtCorreo, Vista.txtDireccion};
-            bool datosCompletos = !textboxsUpdate.Any(X => String.IsNullOrEmpty(X.Text));
-
-            if (!datosCompletos)
-            {
-                throw new DatosIncompletosException();
-            }
-        }
-
-        //Método Update Chofer
-        public void UpdateChofer()
-        {
-            try
-            {
-                ChoferDAO chofer = new ChoferDAO();
-                string Disponibilidad = Menu.pStatus.BackColor == Color.FromArgb(0, 255, 0) ? "Disponible" : "No Disponible";
-                chofer.Update(Vista.txtCI.Text, Vista.txtNombre.Text, Vista.txtApellido.Text,
-                    Vista.txtCelular.Text, Vista.dtpFechaNacimiento.Value.ToString("yyyy-MM-dd"), Vista.txtCorreo.Text, Vista.txtDireccion.Text, Disponibilidad);
-            }
-            catch { }
         }
 
         //Método Cargar Chofer

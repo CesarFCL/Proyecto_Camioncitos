@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace ProyectoCamioncitos.Controlador
 {
-    //Controlador de la Vista CRUD Facturas
+    //Controlador de la Vista CRUD Pedidos
     class PedidosCrudController : GlobalCrud
     {
         PedidosCrudView Vista;
@@ -30,19 +30,21 @@ namespace ProyectoCamioncitos.Controlador
             //Inicializar eventos
             Vista.Load += new EventHandler(LoadEvent);
             Vista.txtBuscarFacturas.TextChanged += new EventHandler(BusquedaEvent);
-            Vista.tblFacturas.CellMouseClick += new DataGridViewCellMouseEventHandler(SelectFacturasEvent);
+            Vista.tblPedidos.CellMouseClick += new DataGridViewCellMouseEventHandler(SelectPedidossEvent);
             Vista.btnLimpiar.Click += new EventHandler(LimpiarEvent);
             Vista.btnGuardar.Click += new EventHandler(CreatePedidoEvent);
             Vista.btnEliminar.Click += new EventHandler(DeletePedidoEvent);
             Vista.btnEditar.Click += new EventHandler(UpdatePedidoEvent);
 
-            Vista.txtRucCliente.TextChanged += delegate (object sender, EventArgs e) { CI_Limit(sender, e, Vista.txtRucCliente); };
-            Vista.txtCiDestinatario.TextChanged += delegate (object sender, EventArgs e) { CI_Limit(sender, e, Vista.txtRucCliente); };
+            Vista.txtRucCliente.TextChanged += delegate (object sender, EventArgs e) { RUC_Limit(sender, e, Vista.txtRucCliente); };
+            Vista.txtCiDestinatario.TextChanged += delegate (object sender, EventArgs e) { CI_Limit(sender, e, Vista.txtCiDestinatario); };
             Vista.txtTelefonoDestinatario.TextChanged += delegate (object sender, EventArgs e) { CelularLimit(sender, e, Vista.txtTelefonoDestinatario); };
+            Vista.txtPeso.TextChanged += new EventHandler(Peso_Limit);
 
             Vista.txtRucCliente.KeyPress += new KeyPressEventHandler(OnlyNumbers_KeyPress);
             Vista.txtCiDestinatario.KeyPress += new KeyPressEventHandler(OnlyNumbers_KeyPress);
             Vista.txtTelefonoDestinatario.KeyPress += new KeyPressEventHandler(OnlyNumbers_KeyPress);
+            Vista.txtPeso.KeyPress += new KeyPressEventHandler(ValDecimal_KeyPress);
         }
 
         //Evento Cargar Vista para cuanto es abierta la Vista
@@ -52,23 +54,22 @@ namespace ProyectoCamioncitos.Controlador
             Limpiar();
         }
 
-        //Evento Buscar Facturas
+        //Evento Buscar Pedidos
         public void BusquedaEvent(object sender, EventArgs e)
         {
             CargarPedidos();
         }
 
-        //Método Cargar Facturas
+        //Método Cargar Pedidos
         public void CargarPedidos()
         {
-            Vista.tblFacturas.Rows.Clear();
-            PedidoEnvioDAO facturaEnvio = new PedidoEnvioDAO();
-            List<Tuple<Pedido, Envio>> ListaFacturaEnvio = facturaEnvio.ObtenerFacturaEnvio(Vista.txtBuscarFacturas.Text);
+            Vista.tblPedidos.Rows.Clear();
+            PedidoEnvioDAO pedidoEnvio = new PedidoEnvioDAO();
+            List<Tuple<Pedido, Envio>> ListaPedidoEnvio = pedidoEnvio.ObtenerPedidoEnvio(Vista.txtBuscarFacturas.Text);
 
-            foreach (var tuples in ListaFacturaEnvio)
+            foreach (var tuples in ListaPedidoEnvio)
             {
-                Console.WriteLine(tuples.Item2.FechaFinalizacion);
-                Vista.tblFacturas.Rows.Add(tuples.Item1.ID, tuples.Item1.Fecha.ToString("dd-MM-yyyy"),tuples.Item1.RucCliente,tuples.Item1.Costo,
+                Vista.tblPedidos.Rows.Add(tuples.Item1.ID, tuples.Item1.Fecha.ToString("dd-MM-yyyy"),tuples.Item1.RucCliente,tuples.Item1.Costo,
                     tuples.Item2.DireccionDestinatario,tuples.Item2.CiDestinatario,tuples.Item2.Estado,
                     DateTime.TryParse(tuples.Item2.FechaFinalizacion.ToString(), out DateTime dt) ?
                                                        dt.ToString("dd-MM-yyyy") : tuples.Item2.FechaFinalizacion.ToString());
@@ -76,13 +77,13 @@ namespace ProyectoCamioncitos.Controlador
         }
 
         //Evento Seleccion Fila Factura
-        public void SelectFacturasEvent(object sender, EventArgs e)
+        public void SelectPedidossEvent(object sender, EventArgs e)
         {
             //Pasa los datos de la fila seleccionada de la tabla Factura a los textboxs
-            if (Vista.tblFacturas.SelectedRows.Count > 0)
+            if (Vista.tblPedidos.SelectedRows.Count > 0)
             {
                 PedidoEnvioDAO facturaEnvio = new PedidoEnvioDAO();
-                List<Tuple<Pedido, Envio>> FacturaResult = facturaEnvio.ObtenerFacturaEnvio(Vista.tblFacturas.CurrentRow.Cells[0].Value.ToString());
+                List<Tuple<Pedido, Envio>> FacturaResult = facturaEnvio.ObtenerPedidoEnvio(Vista.tblPedidos.CurrentRow.Cells[0].Value.ToString());
 
                 Vista.txtID.Text = FacturaResult[0].Item1.ID.ToString();
                 Vista.dtpFechaFactura.Value = FacturaResult[0].Item1.Fecha;
@@ -133,7 +134,7 @@ namespace ProyectoCamioncitos.Controlador
 
             BotonesFaseCreate(Vista.btnGuardar, Vista.btnEliminar, Vista.btnEditar);
 
-            Vista.tblFacturas.ClearSelection();
+            Vista.tblPedidos.ClearSelection();
 
             Vista.dtpFechaFactura.Value = DateTime.Now;
             Vista.dtpFechaFinalizacionEnvio.Value = DateTime.Now;
@@ -261,9 +262,14 @@ namespace ProyectoCamioncitos.Controlador
                 pedido.Update(int.Parse(Vista.txtID.Text),Vista.txtDetallesEnvio.Text, Vista.txtPeso.Text,
                     Vista.cboxIntraprovincial.SelectedItem.ToString(),Vista.txtDireccionDestinatario.Text, 
                     Vista.txtTelefonoDestinatario.Text, Vista.cboxEstadoEnvio.SelectedItem.ToString());
-
             }
             catch { }
+        }
+
+        //Restricciones Particulares Peso
+        public void Peso_Limit(object sender, EventArgs e)
+        {
+            Vista.txtPeso.MaxLength = 8;
         }
     }
 }
