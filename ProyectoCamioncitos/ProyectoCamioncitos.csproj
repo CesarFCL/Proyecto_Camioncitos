@@ -47,13 +47,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controlador\AdminMenuController.cs" />
+    <Compile Include="Controlador\AsignarEnviosController.cs" />
     <Compile Include="Controlador\ChoferCrudController.cs" />
     <Compile Include="Controlador\ChoferMenuController.cs" />
     <Compile Include="Controlador\ChoferProfileController.cs" />
     <Compile Include="Controlador\ClienteCrudController.cs" />
     <Compile Include="Controlador\ControllersExceptions\DatosIncompletosException.cs" />
     <Compile Include="Controlador\AsignacionChoferVehiculoController.cs" />
+    <Compile Include="Controlador\EnviosPendientesChoferController.cs" />
     <Compile Include="Controlador\PedidosCrudController.cs" />
+    <Compile Include="Modelo\DAO\AsignarEnviosDAO.cs" />
     <Compile Include="Modelo\DAO\DaoExceptions\DenyChangeDisponibilidad.cs" />
     <Compile Include="Modelo\DAO\DaoExceptions\DenyCreatePedidoRucInexistente.cs" />
     <Compile Include="Modelo\DAO\DaoExceptions\DenyDeletePedidoFinalizado.cs" />
@@ -74,10 +77,12 @@
     <Compile Include="Modelo\DAO\VehiculoDAO.cs" />
     <Compile Include="Modelo\DAO\AsignacionChoferVehiculoDAO.cs" />
     <Compile Include="Modelo\DTO\Admin.cs" />
+    <Compile Include="Modelo\DTO\AsignacionEnvio.cs" />
     <Compile Include="Modelo\DTO\Chofer.cs" />
     <Compile Include="Modelo\DTO\Empleado.cs" />
     <Compile Include="Modelo\DTO\Envio.cs" />
     <Compile Include="Modelo\DTO\Pedido.cs" />
+    <Compile Include="Modelo\DTO\PedidoDetallado.cs" />
     <Compile Include="Modelo\DTO\Secretaria.cs" />
     <Compile Include="Modelo\DTO\Vehiculo.cs" />
     <Compile Include="Modelo\DTO\AsignacionChoferVehiculo.cs" />
@@ -128,6 +133,12 @@
     <Compile Include="Vista\Pedidos\AsignarEnviosView.Designer.cs">
       <DependentUpon>AsignarEnviosView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vista\Pedidos\EnviosPendientesChoferView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\Pedidos\EnviosPendientesChoferView.Designer.cs">
+      <DependentUpon>EnviosPendientesChoferView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Pedidos\PedidosCrudView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,6 +168,12 @@
     </Compile>
     <Compile Include="Vista\Login\LoginView.Designer.cs">
       <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Vehiculo\VehiculoInforme.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\Vehiculo\VehiculoInforme.Designer.cs">
+      <DependentUpon>VehiculoInforme.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Vista\Admin\AdminMenuView.resx">
       <DependentUpon>AdminMenuView.cs</DependentUpon>
@@ -189,6 +206,9 @@
     <EmbeddedResource Include="Vista\Pedidos\AsignarEnviosView.resx">
       <DependentUpon>AsignarEnviosView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vista\Pedidos\EnviosPendientesChoferView.resx">
+      <DependentUpon>EnviosPendientesChoferView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vista\Pedidos\PedidosCrudView.resx">
       <DependentUpon>PedidosCrudView.cs</DependentUpon>
     </EmbeddedResource>
@@ -203,6 +223,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vista\Vehiculo\VehiculoCrudView.resx">
       <DependentUpon>VehiculoCrudView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\Vehiculo\VehiculoInforme.resx">
+      <DependentUpon>VehiculoInforme.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -273,6 +296,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\order.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Envio_.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

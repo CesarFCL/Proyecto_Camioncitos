@@ -34,7 +34,7 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnInforme = new System.Windows.Forms.Button();
-            this.btnEncargos = new System.Windows.Forms.Button();
+            this.btnEnvios = new System.Windows.Forms.Button();
             this.btnPerfil = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
@@ -103,7 +103,7 @@
             // 
             this.panel8.Controls.Add(this.btnSalir);
             this.panel8.Controls.Add(this.btnInforme);
-            this.panel8.Controls.Add(this.btnEncargos);
+            this.panel8.Controls.Add(this.btnEnvios);
             this.panel8.Controls.Add(this.btnPerfil);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel8.Location = new System.Drawing.Point(58, 262);
@@ -143,21 +143,21 @@
             this.btnInforme.Text = "Informe";
             this.btnInforme.UseVisualStyleBackColor = true;
             // 
-            // btnEncargos
+            // btnEnvios
             // 
-            this.btnEncargos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnEncargos.FlatAppearance.BorderSize = 0;
-            this.btnEncargos.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(20)))), ((int)(((byte)(30)))));
-            this.btnEncargos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(93)))), ((int)(((byte)(142)))));
-            this.btnEncargos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEncargos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEncargos.ForeColor = System.Drawing.Color.White;
-            this.btnEncargos.Location = new System.Drawing.Point(0, 36);
-            this.btnEncargos.Name = "btnEncargos";
-            this.btnEncargos.Size = new System.Drawing.Size(128, 36);
-            this.btnEncargos.TabIndex = 2;
-            this.btnEncargos.Text = "Encargos";
-            this.btnEncargos.UseVisualStyleBackColor = true;
+            this.btnEnvios.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnEnvios.FlatAppearance.BorderSize = 0;
+            this.btnEnvios.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(20)))), ((int)(((byte)(30)))));
+            this.btnEnvios.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(93)))), ((int)(((byte)(142)))));
+            this.btnEnvios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEnvios.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEnvios.ForeColor = System.Drawing.Color.White;
+            this.btnEnvios.Location = new System.Drawing.Point(0, 36);
+            this.btnEnvios.Name = "btnEnvios";
+            this.btnEnvios.Size = new System.Drawing.Size(128, 36);
+            this.btnEnvios.TabIndex = 2;
+            this.btnEnvios.Text = "Envios";
+            this.btnEnvios.UseVisualStyleBackColor = true;
             // 
             // btnPerfil
             // 
@@ -201,7 +201,7 @@
             // picCliente
             // 
             this.picCliente.Dock = System.Windows.Forms.DockStyle.Top;
-            this.picCliente.Image = global::ProyectoCamioncitos.Properties.Resources.UsersConfig;
+            this.picCliente.Image = global::ProyectoCamioncitos.Properties.Resources.order;
             this.picCliente.Location = new System.Drawing.Point(0, 72);
             this.picCliente.Name = "picCliente";
             this.picCliente.Size = new System.Drawing.Size(58, 36);
@@ -212,7 +212,7 @@
             // picVehiculo
             // 
             this.picVehiculo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.picVehiculo.Image = global::ProyectoCamioncitos.Properties.Resources.vehiculo;
+            this.picVehiculo.Image = global::ProyectoCamioncitos.Properties.Resources.Envio_;
             this.picVehiculo.Location = new System.Drawing.Point(0, 36);
             this.picVehiculo.Name = "picVehiculo";
             this.picVehiculo.Size = new System.Drawing.Size(58, 36);
@@ -459,7 +459,7 @@
         private System.Windows.Forms.Panel panel8;
         public System.Windows.Forms.Button btnSalir;
         public System.Windows.Forms.Button btnInforme;
-        public System.Windows.Forms.Button btnEncargos;
+        public System.Windows.Forms.Button btnEnvios;
         public System.Windows.Forms.Button btnPerfil;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.PictureBox pictureBox6;

@@ -133,6 +133,16 @@ namespace ProyectoCamioncitos.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Envio_ {
+            get {
+                object obj = ResourceManager.GetObject("Envio_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Licencia {
             get {
                 object obj = ResourceManager.GetObject("Licencia", resourceCulture);

@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtBuscarFacturas = new System.Windows.Forms.TextBox();
-            this.tblFacturas = new System.Windows.Forms.DataGridView();
+            this.tblPedidos = new System.Windows.Forms.DataGridView();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
@@ -64,12 +65,11 @@
             this.FechaFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RucCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DireccionDestinatario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CIDestinatario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaFinalizacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tblFacturas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblPedidos)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -100,30 +100,37 @@
             this.txtBuscarFacturas.Size = new System.Drawing.Size(140, 23);
             this.txtBuscarFacturas.TabIndex = 32;
             // 
-            // tblFacturas
+            // tblPedidos
             // 
-            this.tblFacturas.AllowUserToAddRows = false;
-            this.tblFacturas.AllowUserToDeleteRows = false;
-            this.tblFacturas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tblPedidos.AllowUserToAddRows = false;
+            this.tblPedidos.AllowUserToDeleteRows = false;
+            this.tblPedidos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tblFacturas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(41)))), ((int)(((byte)(68)))));
-            this.tblFacturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tblFacturas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.tblPedidos.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(41)))), ((int)(((byte)(68)))));
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tblPedidos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.tblPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tblPedidos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
             this.FechaFactura,
             this.RucCliente,
             this.Costo,
-            this.DireccionDestinatario,
             this.CIDestinatario,
             this.Estado,
             this.FechaFinalizacion});
-            this.tblFacturas.Location = new System.Drawing.Point(12, 331);
-            this.tblFacturas.MultiSelect = false;
-            this.tblFacturas.Name = "tblFacturas";
-            this.tblFacturas.ReadOnly = true;
-            this.tblFacturas.Size = new System.Drawing.Size(1032, 230);
-            this.tblFacturas.TabIndex = 31;
+            this.tblPedidos.Location = new System.Drawing.Point(12, 331);
+            this.tblPedidos.MultiSelect = false;
+            this.tblPedidos.Name = "tblPedidos";
+            this.tblPedidos.ReadOnly = true;
+            this.tblPedidos.Size = new System.Drawing.Size(1032, 230);
+            this.tblPedidos.TabIndex = 31;
             // 
             // btnLimpiar
             // 
@@ -429,48 +436,49 @@
             this.ID.HeaderText = "ID";
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
+            this.ID.Width = 110;
             // 
             // FechaFactura
             // 
             this.FechaFactura.HeaderText = "Fecha Factura";
             this.FechaFactura.Name = "FechaFactura";
             this.FechaFactura.ReadOnly = true;
+            this.FechaFactura.Width = 175;
             // 
             // RucCliente
             // 
             this.RucCliente.HeaderText = "RUC Cliente";
             this.RucCliente.Name = "RucCliente";
             this.RucCliente.ReadOnly = true;
+            this.RucCliente.Width = 125;
             // 
             // Costo
             // 
             this.Costo.HeaderText = "Costo ($)";
             this.Costo.Name = "Costo";
             this.Costo.ReadOnly = true;
-            // 
-            // DireccionDestinatario
-            // 
-            this.DireccionDestinatario.HeaderText = "Direccion Destinatario";
-            this.DireccionDestinatario.Name = "DireccionDestinatario";
-            this.DireccionDestinatario.ReadOnly = true;
+            this.Costo.Width = 125;
             // 
             // CIDestinatario
             // 
             this.CIDestinatario.HeaderText = "CI Destinatario";
             this.CIDestinatario.Name = "CIDestinatario";
             this.CIDestinatario.ReadOnly = true;
+            this.CIDestinatario.Width = 125;
             // 
             // Estado
             // 
             this.Estado.HeaderText = "Estado de Envio";
             this.Estado.Name = "Estado";
             this.Estado.ReadOnly = true;
+            this.Estado.Width = 150;
             // 
             // FechaFinalizacion
             // 
             this.FechaFinalizacion.HeaderText = "Fecha Finalizacion Envio";
             this.FechaFinalizacion.Name = "FechaFinalizacion";
             this.FechaFinalizacion.ReadOnly = true;
+            this.FechaFinalizacion.Width = 175;
             // 
             // PedidosCrudView
             // 
@@ -508,12 +516,12 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtBuscarFacturas);
-            this.Controls.Add(this.tblFacturas);
+            this.Controls.Add(this.tblPedidos);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "PedidosCrudView";
             this.Text = "FacturasEnviosCrudView";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tblFacturas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblPedidos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -524,7 +532,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox txtBuscarFacturas;
-        public System.Windows.Forms.DataGridView tblFacturas;
+        public System.Windows.Forms.DataGridView tblPedidos;
         public System.Windows.Forms.Button btnLimpiar;
         public System.Windows.Forms.Button btnEditar;
         public System.Windows.Forms.Button btnEliminar;
@@ -551,15 +559,14 @@
         public System.Windows.Forms.ComboBox cboxEstadoEnvio;
         public System.Windows.Forms.DateTimePicker dtpFechaFinalizacionEnvio;
         public System.Windows.Forms.Label lblFechaFinalizacionEnvio;
+        public System.Windows.Forms.Label lblID;
+        public System.Windows.Forms.Label lblCosto;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaFactura;
         private System.Windows.Forms.DataGridViewTextBoxColumn RucCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn Costo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DireccionDestinatario;
         private System.Windows.Forms.DataGridViewTextBoxColumn CIDestinatario;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaFinalizacion;
-        public System.Windows.Forms.Label lblID;
-        public System.Windows.Forms.Label lblCosto;
     }
 }

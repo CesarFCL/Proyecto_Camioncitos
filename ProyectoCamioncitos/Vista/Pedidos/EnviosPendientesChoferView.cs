@@ -1,4 +1,5 @@
 ﻿using ProyectoCamioncitos.Controlador;
+using ProyectoCamioncitos.Vista.Chofer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,14 +12,14 @@ using System.Windows.Forms;
 
 namespace ProyectoCamioncitos.Vista.Pedidos
 {
-    //Vista Asignar Envios
-    public partial class AsignarEnviosView : Form
+    //Vista CRUD Envios Pendientes
+    public partial class EnviosPendientesChoferView : Form
     {
-        public AsignarEnviosView()
+        public EnviosPendientesChoferView(ChoferMenuView choferMenu)
         {
             InitializeComponent();
             //Vista a Controlador
-            AsignarEnviosController ctrl = new AsignarEnviosController(this);
+            EnviosPendientesChoferController ctrl = new EnviosPendientesChoferController(this, choferMenu);
         }
     }
 }

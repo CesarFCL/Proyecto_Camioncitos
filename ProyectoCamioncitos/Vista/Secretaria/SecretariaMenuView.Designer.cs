@@ -45,7 +45,7 @@
             this.btnVehiculo = new System.Windows.Forms.Button();
             this.btnChofer = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.picAsignarPedidos = new System.Windows.Forms.PictureBox();
+            this.picAsignarEnvios = new System.Windows.Forms.PictureBox();
             this.picFacturas = new System.Windows.Forms.PictureBox();
             this.picAsignacionChoferVehiculo = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
@@ -68,7 +68,7 @@
             this.panel2.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picAsignarPedidos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picAsignarEnvios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFacturas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAsignacionChoferVehiculo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -292,7 +292,7 @@
             // 
             // panel6
             // 
-            this.panel6.Controls.Add(this.picAsignarPedidos);
+            this.panel6.Controls.Add(this.picAsignarEnvios);
             this.panel6.Controls.Add(this.picFacturas);
             this.panel6.Controls.Add(this.picAsignacionChoferVehiculo);
             this.panel6.Controls.Add(this.pictureBox6);
@@ -305,16 +305,16 @@
             this.panel6.Size = new System.Drawing.Size(58, 311);
             this.panel6.TabIndex = 2;
             // 
-            // picAsignarPedidos
+            // picAsignarEnvios
             // 
-            this.picAsignarPedidos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.picAsignarPedidos.Image = global::ProyectoCamioncitos.Properties.Resources.order;
-            this.picAsignarPedidos.Location = new System.Drawing.Point(0, 180);
-            this.picAsignarPedidos.Name = "picAsignarPedidos";
-            this.picAsignarPedidos.Size = new System.Drawing.Size(58, 36);
-            this.picAsignarPedidos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picAsignarPedidos.TabIndex = 5;
-            this.picAsignarPedidos.TabStop = false;
+            this.picAsignarEnvios.Dock = System.Windows.Forms.DockStyle.Top;
+            this.picAsignarEnvios.Image = global::ProyectoCamioncitos.Properties.Resources.Envio_;
+            this.picAsignarEnvios.Location = new System.Drawing.Point(0, 180);
+            this.picAsignarEnvios.Name = "picAsignarEnvios";
+            this.picAsignarEnvios.Size = new System.Drawing.Size(58, 36);
+            this.picAsignarEnvios.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picAsignarEnvios.TabIndex = 5;
+            this.picAsignarEnvios.TabStop = false;
             // 
             // picFacturas
             // 
@@ -501,7 +501,7 @@
             this.panel2.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picAsignarPedidos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picAsignarEnvios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFacturas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAsignacionChoferVehiculo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
@@ -547,6 +547,6 @@
         public System.Windows.Forms.Button btnFacturas;
         public System.Windows.Forms.PictureBox picFacturas;
         public System.Windows.Forms.Button btnAsignarEnvios;
-        public System.Windows.Forms.PictureBox picAsignarPedidos;
+        public System.Windows.Forms.PictureBox picAsignarEnvios;
     }
 }
