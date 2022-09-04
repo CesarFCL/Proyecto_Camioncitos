@@ -83,7 +83,7 @@ namespace ProyectoCamioncitos.Controlador
             if (Vista.tblPedidosPendientes.SelectedRows.Count > 0)
             {
                 PedidoEnvioDAO envioPendiente = new PedidoEnvioDAO();
-                List<Tuple<Pedido, Envio>> envioPendienteResult = envioPendiente.ObtenerPedidoEnvioPendiente(Vista.tblPedidosPendientes.CurrentRow.Cells[0].Value.ToString());
+                List<Tuple<Pedido, Envio>> envioPendienteResult = envioPendiente.ObtenerPedidoEnvioParticular(Vista.tblPedidosPendientes.CurrentRow.Cells[0].Value.ToString());
                 Vista.txtIdPedido.Text = envioPendienteResult[0].Item1.ID.ToString();
 
                 Vista.btnVincular.Enabled = true;

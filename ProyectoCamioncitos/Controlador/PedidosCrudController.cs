@@ -30,7 +30,7 @@ namespace ProyectoCamioncitos.Controlador
             //Inicializar eventos
             Vista.Load += new EventHandler(LoadEvent);
             Vista.txtBuscarFacturas.TextChanged += new EventHandler(BusquedaEvent);
-            Vista.tblPedidos.CellMouseClick += new DataGridViewCellMouseEventHandler(SelectPedidossEvent);
+            Vista.tblPedidos.CellMouseClick += new DataGridViewCellMouseEventHandler(SelectPedidosEvent);
             Vista.btnLimpiar.Click += new EventHandler(LimpiarEvent);
             Vista.btnGuardar.Click += new EventHandler(CreatePedidoEvent);
             Vista.btnEliminar.Click += new EventHandler(DeletePedidoEvent);
@@ -76,13 +76,13 @@ namespace ProyectoCamioncitos.Controlador
         }
 
         //Evento Seleccion Fila Pedidos
-        public void SelectPedidossEvent(object sender, EventArgs e)
+        public void SelectPedidosEvent(object sender, EventArgs e)
         {
             //Pasa los datos de la fila seleccionada de la tabla Pedidos a los textboxs
             if (Vista.tblPedidos.SelectedRows.Count > 0)
             {
                 PedidoEnvioDAO facturaEnvio = new PedidoEnvioDAO();
-                List<Tuple<Pedido, Envio>> FacturaResult = facturaEnvio.ObtenerPedidoEnvio(Vista.tblPedidos.CurrentRow.Cells[0].Value.ToString());
+                List<Tuple<Pedido, Envio>> FacturaResult = facturaEnvio.ObtenerPedidoEnvioParticular(Vista.tblPedidos.CurrentRow.Cells[0].Value.ToString());
 
                 Vista.txtID.Text = FacturaResult[0].Item1.ID.ToString();
                 Vista.dtpFechaFactura.Value = FacturaResult[0].Item1.Fecha;

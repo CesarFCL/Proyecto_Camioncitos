@@ -56,6 +56,44 @@ namespace ProyectoCamioncitos.Modelo.DAO
             return ListaPedidoEnvio;
         }
 
+        //Metodo Leer Pedidos Particular
+        public List<Tuple<Pedido, Envio>> ObtenerPedidoEnvioParticular(string Condicion)
+        {
+            Comando.Connection = Conexion;
+            Comando.CommandText = "ObtenerPedidoEnvioParticular";
+            Comando.CommandType = CommandType.StoredProcedure;
+            Comando.Parameters.AddWithValue("@Condicion", Condicion);
+            Conexion.Open();
+            Reader = Comando.ExecuteReader();
+
+            List<Tuple<Pedido, Envio>> ListaPedidoEnvio = new List<Tuple<Pedido, Envio>>();
+            while (Reader.Read())
+            {
+                ListaPedidoEnvio.Add(new Tuple<Pedido, Envio>(
+                    new Pedido
+                    {
+                        ID = Int32.Parse(Reader["ID"].ToString()),
+                        Fecha = DateTime.Parse(Reader["Fecha"].ToString()),
+                        RucCliente = Reader["RUC Cliente"].ToString(),
+                        Detalles = Reader["Detalles"].ToString(),
+                        Peso = Reader["Peso"].ToString(),
+                        EnvioIntraprovincial = Reader["Envio Intraprovincial"].ToString(),
+                        Costo = float.Parse(Reader["Costo"].ToString())
+                    }, new Envio
+                    {
+                        Id = Int32.Parse(Reader["ID"].ToString()),
+                        DireccionDestinatario = Reader["Direccion Destinatario"].ToString(),
+                        CiDestinatario = Reader["CI Destinatario"].ToString(),
+                        TelefonoDestinatario = Reader["Telefono Destinatario"].ToString(),
+                        Estado = Reader["Estado"].ToString(),
+                        FechaFinalizacion = Reader["Fecha Finalizacion"].ToString()
+                    }));
+            }
+            Reader.Close();
+            Conexion.Close();
+            return ListaPedidoEnvio;
+        }
+
         //Metodo Leer Pedidos Detallados
         public List<Tuple<PedidoDetallado, Envio>> ObtenerEnviosAsignadosParticularesDetallados(string CI, string condicion)
         {

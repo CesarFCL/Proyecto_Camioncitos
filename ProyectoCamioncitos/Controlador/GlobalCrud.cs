@@ -76,7 +76,10 @@ namespace ProyectoCamioncitos.Controlador
         {
             try
             {
-                new MailAddress(correo.Text);
+                if (!string.IsNullOrEmpty(correo.Text))
+                {
+                    new MailAddress(correo.Text);
+                }
             }
             catch (FormatException)
             {
