@@ -41,6 +41,7 @@ create table CHOFER_ENVIO
   ON UPDATE cascade 
   ON DELETE cascade
 );
+go
 
 -- Procedimiento para Crear Factura y Envio
 CREATE PROC CrearPedidoEnvio
