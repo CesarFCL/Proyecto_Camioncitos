@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace ProyectoCamioncitos.Vista.FacturasEnvios
 {
-    //Vista CRUD FacturasEnvios
+    //Vista CRUD Pedidos
     public partial class PedidosCrudView : Form
     {
         public PedidosCrudView()

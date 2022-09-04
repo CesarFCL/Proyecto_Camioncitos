@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace ProyectoCamioncitos.Vista.Chofer
 {
-    //Vista Chofer Status
+    //Vista Perfil Chofer
     public partial class ChoferProfileView : Form
     {
         public ChoferProfileView(ChoferMenuView choferMenu)

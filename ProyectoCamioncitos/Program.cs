@@ -17,6 +17,7 @@ namespace ProyectoCamioncitos
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            //Llamada a la Vista del Login
             LoginView login = new LoginView();
             login.Show();
             Application.Run();

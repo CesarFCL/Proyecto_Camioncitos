@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace ProyectoCamioncitos.Vista.Pedidos
 {
-    //Vista CRUD Envios Pendientes
+    //Vista Envios Pendientes
     public partial class EnviosPendientesChoferView : Form
     {
         public EnviosPendientesChoferView(ChoferMenuView choferMenu)

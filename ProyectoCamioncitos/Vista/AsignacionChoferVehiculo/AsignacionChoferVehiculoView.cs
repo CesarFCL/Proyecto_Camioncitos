@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace ProyectoCamioncitos.Vista.Chofer
 {
-    //Vista Disponibilidad Chofer Vehiculo
+    //Vista Asignacion Chofer Vehiculo
     public partial class AsignacionChoferVehiculoView : Form
     {
         public AsignacionChoferVehiculoView()

@@ -142,6 +142,7 @@
             this.btnInforme.TabIndex = 0;
             this.btnInforme.Text = "Informe";
             this.btnInforme.UseVisualStyleBackColor = true;
+            this.btnInforme.Visible = false;
             // 
             // btnEnvios
             // 
@@ -208,6 +209,7 @@
             this.picCliente.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picCliente.TabIndex = 2;
             this.picCliente.TabStop = false;
+            this.picCliente.Visible = false;
             // 
             // picVehiculo
             // 

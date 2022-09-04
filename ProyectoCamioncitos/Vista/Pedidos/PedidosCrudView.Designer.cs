@@ -33,6 +33,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtBuscarFacturas = new System.Windows.Forms.TextBox();
             this.tblPedidos = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RucCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CIDestinatario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaFinalizacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
@@ -61,13 +68,6 @@
             this.cboxEstadoEnvio = new System.Windows.Forms.ComboBox();
             this.dtpFechaFinalizacionEnvio = new System.Windows.Forms.DateTimePicker();
             this.lblFechaFinalizacionEnvio = new System.Windows.Forms.Label();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RucCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CIDestinatario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaFinalizacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblPedidos)).BeginInit();
             this.SuspendLayout();
@@ -131,6 +131,55 @@
             this.tblPedidos.ReadOnly = true;
             this.tblPedidos.Size = new System.Drawing.Size(1032, 230);
             this.tblPedidos.TabIndex = 31;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Width = 110;
+            // 
+            // FechaFactura
+            // 
+            this.FechaFactura.HeaderText = "Fecha Factura";
+            this.FechaFactura.Name = "FechaFactura";
+            this.FechaFactura.ReadOnly = true;
+            this.FechaFactura.Width = 175;
+            // 
+            // RucCliente
+            // 
+            this.RucCliente.HeaderText = "RUC Cliente";
+            this.RucCliente.Name = "RucCliente";
+            this.RucCliente.ReadOnly = true;
+            this.RucCliente.Width = 125;
+            // 
+            // Costo
+            // 
+            this.Costo.HeaderText = "Costo ($)";
+            this.Costo.Name = "Costo";
+            this.Costo.ReadOnly = true;
+            this.Costo.Width = 125;
+            // 
+            // CIDestinatario
+            // 
+            this.CIDestinatario.HeaderText = "CI Destinatario";
+            this.CIDestinatario.Name = "CIDestinatario";
+            this.CIDestinatario.ReadOnly = true;
+            this.CIDestinatario.Width = 125;
+            // 
+            // Estado
+            // 
+            this.Estado.HeaderText = "Estado de Envio";
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            this.Estado.Width = 150;
+            // 
+            // FechaFinalizacion
+            // 
+            this.FechaFinalizacion.HeaderText = "Fecha Finalizacion Envio";
+            this.FechaFinalizacion.Name = "FechaFinalizacion";
+            this.FechaFinalizacion.ReadOnly = true;
+            this.FechaFinalizacion.Width = 175;
             // 
             // btnLimpiar
             // 
@@ -430,55 +479,6 @@
             this.lblFechaFinalizacionEnvio.Size = new System.Drawing.Size(190, 16);
             this.lblFechaFinalizacionEnvio.TabIndex = 66;
             this.lblFechaFinalizacionEnvio.Text = "FECHA FINALIZACION ENVIO";
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Width = 110;
-            // 
-            // FechaFactura
-            // 
-            this.FechaFactura.HeaderText = "Fecha Factura";
-            this.FechaFactura.Name = "FechaFactura";
-            this.FechaFactura.ReadOnly = true;
-            this.FechaFactura.Width = 175;
-            // 
-            // RucCliente
-            // 
-            this.RucCliente.HeaderText = "RUC Cliente";
-            this.RucCliente.Name = "RucCliente";
-            this.RucCliente.ReadOnly = true;
-            this.RucCliente.Width = 125;
-            // 
-            // Costo
-            // 
-            this.Costo.HeaderText = "Costo ($)";
-            this.Costo.Name = "Costo";
-            this.Costo.ReadOnly = true;
-            this.Costo.Width = 125;
-            // 
-            // CIDestinatario
-            // 
-            this.CIDestinatario.HeaderText = "CI Destinatario";
-            this.CIDestinatario.Name = "CIDestinatario";
-            this.CIDestinatario.ReadOnly = true;
-            this.CIDestinatario.Width = 125;
-            // 
-            // Estado
-            // 
-            this.Estado.HeaderText = "Estado de Envio";
-            this.Estado.Name = "Estado";
-            this.Estado.ReadOnly = true;
-            this.Estado.Width = 150;
-            // 
-            // FechaFinalizacion
-            // 
-            this.FechaFinalizacion.HeaderText = "Fecha Finalizacion Envio";
-            this.FechaFinalizacion.Name = "FechaFinalizacion";
-            this.FechaFinalizacion.ReadOnly = true;
-            this.FechaFinalizacion.Width = 175;
             // 
             // PedidosCrudView
             // 
