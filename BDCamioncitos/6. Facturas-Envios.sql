@@ -219,7 +219,7 @@ begin
 
 	FROM PEDIDO F
 	JOIN ENVIO E ON F.ID = E.ID_PEDIDO
-	where (F.ID like ''+'%' or F.RUC_CLIENTE like ''+'%' or E.CI_DESTINATARIO like ''+'%') and (E.ESTADO=0)
+	where (F.ID like @Condicion+'%' or F.RUC_CLIENTE like @Condicion+'%' or E.CI_DESTINATARIO like @Condicion+'%') and (E.ESTADO=0)
 			and (F.ID NOT IN(SELECT ID_PEDIDO FROM CHOFER_ENVIO))
 end
 go
