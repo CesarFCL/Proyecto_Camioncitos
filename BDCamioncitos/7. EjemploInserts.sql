@@ -22,9 +22,9 @@ insert into LISTADO_TIPOS_VEHICULOS values('000C1','Camioneta');
 go
 insert into LISTADO_TIPOS_VEHICULOS values('000C0','Camion');
 go
-insert into LISTADO_TIPOS_VEHICULOS values('000T1','Tanque Aleman Tiger I');
+insert into LISTADO_TIPOS_VEHICULOS values('000T1','Tanque Pesado Aleman');
 go
-insert into LISTADO_TIPOS_VEHICULOS values('000A1','Airbus A380');
+insert into LISTADO_TIPOS_VEHICULOS values('000A1','Avion Comercial');
 go
 insert into LISTADO_TIPOS_VEHICULOS values('000B1','Burro');
 go
@@ -32,9 +32,9 @@ exec CrearVehiculo 'ABC1234','Toyota','2017','Camioneta'
 go
 exec CrearVehiculo 'CBA4321','Ferrari','2018','Camion'
 go
-exec CrearVehiculo 'TKK6666','Tanque Pesado','1942','Tanque Aleman Tiger I'
+exec CrearVehiculo 'TKK6666','Tiger I','1942','Tanque Pesado Aleman'
 go
-exec CrearVehiculo 'HCabc91','Avión comercial','2015','AirbusA380'
+exec CrearVehiculo 'HCabc91','AirbusA380','2015','Avion Comercial'
 go
 exec CrearVehiculo 'susij00','Currincho','2018','Burro'
 go

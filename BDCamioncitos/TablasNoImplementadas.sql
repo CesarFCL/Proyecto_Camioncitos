@@ -49,3 +49,9 @@ begin
 		where ID_PEDIDO like @Condicion+'%' or CI_DESTINATARIO like @Condicion+'%'
 end
 go
+
+--Obtener Ganancias por Mes
+
+SELECT DATENAME (MONTH, DATEADD(MONTH, MONTH(Fecha) - 1, '1900-01-01')) Mes,SUM(COSTO) Ganancias FROM pedido
+WHERE FECHA > DATEADD(MM, -12, CAST(GETDATE() AS Date))
+GROUP BY DATEPART(MM, FECHA);
