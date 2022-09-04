@@ -88,7 +88,7 @@ begin
 end
 go
 
--- Procedimiento para Obtener DATOS Facturas/Envios
+-- Procedimiento para Obtener DATOS Pedidos/Envios
 CREATE PROC ObtenerPedidoEnvio
 @Condicion nvarchar(30)
 as
@@ -111,6 +111,32 @@ begin
 		FROM PEDIDO F
 		JOIN ENVIO E ON F.ID = E.ID_PEDIDO
 		where F.ID like @Condicion+'%' or F.RUC_CLIENTE like @Condicion+'%' or E.CI_DESTINATARIO like @Condicion+'%'
+end
+go
+
+-- Procedimiento para Obtener DATOS Pedidos/Envios particular
+CREATE PROC ObtenerPedidoEnvioParticular
+@Condicion nvarchar(30)
+as
+begin
+	SET NOCOUNT ON
+	SELECT
+		F.ID as 'ID',
+		F.FECHA as 'Fecha',
+		F.RUC_CLIENTE as 'RUC Cliente',
+		F.DETALLES as 'Detalles',
+		F.PESO as 'Peso',
+		CASE WHEN F.ENVIO_INTRAPROVINCIAL = 1 then 'Si' else 'No' end as 'Envio Intraprovincial',
+		CAST(ROUND(F.COSTO, 2, 1) AS DECIMAL(20,2)) 'Costo',
+		E.DIRECCION_DESTINATARIO as 'Direccion Destinatario',
+		E.CI_DESTINATARIO as 'CI Destinatario',
+		E.TELEFONO_DESTINATARIO as 'Telefono Destinatario',
+		CASE WHEN E.ESTADO = 1 then 'Finalizado' else 'Pendiente' end as 'Estado',
+		E.FECHA_FINALIZACION as 'Fecha Finalizacion'
+
+		FROM PEDIDO F
+		JOIN ENVIO E ON F.ID = E.ID_PEDIDO
+		where F.ID = @Condicion
 end
 go
 

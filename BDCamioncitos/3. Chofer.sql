@@ -59,14 +59,13 @@ CREATE PROC ModificarChofer
 @NOMBRE VARCHAR(50),
 @APELLIDO VARCHAR(50),
 @CELULAR VARCHAR(10),
-@FECHA_N VARCHAR(8),
+@FECHA_N VARCHAR(10),
 @CORREO VARCHAR(50),
 @DIRECCION VARCHAR(50),
 @DISPONIBILIDAD VARCHAR(15)
 as
 BEGIN 
      SET NOCOUNT ON 
-
      UPDATE EMPLEADOS
      SET    NOMBRE = @NOMBRE,
 			APELLIDO = @APELLIDO,
@@ -80,6 +79,8 @@ BEGIN
 	 WHERE	CI = @CI
 END 
 go
+
+drop procedure ModificarChofer
 
 --Procedimiento para Modificar Disponibilidad Chofer
 CREATE PROC ModificarDisponibilidadChofer
