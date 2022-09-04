@@ -87,7 +87,7 @@ namespace ProyectoCamioncitos.Modelo.DAO.Tests
             //Ejecucion
 
             VehiculoDAO vehiculoDAO = new VehiculoDAO();
-            List<Vehiculo> vehiculoTest = vehiculoDAO.VerRegistros("ABC1234");
+            List<Vehiculo> vehiculoTest = vehiculoDAO.ObtenerVehiculo("ABC1234");
 
             //Evaluacion
 
@@ -104,7 +104,7 @@ namespace ProyectoCamioncitos.Modelo.DAO.Tests
             //Ejecucion
 
             VehiculoDAO vehiculoDAO = new VehiculoDAO();
-            List<Vehiculo> vehiculoTest = vehiculoDAO.VerRegistros("ABC12345");
+            List<Vehiculo> vehiculoTest = vehiculoDAO.ObtenerVehiculo("ABC12345");
 
             //Evaluacion
 
@@ -205,7 +205,7 @@ namespace ProyectoCamioncitos.Modelo.DAO.Tests
             //Ejecucion
 
             ClienteDAO clienteDAO = new ClienteDAO();
-            List<Cliente> clienteTest = clienteDAO.VerRegistros("123123123");
+            List<Cliente> clienteTest = clienteDAO.ObtenerCliente("123123123");
 
             //Evaluacion
 
@@ -222,7 +222,7 @@ namespace ProyectoCamioncitos.Modelo.DAO.Tests
             //Ejecucion
 
             ClienteDAO clienteDAO = new ClienteDAO();
-            List<Cliente> clienteTest = clienteDAO.VerRegistros("ABC12345");
+            List<Cliente> clienteTest = clienteDAO.ObtenerCliente("ABC12345");
 
             //Evaluacion
 
@@ -310,7 +310,7 @@ namespace ProyectoCamioncitos.Modelo.DAO.Tests
             //Ejecucion
 
             ChoferDAO choferDAO = new ChoferDAO();
-            List<Chofer> choferTest = choferDAO.VerRegistros("1111111111");
+            List<Chofer> choferTest = choferDAO.ObtenerChofer("1111111111");
 
             //Evaluacion
 
@@ -330,7 +330,7 @@ namespace ProyectoCamioncitos.Modelo.DAO.Tests
             //Ejecucion
 
             ChoferDAO choferDAO = new ChoferDAO();
-            List<Chofer> choferTest = choferDAO.VerRegistros("ABC12345");
+            List<Chofer> choferTest = choferDAO.ObtenerChofer("ABC12345");
 
             //Evaluacion
 
@@ -430,7 +430,7 @@ namespace ProyectoCamioncitos.Modelo.DAO.Tests
             //Ejecucion
 
             SecretariaDAO secretariaDAO = new SecretariaDAO();
-            List<Secretaria> secretariaTest = secretariaDAO.VerRegistros("1719963470");
+            List<Secretaria> secretariaTest = secretariaDAO.ObtenerSecretaria("1719963470");
 
             //Evaluacion
 
@@ -449,7 +449,7 @@ namespace ProyectoCamioncitos.Modelo.DAO.Tests
             //Ejecucion
 
             SecretariaDAO secretariaDAO= new SecretariaDAO();
-            List<Secretaria> secretariaTest = secretariaDAO.VerRegistros("ABC12345");
+            List<Secretaria> secretariaTest = secretariaDAO.ObtenerSecretaria("ABC12345");
 
             //Evaluacion
 
@@ -525,5 +525,9 @@ namespace ProyectoCamioncitos.Modelo.DAO.Tests
             Assert.IsTrue(secretaria.Delete("Test"));
 
         }
+
+        //-------------------------------------------TESTS VINCULO CHOFER VEHICULO---------------------------------------------------
+
+
     }
 }
