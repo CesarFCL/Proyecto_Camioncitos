@@ -121,8 +121,7 @@ namespace ProyectoCamioncitos.Controlador
         }
     }
 
-    //Probablemente las clases de aqui para abajo deban ir como otro apartado en el controlador pero
-    //por ahora aqui estan bien, a la final solo se usan en este controlador :3
+    //Probablemente las clases de aqui para abajo deban ir como otro apartado en el controlador ??
 
     //Clase Abtsracta Para los Tipos de Login
     abstract class LogOpen

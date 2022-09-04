@@ -171,7 +171,7 @@ namespace ProyectoCamioncitos.Controlador
             catch { }
         }
 
-        //Metodo Validacion Datos Completos Update Chofer
+        //Metodo Validacion Datos Completos Update Secretaria
         public void ValUpdateSecretaria()
         {
             //Se asegura que todos los datos de los textbox esten completos
@@ -186,7 +186,7 @@ namespace ProyectoCamioncitos.Controlador
             }
         }
 
-        //Método Update Chofer
+        //Método Update Secretaria
         public void UpdateSecretaria()
         {
             try
@@ -222,7 +222,7 @@ namespace ProyectoCamioncitos.Controlador
             Vista.tblSecretaria.DataSource =
                 secretaria.ObtenerSecretaria(Vista.txtBuscarSecretaria.Text);
 
-
+            //Columnas que no necesitan ser visualizadas en la tabla
             Vista.tblSecretaria.Columns["Contraseña"].Visible = false;
             Vista.tblSecretaria.Columns["Celular"].Visible = false;
             Vista.tblSecretaria.Columns["FechaNacimiento"].Visible = false;

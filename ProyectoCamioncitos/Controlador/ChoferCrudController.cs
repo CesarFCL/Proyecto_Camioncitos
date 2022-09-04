@@ -138,7 +138,7 @@ namespace ProyectoCamioncitos.Controlador
         //Evento Eliminar Chofer
         public void DeleteChoferEvent(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Esta seguro de querer eliminar al chofer con cedula: " + Vista.txtCI.Text, "Eliminar Chofer", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MessageBox.Show("Esta seguro de querer ELIMINAR al CHOFER con cedula: " + Vista.txtCI.Text, "Eliminar Chofer", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
                 DeleteChofer();
@@ -173,7 +173,7 @@ namespace ProyectoCamioncitos.Controlador
             try
             {
                 ValUpdateChofer();
-                DialogResult dialogResult = MessageBox.Show("Esta seguro de querer editar la informacion del chofer con cedula: " + Vista.txtCI.Text, "Editar Chofer", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dialogResult = MessageBox.Show("Esta seguro de querer EDITAR la informacion del CHOFER con cedula: " + Vista.txtCI.Text, "Editar Chofer", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
                     UpdateChofer();

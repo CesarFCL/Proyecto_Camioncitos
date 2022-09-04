@@ -7,6 +7,9 @@ using System.Windows.Forms;
 
 namespace ProyectoCamioncitos.Modelo.DAO.DaoExceptions
 {
+    //Clase Exception lanzada cuando se da algna excepción en la ejecución de un procedimiento almecenado.
+    //El resultado de esta excepción es detener la ejecución del procedimiento y mostrar un mensaje avisando
+    // - de que a habido algun problema o conflicto con la base de datos
     public class DBErrorException : Exception
     {
         public DBErrorException()

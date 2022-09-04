@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace ProyectoCamioncitos.Modelo.DAO
 {
     //Clase Secretaria Data Acces Object
-    //Aqui se ejecutan todos los procesos que involucren a la BD para el Controlador del CRUD Secretaria
+    //Aqui se ejecutan todos los procesos que involucren a la BD y el objeto secretaria
     public class SecretariaDAO : DBContext
     {
         //METODOS CRUD
@@ -73,7 +73,7 @@ namespace ProyectoCamioncitos.Modelo.DAO
             }
         }
 
-        //Método Eliminar Chofer
+        //Método Eliminar Secretaria
         public bool Delete(string CI)
         {
             try
@@ -92,7 +92,7 @@ namespace ProyectoCamioncitos.Modelo.DAO
             }
         }
 
-        //Método Modificar Chofer
+        //Método Modificar Secretaria
         public bool Update(string CI, string Nombre, string Apellido, string Celular, string Fecha_N, string Correo, string Direccion)
         {
             try

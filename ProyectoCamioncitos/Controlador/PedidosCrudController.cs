@@ -39,7 +39,7 @@ namespace ProyectoCamioncitos.Controlador
             Vista.txtRucCliente.TextChanged += delegate (object sender, EventArgs e) { RUC_Limit(sender, e, Vista.txtRucCliente); };
             Vista.txtCiDestinatario.TextChanged += delegate (object sender, EventArgs e) { CI_Limit(sender, e, Vista.txtCiDestinatario); };
             Vista.txtTelefonoDestinatario.TextChanged += delegate (object sender, EventArgs e) { CelularLimit(sender, e, Vista.txtTelefonoDestinatario); };
-            Vista.txtPeso.TextChanged += new EventHandler(Peso_Limit);
+            Vista.txtPeso.TextChanged += delegate (object sender, EventArgs e) { PesoLimit(sender, e, Vista.txtPeso); };
 
             Vista.txtRucCliente.KeyPress += new KeyPressEventHandler(OnlyNumbers_KeyPress);
             Vista.txtCiDestinatario.KeyPress += new KeyPressEventHandler(OnlyNumbers_KeyPress);
@@ -76,10 +76,10 @@ namespace ProyectoCamioncitos.Controlador
             }
         }
 
-        //Evento Seleccion Fila Factura
+        //Evento Seleccion Fila Pedidos
         public void SelectPedidossEvent(object sender, EventArgs e)
         {
-            //Pasa los datos de la fila seleccionada de la tabla Factura a los textboxs
+            //Pasa los datos de la fila seleccionada de la tabla Pedidos a los textboxs
             if (Vista.tblPedidos.SelectedRows.Count > 0)
             {
                 PedidoEnvioDAO facturaEnvio = new PedidoEnvioDAO();
@@ -153,7 +153,7 @@ namespace ProyectoCamioncitos.Controlador
             Vista.dtpFechaFactura.Enabled = true;
         }
         
-        //Evento Crear Vehiculo
+        //Evento Crear Pedido
         public void CreatePedidoEvent(object sender, EventArgs e)
         {
             try
@@ -227,7 +227,8 @@ namespace ProyectoCamioncitos.Controlador
             try
             {
                 ValUpdatePedido();
-                DialogResult dialogResult = MessageBox.Show("Esta seguro de querer editar la informacion del pedido con ID: " + Vista.txtID.Text, "Editar Pedido", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dialogResult = MessageBox.Show("Esta seguro de querer editar la informacion del " +
+                    "pedido con ID: " + Vista.txtID.Text, "Editar Pedido", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
                     UpdatePedido();
@@ -242,8 +243,8 @@ namespace ProyectoCamioncitos.Controlador
         public void ValUpdatePedido()
         {
             //Se asegura que todos los datos de los textbox esten completos
-            TextBox[] textboxUpdate = new TextBox[] { Vista.txtID, Vista.txtDetallesEnvio, Vista.txtPeso, Vista.txtDireccionDestinatario,
-                Vista.txtTelefonoDestinatario};
+            TextBox[] textboxUpdate = new TextBox[] { Vista.txtID, Vista.txtDetallesEnvio, Vista.txtPeso, 
+                Vista.txtDireccionDestinatario,Vista.txtTelefonoDestinatario};
             ComboBox[] comboboxUpdate = new ComboBox[] { Vista.cboxIntraprovincial, Vista.cboxEstadoEnvio };
             bool datosCompletos = !textboxUpdate.Any(X => String.IsNullOrEmpty(X.Text))
                 && !comboboxUpdate.Any(X => String.IsNullOrEmpty(X.Text));
@@ -264,12 +265,6 @@ namespace ProyectoCamioncitos.Controlador
                     Vista.txtTelefonoDestinatario.Text, Vista.cboxEstadoEnvio.SelectedItem.ToString());
             }
             catch { }
-        }
-
-        //Restricciones Particulares Peso
-        public void Peso_Limit(object sender, EventArgs e)
-        {
-            Vista.txtPeso.MaxLength = 8;
         }
     }
 }

@@ -123,5 +123,25 @@ namespace ProyectoCamioncitos.Controlador
         {
             RUC.MaxLength = 13;
         }
+
+        //Restricciones Particulares Vehiculo
+        public void MatriculaLimit(object sender, EventArgs e, TextBox Matricula)
+        {
+            Matricula.MaxLength = 10;
+        }
+        public void MarcaLimit(object sender, EventArgs e, TextBox Marca)
+        {
+            Marca.MaxLength = 20;
+        }
+        public void YearLimit(object sender, EventArgs e, TextBox Year)
+        {
+            Year.MaxLength = 5;
+        }
+
+        //Restricciones Particulares Envio
+        public void PesoLimit(object sender, EventArgs e, TextBox Peso)
+        {
+            Peso.MaxLength = 8;
+        }
     }
 }

@@ -4,6 +4,7 @@ using ProyectoCamioncitos.Vista.Chofer;
 using ProyectoCamioncitos.Vista.Pedidos;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ using System.Windows.Forms;
 
 namespace ProyectoCamioncitos.Controlador
 {
-    //Controlador de la Vista CRUD Pedidos
+    //Controlador de la Vista de EnviosPendientesChofer
     class EnviosPendientesChoferController : GlobalCrud
     {
         EnviosPendientesChoferView Vista;
@@ -43,17 +44,17 @@ namespace ProyectoCamioncitos.Controlador
             Limpiar();
         }
 
-        //Evento Buscar Pedidos
+        //Evento Buscar Envios
         public void BusquedaEvent(object sender, EventArgs e)
         {
             CargarEnvios();
         }
 
-        //Método Cargar Pedidos
+        //Método Cargar Envios
         public void CargarEnvios()
         {
             Vista.tblEnvios.Rows.Clear();
-            AsignarEnviosDAO Envio = new AsignarEnviosDAO();
+            PedidoEnvioDAO Envio = new PedidoEnvioDAO();
             List<Tuple<PedidoDetallado, Envio>> ListaEnvio = Envio.ObtenerEnviosAsignadosParticularesDetallados(Menu.txtCI.Text,Vista.txtBuscarFacturas.Text);
 
             foreach (var tuples in ListaEnvio)
@@ -63,13 +64,13 @@ namespace ProyectoCamioncitos.Controlador
             }
         }
 
-        //Evento Seleccion Fila Factura
+        //Evento Seleccion Fila Envios
         public void SelectPedidossEvent(object sender, EventArgs e)
         {
-            //Pasa los datos de la fila seleccionada de la tabla Factura a los textboxs
+            //Pasa los datos de la fila seleccionada de la tabla Envios a los textboxs
             if (Vista.tblEnvios.SelectedRows.Count > 0)
             {
-                AsignarEnviosDAO Envio = new AsignarEnviosDAO();
+                PedidoEnvioDAO Envio = new PedidoEnvioDAO();
                 List<Tuple<PedidoDetallado, Envio>> EnvioResult = Envio.ObtenerEnviosAsignadosParticularesDetallados(Menu.txtCI.Text, Vista.tblEnvios.CurrentRow.Cells[0].Value.ToString());
 
                 Vista.txtID.Text = EnvioResult[0].Item1.ID.ToString();
@@ -94,7 +95,6 @@ namespace ProyectoCamioncitos.Controlador
         public void Limpiar()
         {
             LimpiarTextBox(textboxs);
-
             Vista.btnFinalizarEnvio.Enabled = false;
         }
 
@@ -107,7 +107,7 @@ namespace ProyectoCamioncitos.Controlador
             Vista.gboxMatricula.Visible = !String.IsNullOrEmpty(Vista.txtMatricula.Text);
         }
 
-        //Evento Liberar Vehiculo
+        //Evento Liberar Vehiculo asignado
         public void LiberarEvent(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Esta seguro de querer LIBERAR el vehiculo asignado con MATRICULA: " + Vista.txtMatricula.Text, "Liberar Vehiculo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -117,7 +117,6 @@ namespace ProyectoCamioncitos.Controlador
                 CargarVehiculoAsignado();
                 Limpiar();
             }
-            Liberar();
         }
 
         //Método liberar vehiculo
@@ -127,6 +126,7 @@ namespace ProyectoCamioncitos.Controlador
             {
                 AsignacionChoferVehiculoDAO vinculoChoferVehiculo = new AsignacionChoferVehiculoDAO();
                 vinculoChoferVehiculo.Delete(Menu.txtCI.Text, Vista.txtMatricula.Text);
+                Menu.pStatus.BackColor = Color.FromArgb(0, 255, 0);
             }
             catch { }
         }

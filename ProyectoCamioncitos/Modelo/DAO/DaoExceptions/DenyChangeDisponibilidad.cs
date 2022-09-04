@@ -7,6 +7,9 @@ using System.Windows.Forms;
 
 namespace ProyectoCamioncitos.Modelo.DAO.DaoExceptions
 {
+    //Clase Exception lanzada al momento en que un Chofer intenta cambiar su disponibilidad de "ocupado" a "disponible" -
+    // - y tiene un vehiculo asignado.
+    //El resultado de esta excepción es que se niegue el cambio de disponibilidad del Chofer
     public class DenyChangeDisponibilidad : Exception
     {
         public DenyChangeDisponibilidad()

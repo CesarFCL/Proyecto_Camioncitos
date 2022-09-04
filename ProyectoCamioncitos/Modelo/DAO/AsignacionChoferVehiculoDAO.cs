@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace ProyectoCamioncitos.Modelo.DAO
 {
-    //Clase Vinculo Chofer Vehiculo Data Acces Object
-    //Aqui se ejecutan todos los procesos que involucren a la BD para la tabla que Vincula al Chofer con un Vehiculo
+    //Clase Asignacion Chofer Vehiculo Data Acces Object
+    //Aqui se ejecutan todos los procesos que involucren a la BD y el objeto AsignacionChoferVehiculo
     public class AsignacionChoferVehiculoDAO : DBContext
     {
 

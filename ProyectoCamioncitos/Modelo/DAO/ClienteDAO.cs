@@ -10,12 +10,12 @@ using ProyectoCamioncitos.Modelo.DAO.DaoExceptions;
 namespace ProyectoCamioncitos.Modelo.DAO
 {
     //Clase Cliente Data Acces Object
-    //Aqui se ejecutan todos los procesos que involucren a la BD para el Controlador del CRUD Cliente
+    //Aqui se ejecutan todos los procesos que involucren a la BD y el objeto cliente
     public class ClienteDAO :DBContext
     {
         //METODOS CRUD
 
-        //Metodo Leer Usuario
+        //Metodo Leer Cliente
         public List<Cliente> ObtenerCliente(string Condicion)
         {
             Comando.Connection = Conexion;

@@ -31,7 +31,7 @@ namespace ProyectoCamioncitos.Controlador
 
             Vista.tblChofer.CellMouseClick += new DataGridViewCellMouseEventHandler(SelectChoferEvent);
             Vista.tblPedidosPendientes.CellMouseClick += new DataGridViewCellMouseEventHandler(SelectEnviosPendientesEvent);
-            Vista.tblPedidosAsignados.CellMouseClick += new DataGridViewCellMouseEventHandler(SelectEnviosAsignadosEvent);
+            Vista.tblEnviosAsignados.CellMouseClick += new DataGridViewCellMouseEventHandler(SelectEnviosAsignadosEvent);
 
             Vista.btnLimpiar.Click += new EventHandler(LimpiarEvent);
             Vista.btnVincular.Click += new EventHandler(AsignarEnvioEvent);
@@ -57,7 +57,7 @@ namespace ProyectoCamioncitos.Controlador
         {
             CargarEnviosPendientes();
         }
-        //Evento Buscar Vinculo Chofer Vehiculo
+        //Evento Buscar Envios Asignados
         public void BusquedaEnviosAsignadosEvent(object sender, EventArgs e)
         {
             CargarEnviosAsignados();
@@ -92,11 +92,11 @@ namespace ProyectoCamioncitos.Controlador
         //Evento Seleccion Fila Envios Asignados
         public void SelectEnviosAsignadosEvent(object sender, EventArgs e)
         {
-            //Pasa los datos de la fila seleccionada de la tabla Vinculo Chofer Vehiculo a los textboxs
-            if (Vista.tblPedidosAsignados.SelectedRows.Count > 0)
+            //Pasa los datos de la fila seleccionada de la tabla Envios Asignados a los textboxs
+            if (Vista.tblEnviosAsignados.SelectedRows.Count > 0)
             {
                 AsignarEnviosDAO asignarEnvio = new AsignarEnviosDAO();
-                List<AsignacionEnvio> envioAsignadoResult = asignarEnvio.ObtenerEnviosAsignados(Vista.tblPedidosAsignados.CurrentRow.Cells[0].Value.ToString());
+                List<AsignacionEnvio> envioAsignadoResult = asignarEnvio.ObtenerEnviosAsignados(Vista.tblEnviosAsignados.CurrentRow.Cells[0].Value.ToString());
                 Vista.txtCiChofer.Text = envioAsignadoResult[0].CIChofer;
                 Vista.txtIdPedido.Text = envioAsignadoResult[0].IDPedido.ToString();
 
@@ -120,7 +120,7 @@ namespace ProyectoCamioncitos.Controlador
             try
             {
                 ValTextboxsCompletos();
-                DialogResult dialogResult = MessageBox.Show("Asignar PEDIDO con ID: " + Vista.txtIdPedido.Text + " con el CHOFER con CI: " + Vista.txtCiChofer.Text + " ?", "Asignar Envio", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dialogResult = MessageBox.Show("Asignar ENVIOS con ID: " + Vista.txtIdPedido.Text + " con el CHOFER con CI: " + Vista.txtCiChofer.Text + " ?", "Asignar Envio", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
                     AsignarEnvio();
@@ -187,7 +187,7 @@ namespace ProyectoCamioncitos.Controlador
         {
             Vista.tblChofer.ClearSelection();
             Vista.tblPedidosPendientes.ClearSelection();
-            Vista.tblPedidosAsignados.ClearSelection();
+            Vista.tblEnviosAsignados.ClearSelection();
 
             Vista.txtCiChofer.Text = "";
             Vista.txtIdPedido.Text = "";
@@ -235,7 +235,7 @@ namespace ProyectoCamioncitos.Controlador
         public void CargarEnviosAsignados()
         {
             AsignarEnviosDAO asignarEnviosDAO = new AsignarEnviosDAO();
-            Vista.tblPedidosAsignados.DataSource =
+            Vista.tblEnviosAsignados.DataSource =
                 asignarEnviosDAO.ObtenerEnviosAsignados(Vista.txtBuscarPedidosAsignados.Text);
         }
     }

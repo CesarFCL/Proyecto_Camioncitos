@@ -26,7 +26,7 @@ namespace ProyectoCamioncitos.Controlador
             Vista.btnCliente.Click += new EventHandler(AbrirFormClientesEvent);
             Vista.btnVehiculo.Click += new EventHandler(AbrirFormVehiculoEvent);
             Vista.btnChofer.Click += new EventHandler(AbrirFormChoferEvent);
-            Vista.btnFacturas.Click += new EventHandler(AbrirFormFacturasEnviosEvent);
+            Vista.btnFacturas.Click += new EventHandler(AbrirFormPedidosEvent);
             Vista.btnAsignarChoferVehiculo.Click += new EventHandler(AbrirFormAsignarChoferVehiculoEvent);
             Vista.btnAsignarEnvios.Click += new EventHandler(AbrirFormAsignarEnviosEvent);
             Vista.FormClosed += delegate (object sender, FormClosedEventArgs e) { CerrarFormInternoEvent(sender, e, Vista.panelForms); };       
@@ -45,8 +45,8 @@ namespace ProyectoCamioncitos.Controlador
             InactiveColorBtn(Vista.btnFacturas, Vista.picFacturas);
             InactiveColorBtn(Vista.btnAsignarEnvios, Vista.picAsignarEnvios);
         }
-        //Evento Abrir Vista CRUD Facturas Envios
-        public void AbrirFormFacturasEnviosEvent(object sender, EventArgs e)
+        //Evento Abrir Vista CRUD Pedidos
+        public void AbrirFormPedidosEvent(object sender, EventArgs e)
         {
             AbrirForm(new PedidosCrudView(), Vista.panelForms);
 

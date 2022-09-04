@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace ProyectoCamioncitos.Modelo.DAO
 {
     //Clase Chofer Data Acces Object
-    //Aqui se ejecutan todos los procesos que involucren a la BD para el Controlador del CRUD Chofer
+    //Aqui se ejecutan todos los procesos que involucren a la BD y el objeto chofer
     public class ChoferDAO : DBContext
     {
         //METODOS CRUD

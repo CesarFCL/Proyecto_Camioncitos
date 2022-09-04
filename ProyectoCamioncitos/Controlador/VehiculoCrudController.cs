@@ -34,9 +34,9 @@ namespace ProyectoCamioncitos.Controlador
             Vista.btnEliminar.Click += new EventHandler(DeleteVehicleEvent);
             Vista.btnEditar.Click += new EventHandler(UpdateVehicleEvent);
 
-            Vista.txtMatricula.TextChanged += new EventHandler(MatriculaLimit);
-            Vista.txtMarca.TextChanged += new EventHandler(MarcaLimit);
-            Vista.txtYear.TextChanged += new EventHandler(YearLimit);
+            Vista.txtMatricula.TextChanged += delegate (object sender, EventArgs e) { MatriculaLimit(sender, e, Vista.txtMatricula); };
+            Vista.txtMarca.TextChanged += delegate (object sender, EventArgs e) { MarcaLimit(sender, e, Vista.txtMarca); };
+            Vista.txtYear.TextChanged += delegate (object sender, EventArgs e) { YearLimit(sender, e, Vista.txtYear); };
 
             Vista.txtYear.KeyPress += new KeyPressEventHandler(OnlyNumbers_KeyPress);
         }
@@ -127,7 +127,7 @@ namespace ProyectoCamioncitos.Controlador
         //Evento Eliminar Vehiculo
         public void DeleteVehicleEvent(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Esta seguro de querer eliminar al vehiculo con matricula: " + Vista.txtMatricula.Text, "Eliminar Chofer", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MessageBox.Show("Esta seguro de querer eliminar al vehiculo con matricula: " + Vista.txtMatricula.Text, "Eliminar Vehiculo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
                 DeleteVehicle();
@@ -153,7 +153,7 @@ namespace ProyectoCamioncitos.Controlador
             try
             {
                 ValUpdateVehicle();
-                DialogResult dialogResult = MessageBox.Show("Esta seguro de querer editar la informacion del vehiculo con matricula: " + Vista.txtMatricula.Text, "Editar Chofer", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dialogResult = MessageBox.Show("Esta seguro de querer editar la informacion del vehiculo con matricula: " + Vista.txtMatricula.Text, "Editar Vehiculo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
                     UpdateVehicle();
@@ -231,20 +231,6 @@ namespace ProyectoCamioncitos.Controlador
             {
                 Vista.cboxDisponibilidad.Enabled = true;
             }
-        }
-
-        //Restricciones Particulares Vehiculo
-        public void MatriculaLimit(object sender, EventArgs e)
-        {
-            Vista.txtMatricula.MaxLength = 10;
-        }
-        public void MarcaLimit(object sender, EventArgs e)
-        {
-            Vista.txtMarca.MaxLength = 20;
-        }
-        public void YearLimit(object sender, EventArgs e)
-        {
-            Vista.txtYear.MaxLength = 5;
         }
     }
 }

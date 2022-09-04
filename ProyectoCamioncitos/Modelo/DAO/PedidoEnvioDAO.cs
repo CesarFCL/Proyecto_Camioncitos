@@ -12,7 +12,7 @@ using System.Windows.Forms;
 namespace ProyectoCamioncitos.Modelo.DAO
 {
     //Clase PedidoEnvio Data Acces Object
-    //Aqui se ejecutan todos los procesos que involucren a la BD para el Controlador del CRUD Pedido
+    //Aqui se ejecutan todos los procesos que involucren a la BD y los objetos pedido y envio
     public class PedidoEnvioDAO : DBContext
     {
 
@@ -37,6 +37,48 @@ namespace ProyectoCamioncitos.Modelo.DAO
                         ID = Int32.Parse(Reader["ID"].ToString()),
                         Fecha = DateTime.Parse(Reader["Fecha"].ToString()),
                         RucCliente = Reader["RUC Cliente"].ToString(),
+                        Detalles = Reader["Detalles"].ToString(),
+                        Peso = Reader["Peso"].ToString(),
+                        EnvioIntraprovincial = Reader["Envio Intraprovincial"].ToString(),
+                        Costo = float.Parse(Reader["Costo"].ToString())
+                    }, new Envio
+                    {
+                        Id = Int32.Parse(Reader["ID"].ToString()),
+                        DireccionDestinatario = Reader["Direccion Destinatario"].ToString(),
+                        CiDestinatario = Reader["CI Destinatario"].ToString(),
+                        TelefonoDestinatario = Reader["Telefono Destinatario"].ToString(),
+                        Estado = Reader["Estado"].ToString(),
+                        FechaFinalizacion = Reader["Fecha Finalizacion"].ToString()
+                    }));
+            }
+            Reader.Close();
+            Conexion.Close();
+            return ListaPedidoEnvio;
+        }
+
+        //Metodo Leer Pedidos Detallados
+        public List<Tuple<PedidoDetallado, Envio>> ObtenerEnviosAsignadosParticularesDetallados(string CI, string condicion)
+        {
+            Comando.Connection = Conexion;
+            Comando.CommandText = "ObtenerEnviosPendientesDetalladosChofer";
+            Comando.CommandType = CommandType.StoredProcedure;
+            Comando.Parameters.AddWithValue("@CI", CI);
+            Comando.Parameters.AddWithValue("@Condicion", condicion);
+            Conexion.Open();
+            Reader = Comando.ExecuteReader();
+
+            List<Tuple<PedidoDetallado, Envio>> ListaPedidoEnvio = new List<Tuple<PedidoDetallado, Envio>>();
+            while (Reader.Read())
+            {
+                ListaPedidoEnvio.Add(new Tuple<PedidoDetallado, Envio>(
+                    new PedidoDetallado
+                    {
+                        ID = Int32.Parse(Reader["ID"].ToString()),
+                        Fecha = DateTime.Parse(Reader["Fecha"].ToString()),
+                        RucCliente = Reader["RUC Cliente"].ToString(),
+                        NombreCliente = Reader["Nombre Cliente"].ToString(),
+                        DireccionCliente = Reader["Direccion Cliente"].ToString(),
+                        TelefonoCliente = Reader["Telefono Cliente"].ToString(),
                         Detalles = Reader["Detalles"].ToString(),
                         Peso = Reader["Peso"].ToString(),
                         EnvioIntraprovincial = Reader["Envio Intraprovincial"].ToString(),

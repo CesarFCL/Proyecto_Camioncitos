@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace ProyectoCamioncitos.Modelo.DAO
 {
     //Clase Vehiculo Data Acces Object
-    //Aqui se ejecutan todos los procesos que involucren a la BD para el Controlador del CRUD Vehiculo
+    //Aqui se ejecutan todos los procesos que involucren a la BD y el objeto vehiculo
     public class VehiculoDAO : DBContext
     {
 
