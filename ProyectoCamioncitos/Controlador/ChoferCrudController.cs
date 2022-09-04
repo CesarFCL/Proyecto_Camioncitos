@@ -187,7 +187,6 @@ namespace ProyectoCamioncitos.Controlador
         //Metodo Validacion Datos Completos Update Chofer
         public void ValUpdateChofer()
         {
-            Console.WriteLine(Vista.dtpFechaNacimiento.Value.ToString("yyyy-MM-dd"));
             //Se asegura que todos los datos de los textbox esten completos
             TextBox[] textboxsUpdate = new TextBox[] { Vista.txtCI, Vista.txtNombre, Vista.txtApellido, Vista.txtCelular,
                 Vista.txtCorreo, Vista.txtDireccion};
