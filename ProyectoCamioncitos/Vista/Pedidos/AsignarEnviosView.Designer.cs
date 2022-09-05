@@ -31,7 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.txtBuscarPedidosAsignados = new System.Windows.Forms.TextBox();
+            this.txtBuscarEnviosAsignados = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnDesvincular = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
@@ -39,7 +39,7 @@
             this.btnVincular = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtIdPedido = new System.Windows.Forms.TextBox();
+            this.txtIdEnvio = new System.Windows.Forms.TextBox();
             this.gbClienteDatos = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtCiChofer = new System.Windows.Forms.TextBox();
@@ -47,12 +47,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtBuscarChofer = new System.Windows.Forms.TextBox();
-            this.txtBuscarPedidosPendientes = new System.Windows.Forms.TextBox();
+            this.txtBuscarEnviosPendientes = new System.Windows.Forms.TextBox();
             this.tblChofer = new System.Windows.Forms.DataGridView();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.tblPedidosPendientes = new System.Windows.Forms.DataGridView();
+            this.tblEnviosPendientes = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RucCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,16 +65,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tblPedidosPendientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblEnviosPendientes)).BeginInit();
             this.SuspendLayout();
             // 
-            // txtBuscarPedidosAsignados
+            // txtBuscarEnviosAsignados
             // 
-            this.txtBuscarPedidosAsignados.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscarPedidosAsignados.Location = new System.Drawing.Point(916, 122);
-            this.txtBuscarPedidosAsignados.Name = "txtBuscarPedidosAsignados";
-            this.txtBuscarPedidosAsignados.Size = new System.Drawing.Size(104, 23);
-            this.txtBuscarPedidosAsignados.TabIndex = 60;
+            this.txtBuscarEnviosAsignados.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscarEnviosAsignados.Location = new System.Drawing.Point(916, 122);
+            this.txtBuscarEnviosAsignados.Name = "txtBuscarEnviosAsignados";
+            this.txtBuscarEnviosAsignados.Size = new System.Drawing.Size(104, 23);
+            this.txtBuscarEnviosAsignados.TabIndex = 60;
             // 
             // label4
             // 
@@ -162,14 +162,14 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.txtIdPedido);
+            this.groupBox1.Controls.Add(this.txtIdEnvio);
             this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(448, 220);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(221, 72);
             this.groupBox1.TabIndex = 54;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Pedido Seleccionado";
+            this.groupBox1.Text = "Envio Seleccionado";
             // 
             // label7
             // 
@@ -181,14 +181,14 @@
             this.label7.TabIndex = 34;
             this.label7.Text = "ID";
             // 
-            // txtIdPedido
+            // txtIdEnvio
             // 
-            this.txtIdPedido.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIdPedido.Location = new System.Drawing.Point(33, 34);
-            this.txtIdPedido.Name = "txtIdPedido";
-            this.txtIdPedido.ReadOnly = true;
-            this.txtIdPedido.Size = new System.Drawing.Size(174, 23);
-            this.txtIdPedido.TabIndex = 30;
+            this.txtIdEnvio.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIdEnvio.Location = new System.Drawing.Point(33, 34);
+            this.txtIdEnvio.Name = "txtIdEnvio";
+            this.txtIdEnvio.ReadOnly = true;
+            this.txtIdEnvio.Size = new System.Drawing.Size(174, 23);
+            this.txtIdEnvio.TabIndex = 30;
             // 
             // gbClienteDatos
             // 
@@ -260,13 +260,13 @@
             this.txtBuscarChofer.Size = new System.Drawing.Size(140, 23);
             this.txtBuscarChofer.TabIndex = 48;
             // 
-            // txtBuscarPedidosPendientes
+            // txtBuscarEnviosPendientes
             // 
-            this.txtBuscarPedidosPendientes.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscarPedidosPendientes.Location = new System.Drawing.Point(275, 122);
-            this.txtBuscarPedidosPendientes.Name = "txtBuscarPedidosPendientes";
-            this.txtBuscarPedidosPendientes.Size = new System.Drawing.Size(140, 23);
-            this.txtBuscarPedidosPendientes.TabIndex = 46;
+            this.txtBuscarEnviosPendientes.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscarEnviosPendientes.Location = new System.Drawing.Point(275, 122);
+            this.txtBuscarEnviosPendientes.Name = "txtBuscarEnviosPendientes";
+            this.txtBuscarEnviosPendientes.Size = new System.Drawing.Size(140, 23);
+            this.txtBuscarEnviosPendientes.TabIndex = 46;
             // 
             // tblChofer
             // 
@@ -322,14 +322,14 @@
             this.pictureBox1.TabIndex = 47;
             this.pictureBox1.TabStop = false;
             // 
-            // tblPedidosPendientes
+            // tblEnviosPendientes
             // 
-            this.tblPedidosPendientes.AllowUserToAddRows = false;
-            this.tblPedidosPendientes.AllowUserToDeleteRows = false;
-            this.tblPedidosPendientes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tblEnviosPendientes.AllowUserToAddRows = false;
+            this.tblEnviosPendientes.AllowUserToDeleteRows = false;
+            this.tblEnviosPendientes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tblPedidosPendientes.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(41)))), ((int)(((byte)(68)))));
+            this.tblEnviosPendientes.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(41)))), ((int)(((byte)(68)))));
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -337,20 +337,20 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tblPedidosPendientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.tblPedidosPendientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tblPedidosPendientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.tblEnviosPendientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.tblEnviosPendientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tblEnviosPendientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
             this.FechaFactura,
             this.RucCliente,
             this.Costo,
             this.DireccionDestinatario});
-            this.tblPedidosPendientes.Location = new System.Drawing.Point(15, 148);
-            this.tblPedidosPendientes.MultiSelect = false;
-            this.tblPedidosPendientes.Name = "tblPedidosPendientes";
-            this.tblPedidosPendientes.ReadOnly = true;
-            this.tblPedidosPendientes.Size = new System.Drawing.Size(427, 165);
-            this.tblPedidosPendientes.TabIndex = 62;
+            this.tblEnviosPendientes.Location = new System.Drawing.Point(15, 148);
+            this.tblEnviosPendientes.MultiSelect = false;
+            this.tblEnviosPendientes.Name = "tblEnviosPendientes";
+            this.tblEnviosPendientes.ReadOnly = true;
+            this.tblEnviosPendientes.Size = new System.Drawing.Size(427, 165);
+            this.tblEnviosPendientes.TabIndex = 62;
             // 
             // ID
             // 
@@ -387,9 +387,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1056, 573);
-            this.Controls.Add(this.tblPedidosPendientes);
+            this.Controls.Add(this.tblEnviosPendientes);
             this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.txtBuscarPedidosAsignados);
+            this.Controls.Add(this.txtBuscarEnviosAsignados);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnDesvincular);
             this.Controls.Add(this.btnLimpiar);
@@ -403,7 +403,7 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.txtBuscarChofer);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.txtBuscarPedidosPendientes);
+            this.Controls.Add(this.txtBuscarEnviosPendientes);
             this.Controls.Add(this.tblChofer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AsignarEnviosView";
@@ -417,7 +417,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tblPedidosPendientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblEnviosPendientes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -426,7 +426,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox3;
-        public System.Windows.Forms.TextBox txtBuscarPedidosAsignados;
+        public System.Windows.Forms.TextBox txtBuscarEnviosAsignados;
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.Button btnDesvincular;
         public System.Windows.Forms.Button btnLimpiar;
@@ -434,7 +434,7 @@
         public System.Windows.Forms.Button btnVincular;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label7;
-        public System.Windows.Forms.TextBox txtIdPedido;
+        public System.Windows.Forms.TextBox txtIdEnvio;
         private System.Windows.Forms.GroupBox gbClienteDatos;
         private System.Windows.Forms.Label label6;
         public System.Windows.Forms.TextBox txtCiChofer;
@@ -444,9 +444,9 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         public System.Windows.Forms.TextBox txtBuscarChofer;
         private System.Windows.Forms.PictureBox pictureBox1;
-        public System.Windows.Forms.TextBox txtBuscarPedidosPendientes;
+        public System.Windows.Forms.TextBox txtBuscarEnviosPendientes;
         public System.Windows.Forms.DataGridView tblChofer;
-        public System.Windows.Forms.DataGridView tblPedidosPendientes;
+        public System.Windows.Forms.DataGridView tblEnviosPendientes;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaFactura;
         private System.Windows.Forms.DataGridViewTextBoxColumn RucCliente;
