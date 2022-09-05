@@ -57,19 +57,25 @@ namespace ProyectoCamioncitos.Controlador
             CargarClientes();
         }
 
+        //Método Obtener Datos Cliente
+        public void ObtenerDatosCliente()
+        {
+            ClienteDAO cliente = new ClienteDAO();
+            List<Cliente> ClienteResult = cliente.ObtenerCliente(Vista.tblClientes.CurrentRow.Cells[0].Value.ToString());
+            Vista.txtRUC.Text = ClienteResult[0].RUC;
+            Vista.txtNombre.Text = ClienteResult[0].Nombre;
+            Vista.txtTelefono.Text = ClienteResult[0].Telefono;
+            Vista.txtCorreo.Text = ClienteResult[0].Correo;
+            Vista.txtDireccion.Text = ClienteResult[0].Direccion;
+        }
+
         //Evento Seleccion Fila Cliente
         public void SelectClientEvent(object sender, EventArgs e)
         {
             //Pasa los datos de la fila seleccionada de la tabla Cliente a los textboxs
             if (Vista.tblClientes.SelectedRows.Count > 0)
             {
-                ClienteDAO cliente = new ClienteDAO();
-                List<Cliente> ClienteResult = cliente.ObtenerCliente(Vista.tblClientes.CurrentRow.Cells[0].Value.ToString());
-                Vista.txtRUC.Text = ClienteResult[0].RUC;
-                Vista.txtNombre.Text = ClienteResult[0].Nombre;
-                Vista.txtTelefono.Text = ClienteResult[0].Telefono;
-                Vista.txtCorreo.Text = ClienteResult[0].Correo;
-                Vista.txtDireccion.Text = ClienteResult[0].Direccion;
+                ObtenerDatosCliente();
 
                 BotonesFaseEdit(Vista.btnGuardar, Vista.btnEliminar, Vista.btnEditar);
 

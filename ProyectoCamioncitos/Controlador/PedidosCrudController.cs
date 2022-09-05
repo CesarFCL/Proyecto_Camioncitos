@@ -75,31 +75,37 @@ namespace ProyectoCamioncitos.Controlador
             }
         }
 
+        //Metodo Obtener Datos Pedido
+        public void ObtenerDatosPedido()
+        {
+            PedidoEnvioDAO pedido = new PedidoEnvioDAO();
+            List<Tuple<Pedido, Envio>> pedidoResult = pedido.ObtenerPedidoEnvioParticular(Vista.tblPedidos.CurrentRow.Cells[0].Value.ToString());
+
+            Vista.txtID.Text = pedidoResult[0].Item1.ID.ToString();
+            Vista.dtpFechaFactura.Value = pedidoResult[0].Item1.Fecha;
+            Vista.txtRucCliente.Text = pedidoResult[0].Item1.RucCliente;
+            Vista.cboxIntraprovincial.SelectedItem = pedidoResult[0].Item1.EnvioIntraprovincial;
+            Vista.txtPeso.Text = pedidoResult[0].Item1.Peso.ToString().Replace(',', '.');
+            Vista.txtCosto.Text = pedidoResult[0].Item1.Costo.ToString().Replace(',', '.');
+            Vista.txtCiDestinatario.Text = pedidoResult[0].Item2.CiDestinatario;
+            Vista.txtTelefonoDestinatario.Text = pedidoResult[0].Item2.TelefonoDestinatario;
+            Vista.txtDireccionDestinatario.Text = pedidoResult[0].Item2.DireccionDestinatario;
+            Vista.txtDetallesEnvio.Text = pedidoResult[0].Item1.Detalles;
+            Vista.cboxEstadoEnvio.SelectedItem = pedidoResult[0].Item2.Estado;
+            Vista.dtpFechaFinalizacionEnvio.Value = DateTime.TryParseExact(pedidoResult[0].Item2.FechaFinalizacion,
+                                                   "yyyy-dd-MM",
+                                                   CultureInfo.InvariantCulture,
+                                                   DateTimeStyles.None, out DateTime dt) ?
+                                                   DateTime.Parse(pedidoResult[0].Item2.FechaFinalizacion) : DateTime.Now;
+        }
+
         //Evento Seleccion Fila Pedidos
         public void SelectPedidosEvent(object sender, EventArgs e)
         {
             //Pasa los datos de la fila seleccionada de la tabla Pedidos a los textboxs
             if (Vista.tblPedidos.SelectedRows.Count > 0)
             {
-                PedidoEnvioDAO facturaEnvio = new PedidoEnvioDAO();
-                List<Tuple<Pedido, Envio>> FacturaResult = facturaEnvio.ObtenerPedidoEnvioParticular(Vista.tblPedidos.CurrentRow.Cells[0].Value.ToString());
-
-                Vista.txtID.Text = FacturaResult[0].Item1.ID.ToString();
-                Vista.dtpFechaFactura.Value = FacturaResult[0].Item1.Fecha;
-                Vista.txtRucCliente.Text = FacturaResult[0].Item1.RucCliente;
-                Vista.cboxIntraprovincial.SelectedItem = FacturaResult[0].Item1.EnvioIntraprovincial;
-                Vista.txtPeso.Text = FacturaResult[0].Item1.Peso.ToString().Replace(',', '.');
-                Vista.txtCosto.Text = FacturaResult[0].Item1.Costo.ToString().Replace(',', '.');
-                Vista.txtCiDestinatario.Text = FacturaResult[0].Item2.CiDestinatario;
-                Vista.txtTelefonoDestinatario.Text = FacturaResult[0].Item2.TelefonoDestinatario;
-                Vista.txtDireccionDestinatario.Text = FacturaResult[0].Item2.DireccionDestinatario;
-                Vista.txtDetallesEnvio.Text = FacturaResult[0].Item1.Detalles;
-                Vista.cboxEstadoEnvio.SelectedItem = FacturaResult[0].Item2.Estado;
-                Vista.dtpFechaFinalizacionEnvio.Value = DateTime.TryParseExact(FacturaResult[0].Item2.FechaFinalizacion,
-                                                       "yyyy-dd-MM",
-                                                       CultureInfo.InvariantCulture,
-                                                       DateTimeStyles.None, out DateTime dt) ?
-                                                       DateTime.Parse(FacturaResult[0].Item2.FechaFinalizacion) : DateTime.Now;
+                ObtenerDatosPedido();
 
                 BotonesFaseEdit(Vista.btnGuardar, Vista.btnEliminar, Vista.btnEditar);
 

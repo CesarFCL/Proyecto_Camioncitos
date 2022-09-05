@@ -30,7 +30,7 @@ namespace ProyectoCamioncitos.Controlador
             //Inicializar eventos
             Vista.Load += new EventHandler(LoadEvent);
             Vista.txtBuscarFacturas.TextChanged += new EventHandler(BusquedaEvent);
-            Vista.tblEnvios.CellMouseClick += new DataGridViewCellMouseEventHandler(SelectPedidossEvent);
+            Vista.tblEnvios.CellMouseClick += new DataGridViewCellMouseEventHandler(SelectEnviosEvent);
             Vista.btnLimpiar.Click += new EventHandler(LimpiarEvent);
             Vista.btnLiberar.Click += new EventHandler(LiberarEvent);
             Vista.btnFinalizarEnvio.Click += new EventHandler(FinalizarEnvioEvent);
@@ -64,22 +64,28 @@ namespace ProyectoCamioncitos.Controlador
             }
         }
 
+        //Método Obtener Datos Envios
+        public void ObtenerDatosEnvios()
+        {
+            PedidoEnvioDAO Envio = new PedidoEnvioDAO();
+            List<Tuple<PedidoDetallado, Envio>> EnvioResult = Envio.ObtenerEnviosAsignadosParticularesDetallados(Menu.txtCI.Text, Vista.tblEnvios.CurrentRow.Cells[0].Value.ToString());
+
+            Vista.txtID.Text = EnvioResult[0].Item1.ID.ToString();
+            Vista.txtRucCliente.Text = EnvioResult[0].Item1.RucCliente.ToString();
+            Vista.txtTelefonoCliente.Text = EnvioResult[0].Item1.TelefonoCliente.ToString();
+            Vista.txtDireccionCliente.Text = EnvioResult[0].Item1.DireccionCliente.ToString();
+            Vista.txtCiDestinatario.Text = EnvioResult[0].Item2.CiDestinatario.ToString();
+            Vista.txtTelefonoDestinatario.Text = EnvioResult[0].Item2.TelefonoDestinatario.ToString();
+            Vista.txtDireccionDestinatario.Text = EnvioResult[0].Item2.DireccionDestinatario.ToString();
+        }
+
         //Evento Seleccion Fila Envios
-        public void SelectPedidossEvent(object sender, EventArgs e)
+        public void SelectEnviosEvent(object sender, EventArgs e)
         {
             //Pasa los datos de la fila seleccionada de la tabla Envios a los textboxs
             if (Vista.tblEnvios.SelectedRows.Count > 0)
             {
-                PedidoEnvioDAO Envio = new PedidoEnvioDAO();
-                List<Tuple<PedidoDetallado, Envio>> EnvioResult = Envio.ObtenerEnviosAsignadosParticularesDetallados(Menu.txtCI.Text, Vista.tblEnvios.CurrentRow.Cells[0].Value.ToString());
-
-                Vista.txtID.Text = EnvioResult[0].Item1.ID.ToString();
-                Vista.txtRucCliente.Text = EnvioResult[0].Item1.RucCliente.ToString();
-                Vista.txtTelefonoCliente.Text = EnvioResult[0].Item1.TelefonoCliente.ToString();
-                Vista.txtDireccionCliente.Text = EnvioResult[0].Item1.DireccionCliente.ToString();
-                Vista.txtCiDestinatario.Text = EnvioResult[0].Item2.CiDestinatario.ToString();
-                Vista.txtTelefonoDestinatario.Text = EnvioResult[0].Item2.TelefonoDestinatario.ToString();
-                Vista.txtDireccionDestinatario.Text = EnvioResult[0].Item2.DireccionDestinatario.ToString();
+                ObtenerDatosEnvios();
 
                 Vista.btnFinalizarEnvio.Enabled = true;
             }
@@ -141,7 +147,6 @@ namespace ProyectoCamioncitos.Controlador
                 CargarEnvios();
                 Limpiar();
             }
-            Liberar();
         }
 
         //Método finalizar envio

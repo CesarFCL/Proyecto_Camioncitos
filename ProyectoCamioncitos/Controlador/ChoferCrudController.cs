@@ -59,31 +59,37 @@ namespace ProyectoCamioncitos.Controlador
             CargarChofer();
         }
 
+        //Método Obtener Datos Chofer
+        public void ObtenerDatosChofer()
+        {
+            ChoferDAO chofer = new ChoferDAO();
+            List<Chofer> ChoferResult = chofer.ObtenerChofer(Vista.tblChofer.CurrentRow.Cells[1].Value.ToString());
+            Vista.txtCI.Text = ChoferResult[0].CI;
+            Vista.txtNombre.Text = ChoferResult[0].Nombre;
+            Vista.txtApellido.Text = ChoferResult[0].Apellido;
+            Vista.txtCelular.Text = ChoferResult[0].Celular;
+            Vista.dtpFechaNacimiento.Value = ChoferResult[0].FechaNacimiento;
+            Vista.txtCorreo.Text = ChoferResult[0].Correo;
+            Vista.txtDireccion.Text = ChoferResult[0].Direccion;
+            Vista.cboxDisponibilidad.SelectedItem = ChoferResult[0].Disponibilidad;
+        }
+
         //Evento Seleccion Fila Chofer
         public void SelectChoferEvent(object sender, EventArgs e)
         {
             //Pasa los datos de la fila seleccionada de la tabla Chofer a los textboxs
             if (Vista.tblChofer.SelectedRows.Count > 0)
             {
-                ChoferDAO chofer = new ChoferDAO();
-                List<Chofer> ChoferResult = chofer.ObtenerChofer(Vista.tblChofer.CurrentRow.Cells[1].Value.ToString());
-                Vista.txtCI.Text = ChoferResult[0].CI;
-                Vista.txtNombre.Text = ChoferResult[0].Nombre;
-                Vista.txtApellido.Text = ChoferResult[0].Apellido;
-                Vista.txtCelular.Text = ChoferResult[0].Celular;
-                Vista.dtpFechaNacimiento.Value = ChoferResult[0].FechaNacimiento;
-                Vista.txtCorreo.Text = ChoferResult[0].Correo;
-                Vista.txtDireccion.Text = ChoferResult[0].Direccion;
-                Vista.cboxDisponibilidad.SelectedItem = ChoferResult[0].Disponibilidad;
+                ObtenerDatosChofer();
 
                 BotonesFaseEdit(Vista.btnGuardar, Vista.btnEliminar, Vista.btnEditar);
+                DisponibilidadChofer();
 
                 Vista.txtPassword.Visible = false;
                 Vista.txtPassword.Enabled = false;
                 Vista.lblPassword.Visible = false;
                 Vista.txtCI.Enabled = false;
                 Vista.cboxDisponibilidad.Visible = true;
-                DisponibilidadChofer();
                 Vista.lblDisponibilidad.Visible = true;
             }
         }
@@ -209,7 +215,6 @@ namespace ProyectoCamioncitos.Controlador
                 chofer.Update(Vista.txtCI.Text, Vista.txtNombre.Text, Vista.txtApellido.Text,
                     Vista.txtCelular.Text, Vista.dtpFechaNacimiento.Value.ToString("yyyy-MM-dd"), Vista.txtCorreo.Text, Vista.txtDireccion.Text,
                     Vista.cboxDisponibilidad.SelectedItem.ToString());
-
             }
             catch { }
         }

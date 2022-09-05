@@ -63,42 +63,60 @@ namespace ProyectoCamioncitos.Controlador
             CargarVinculoChoferVehiculo();
         }
 
+        //Método Obtener CI Chofer
+        public void ObtenerCiChofer()
+        {
+            ChoferDAO chofer = new ChoferDAO();
+            List<Chofer> ChoferResult = chofer.ObtenerChoferDisponible(Vista.tblChofer.CurrentRow.Cells[1].Value.ToString());
+            Vista.txtCI.Text = ChoferResult[0].CI;
+        }
+
         //Evento Seleccion Fila Chofer
         public void SelectChoferEvent(object sender, EventArgs e)
         {
             //Pasa los datos de la fila seleccionada de la tabla Chofer a los textboxs
             if (Vista.tblChofer.SelectedRows.Count > 0)
             {
-                ChoferDAO chofer = new ChoferDAO();
-                List<Chofer> ChoferResult = chofer.ObtenerChoferDisponible(Vista.tblChofer.CurrentRow.Cells[1].Value.ToString());
-                Vista.txtCI.Text = ChoferResult[0].CI;
-
+                ObtenerCiChofer();
                 Vista.btnVincular.Enabled = true;
             }
         }
+
+        //Método Obtener Matricula Vehiculo
+        public void ObtenerMatriculaVehiculo()
+        {
+            VehiculoDAO vehiculo = new VehiculoDAO();
+            List<Vehiculo> vehiculoResult = vehiculo.ObtenerVehiculoDisponible(Vista.tblVehiculos.CurrentRow.Cells[0].Value.ToString());
+            Vista.txtMatricula.Text = vehiculoResult[0].Matricula;
+        }
+
         //Evento Seleccion Fila Vehiculo
         public void SelectVehiculoEvent(object sender, EventArgs e)
         {
             //Pasa los datos de la fila seleccionada de la tabla Vehiculo a los textboxs
             if (Vista.tblVehiculos.SelectedRows.Count > 0)
             {
-                VehiculoDAO vehiculo = new VehiculoDAO();
-                List<Vehiculo> vehiculoResult = vehiculo.ObtenerVehiculoDisponible(Vista.tblVehiculos.CurrentRow.Cells[0].Value.ToString());
-                Vista.txtMatricula.Text = vehiculoResult[0].Matricula;
-
+                ObtenerMatriculaVehiculo();
                 Vista.btnVincular.Enabled = true;
             }
         }
+
+        //Método Obtener Matricula y CI de Vinculo Chofer-Vehiculo
+        public void ObtenerMatriculaCiVinculo()
+        {
+            AsignacionChoferVehiculoDAO vinculoChoferVehiculo = new AsignacionChoferVehiculoDAO();
+            List<AsignacionChoferVehiculo> vinculoChoferVehiculoResult = vinculoChoferVehiculo.ObtenerVinculoChoferVehiculo(Vista.tblChoferesConVehiculosAsignados.CurrentRow.Cells[0].Value.ToString());
+            Vista.txtCI.Text = vinculoChoferVehiculoResult[0].CI;
+            Vista.txtMatricula.Text = vinculoChoferVehiculoResult[0].Matricula;
+        }
+
         //Evento Seleccion Fila Vinculo Chofer Vehiculo
         public void SelectVinculoChoferVehiculoEvent(object sender, EventArgs e)
         {
             //Pasa los datos de la fila seleccionada de la tabla Vinculo Chofer Vehiculo a los textboxs
             if (Vista.tblChoferesConVehiculosAsignados.SelectedRows.Count > 0)
             {
-                AsignacionChoferVehiculoDAO vinculoChoferVehiculo = new AsignacionChoferVehiculoDAO();
-                List<AsignacionChoferVehiculo> vinculoChoferVehiculoResult = vinculoChoferVehiculo.ObtenerVinculoChoferVehiculo(Vista.tblChoferesConVehiculosAsignados.CurrentRow.Cells[0].Value.ToString());
-                Vista.txtCI.Text = vinculoChoferVehiculoResult[0].CI;
-                Vista.txtMatricula.Text = vinculoChoferVehiculoResult[0].Matricula;
+                ObtenerMatriculaCiVinculo();
 
                 Vista.btnVincular.Enabled = false;
                 Vista.btnDesvincular.Enabled = true;

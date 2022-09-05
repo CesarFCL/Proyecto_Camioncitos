@@ -55,19 +55,25 @@ namespace ProyectoCamioncitos.Controlador
             CargarVehiculos();
         }
 
+        //Método Obtener Datos Vehiculo
+        public void ObtenerDatosVehiculo()
+        {
+            VehiculoDAO vehiculo = new VehiculoDAO();
+            List<Vehiculo> VehiculoResult = vehiculo.ObtenerVehiculo(Vista.tblVehiculos.CurrentRow.Cells[0].Value.ToString());
+            Vista.txtMatricula.Text = VehiculoResult[0].Matricula;
+            Vista.txtMarca.Text = VehiculoResult[0].Marca;
+            Vista.txtYear.Text = VehiculoResult[0].Year;
+            Vista.cboxTipo.SelectedItem = VehiculoResult[0].Tipo;
+            Vista.cboxDisponibilidad.SelectedItem = VehiculoResult[0].Disponibilidad;
+        }
+
         //Evento Seleccion Fila Vehiculo
         public void SelectVehicleEvent(object sender, EventArgs e)
         {
             //Pasa los datos de la fila seleccionada de la tabla Vehiculo a los textboxs
             if (Vista.tblVehiculos.SelectedRows.Count > 0)
             {
-                VehiculoDAO vehiculo = new VehiculoDAO();
-                List<Vehiculo> VehiculoResult = vehiculo.ObtenerVehiculo(Vista.tblVehiculos.CurrentRow.Cells[0].Value.ToString());
-                Vista.txtMatricula.Text = VehiculoResult[0].Matricula;
-                Vista.txtMarca.Text = VehiculoResult[0].Marca;
-                Vista.txtYear.Text = VehiculoResult[0].Year;
-                Vista.cboxTipo.SelectedItem = VehiculoResult[0].Tipo;
-                Vista.cboxDisponibilidad.SelectedItem = VehiculoResult[0].Disponibilidad;
+                ObtenerDatosVehiculo();
 
                 BotonesFaseEdit(Vista.btnGuardar, Vista.btnEliminar, Vista.btnEditar);
 

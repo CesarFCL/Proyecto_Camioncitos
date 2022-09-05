@@ -60,21 +60,27 @@ namespace ProyectoCamioncitos.Controlador
             CargarSecretaria();
         }
 
+        //Método Obtener Datos Secretaria
+        public void ObtenerDatosSecretaria()
+        {
+            SecretariaDAO secretaria = new SecretariaDAO();
+            List<Secretaria> SecretariaResult = secretaria.ObtenerSecretaria(Vista.tblSecretaria.CurrentRow.Cells[1].Value.ToString());
+            Vista.txtCI.Text = SecretariaResult[0].CI;
+            Vista.txtNombre.Text = SecretariaResult[0].Nombre;
+            Vista.txtApellido.Text = SecretariaResult[0].Apellido;
+            Vista.txtCelular.Text = SecretariaResult[0].Celular;
+            Vista.dtpFechaNacimiento.Value = SecretariaResult[0].FechaNacimiento;
+            Vista.txtCorreo.Text = SecretariaResult[0].Correo;
+            Vista.txtDireccion.Text = SecretariaResult[0].Direccion;
+        }
+
         //Evento Seleccion Fila Secretaria
         public void SelectSecretariaEvent(object sender, EventArgs e)
         {
             //Pasa los datos de la fila seleccionada de la tabla Secretaria a los textboxs
             if (Vista.tblSecretaria.SelectedRows.Count > 0)
             {
-                SecretariaDAO secretaria = new SecretariaDAO();
-                List<Secretaria> SecretariaResult = secretaria.ObtenerSecretaria(Vista.tblSecretaria.CurrentRow.Cells[1].Value.ToString());
-                Vista.txtCI.Text = SecretariaResult[0].CI;
-                Vista.txtNombre.Text = SecretariaResult[0].Nombre;
-                Vista.txtApellido.Text = SecretariaResult[0].Apellido;
-                Vista.txtCelular.Text = SecretariaResult[0].Celular;
-                Vista.dtpFechaNacimiento.Value = SecretariaResult[0].FechaNacimiento;
-                Vista.txtCorreo.Text = SecretariaResult[0].Correo;
-                Vista.txtDireccion.Text = SecretariaResult[0].Direccion;
+                ObtenerDatosSecretaria();
 
                 BotonesFaseEdit(Vista.btnGuardar, Vista.btnEliminar, Vista.btnEditar);
 

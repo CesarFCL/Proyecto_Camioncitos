@@ -21,16 +21,16 @@ namespace ProyectoCamioncitos.Controlador
         public AsignarEnviosController(AsignarEnviosView view)
         {
             Vista = view;
-            textboxs = new TextBox[] { Vista.txtCiChofer, Vista.txtIdPedido };
+            textboxs = new TextBox[] { Vista.txtCiChofer, Vista.txtIdEnvio };
 
             //inicializar eventos
             Vista.Load += new EventHandler(LoadEvent);
             Vista.txtBuscarChofer.TextChanged += new EventHandler(BusquedaChoferEvent);
-            Vista.txtBuscarPedidosPendientes.TextChanged += new EventHandler(BusquedaEnviosPendientesEvent);
-            Vista.txtBuscarPedidosAsignados.TextChanged += new EventHandler(BusquedaEnviosAsignadosEvent);
+            Vista.txtBuscarEnviosPendientes.TextChanged += new EventHandler(BusquedaEnviosPendientesEvent);
+            Vista.txtBuscarEnviosAsignados.TextChanged += new EventHandler(BusquedaEnviosAsignadosEvent);
 
             Vista.tblChofer.CellMouseClick += new DataGridViewCellMouseEventHandler(SelectChoferEvent);
-            Vista.tblPedidosPendientes.CellMouseClick += new DataGridViewCellMouseEventHandler(SelectEnviosPendientesEvent);
+            Vista.tblEnviosPendientes.CellMouseClick += new DataGridViewCellMouseEventHandler(SelectEnviosPendientesEvent);
             Vista.tblEnviosAsignados.CellMouseClick += new DataGridViewCellMouseEventHandler(SelectEnviosAsignadosEvent);
 
             Vista.btnLimpiar.Click += new EventHandler(LimpiarEvent);
@@ -63,48 +63,66 @@ namespace ProyectoCamioncitos.Controlador
             CargarEnviosAsignados();
         }
 
+        //Método Obtener CI Chofer
+        public void ObtenerCiChofer()
+        {
+            ChoferDAO chofer = new ChoferDAO();
+            List<Chofer> ChoferResult = chofer.ObtenerChofer(Vista.tblChofer.CurrentRow.Cells[1].Value.ToString());
+            Vista.txtCiChofer.Text = ChoferResult[0].CI;
+        }
+
         //Evento Seleccion Fila Chofer
         public void SelectChoferEvent(object sender, EventArgs e)
         {
             //Pasa los datos de la fila seleccionada de la tabla Chofer a los textboxs
             if (Vista.tblChofer.SelectedRows.Count > 0)
             {
-                ChoferDAO chofer = new ChoferDAO();
-                List<Chofer> ChoferResult = chofer.ObtenerChofer(Vista.tblChofer.CurrentRow.Cells[1].Value.ToString());
-                Vista.txtCiChofer.Text = ChoferResult[0].CI;
-
+                ObtenerCiChofer();
                 Vista.btnVincular.Enabled = true;
             }
         }
+
+        //Método Obtener ID Envio
+        public void ObtenerIdEnvio()
+        {
+            PedidoEnvioDAO envioPendiente = new PedidoEnvioDAO();
+            List<Tuple<Pedido, Envio>> envioPendienteResult = envioPendiente.ObtenerPedidoEnvioParticular(Vista.tblEnviosPendientes.CurrentRow.Cells[0].Value.ToString());
+            Vista.txtIdEnvio.Text = envioPendienteResult[0].Item1.ID.ToString();
+        }
+
         //Evento Seleccion Fila Envios Pendientes
         public void SelectEnviosPendientesEvent(object sender, EventArgs e)
         {
             //Pasa los datos de la fila seleccionada de la tabla Envios Pendientes a los textboxs
-            if (Vista.tblPedidosPendientes.SelectedRows.Count > 0)
+            if (Vista.tblEnviosPendientes.SelectedRows.Count > 0)
             {
-                PedidoEnvioDAO envioPendiente = new PedidoEnvioDAO();
-                List<Tuple<Pedido, Envio>> envioPendienteResult = envioPendiente.ObtenerPedidoEnvioParticular(Vista.tblPedidosPendientes.CurrentRow.Cells[0].Value.ToString());
-                Vista.txtIdPedido.Text = envioPendienteResult[0].Item1.ID.ToString();
-
+                ObtenerIdEnvio();
                 Vista.btnVincular.Enabled = true;
             }
         }
+
+        //Método Obtener CI e ID de Envio Asignado
+        public void ObtenerIdCIEnvioAsignado()
+        {
+            AsignarEnviosDAO asignarEnvio = new AsignarEnviosDAO();
+            List<AsignacionEnvio> envioAsignadoResult = asignarEnvio.ObtenerEnviosAsignados(Vista.tblEnviosAsignados.CurrentRow.Cells[0].Value.ToString());
+            Vista.txtCiChofer.Text = envioAsignadoResult[0].CIChofer;
+            Vista.txtIdEnvio.Text = envioAsignadoResult[0].IDPedido.ToString();
+        }
+
         //Evento Seleccion Fila Envios Asignados
         public void SelectEnviosAsignadosEvent(object sender, EventArgs e)
         {
             //Pasa los datos de la fila seleccionada de la tabla Envios Asignados a los textboxs
             if (Vista.tblEnviosAsignados.SelectedRows.Count > 0)
             {
-                AsignarEnviosDAO asignarEnvio = new AsignarEnviosDAO();
-                List<AsignacionEnvio> envioAsignadoResult = asignarEnvio.ObtenerEnviosAsignados(Vista.tblEnviosAsignados.CurrentRow.Cells[0].Value.ToString());
-                Vista.txtCiChofer.Text = envioAsignadoResult[0].CIChofer;
-                Vista.txtIdPedido.Text = envioAsignadoResult[0].IDPedido.ToString();
+                ObtenerIdCIEnvioAsignado();
 
                 Vista.btnVincular.Enabled = false;
                 Vista.btnDesvincular.Enabled = true;
 
                 Vista.tblChofer.Enabled = false;
-                Vista.tblPedidosPendientes.Enabled = false;
+                Vista.tblEnviosPendientes.Enabled = false;
             }
         }
 
@@ -120,7 +138,7 @@ namespace ProyectoCamioncitos.Controlador
             try
             {
                 ValTextboxsCompletos();
-                DialogResult dialogResult = MessageBox.Show("Asignar ENVIOS con ID: " + Vista.txtIdPedido.Text + " con el CHOFER con CI: " + Vista.txtCiChofer.Text + " ?", "Asignar Envio", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dialogResult = MessageBox.Show("Asignar ENVIOS con ID: " + Vista.txtIdEnvio.Text + " con el CHOFER con CI: " + Vista.txtCiChofer.Text + " ?", "Asignar Envio", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
                     AsignarEnvio();
@@ -151,7 +169,7 @@ namespace ProyectoCamioncitos.Controlador
             try
             {
                 AsignarEnviosDAO asignarEnvios = new AsignarEnviosDAO();
-                asignarEnvios.Create(int.Parse(Vista.txtIdPedido.Text), Vista.txtCiChofer.Text);
+                asignarEnvios.Create(int.Parse(Vista.txtIdEnvio.Text), Vista.txtCiChofer.Text);
             }
             catch { }
         }
@@ -160,7 +178,7 @@ namespace ProyectoCamioncitos.Controlador
         public void EliminarAsignacionEnvioEvent(object sender, EventArgs e)
         {
             ValTextboxsCompletos();
-            DialogResult dialogResult = MessageBox.Show("Esta seguro de querer eliminar la asignacion del ENVIO con ID: " + Vista.txtIdPedido.Text + " con el CHOFER con CI: " + Vista.txtCiChofer.Text, "Eliminar Asignacion de Envio", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MessageBox.Show("Esta seguro de querer eliminar la asignacion del ENVIO con ID: " + Vista.txtIdEnvio.Text + " con el CHOFER con CI: " + Vista.txtCiChofer.Text, "Eliminar Asignacion de Envio", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
                 EliminarAsignacionEnvio();
@@ -177,7 +195,7 @@ namespace ProyectoCamioncitos.Controlador
             try
             {
                 AsignarEnviosDAO asignarEnvios = new AsignarEnviosDAO();
-                asignarEnvios.Delete(int.Parse(Vista.txtIdPedido.Text), Vista.txtCiChofer.Text);
+                asignarEnvios.Delete(int.Parse(Vista.txtIdEnvio.Text), Vista.txtCiChofer.Text);
             }
             catch { }
         }
@@ -186,17 +204,17 @@ namespace ProyectoCamioncitos.Controlador
         public void Limpiar()
         {
             Vista.tblChofer.ClearSelection();
-            Vista.tblPedidosPendientes.ClearSelection();
+            Vista.tblEnviosPendientes.ClearSelection();
             Vista.tblEnviosAsignados.ClearSelection();
 
             Vista.txtCiChofer.Text = "";
-            Vista.txtIdPedido.Text = "";
+            Vista.txtIdEnvio.Text = "";
 
             Vista.btnVincular.Enabled = false;
             Vista.btnDesvincular.Enabled = false;
 
             Vista.tblChofer.Enabled = true;
-            Vista.tblPedidosPendientes.Enabled = true;
+            Vista.tblEnviosPendientes.Enabled = true;
         }
 
         //Método Cargar Chofer
@@ -220,13 +238,13 @@ namespace ProyectoCamioncitos.Controlador
         //Método Cargar Envios Pendientes
         public void CargarEnviosPendientes()
         {
-            Vista.tblPedidosPendientes.Rows.Clear();
+            Vista.tblEnviosPendientes.Rows.Clear();
             PedidoEnvioDAO pedidoEnvio = new PedidoEnvioDAO();
-            List<Tuple<Pedido, Envio>> ListaPedidoEnvio = pedidoEnvio.ObtenerPedidoEnvioPendiente(Vista.txtBuscarPedidosPendientes.Text);
+            List<Tuple<Pedido, Envio>> ListaPedidoEnvio = pedidoEnvio.ObtenerPedidoEnvioPendiente(Vista.txtBuscarEnviosPendientes.Text);
 
             foreach (var tuples in ListaPedidoEnvio)
             {
-                Vista.tblPedidosPendientes.Rows.Add(tuples.Item1.ID, tuples.Item1.Fecha.ToString("dd-MM-yyyy"), tuples.Item1.RucCliente, tuples.Item1.Costo,
+                Vista.tblEnviosPendientes.Rows.Add(tuples.Item1.ID, tuples.Item1.Fecha.ToString("dd-MM-yyyy"), tuples.Item1.RucCliente, tuples.Item1.Costo,
                     tuples.Item2.DireccionDestinatario, tuples.Item2.CiDestinatario, tuples.Item2.Estado);
             }
         }
@@ -236,7 +254,7 @@ namespace ProyectoCamioncitos.Controlador
         {
             AsignarEnviosDAO asignarEnviosDAO = new AsignarEnviosDAO();
             Vista.tblEnviosAsignados.DataSource =
-                asignarEnviosDAO.ObtenerEnviosAsignados(Vista.txtBuscarPedidosAsignados.Text);
+                asignarEnviosDAO.ObtenerEnviosAsignados(Vista.txtBuscarEnviosAsignados.Text);
         }
     }
 }
